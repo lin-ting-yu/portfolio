@@ -1,0 +1,115 @@
+@import "variables";
+@import "mixins";
+
+.footer{
+  .nav-list{
+    position: absolute;
+    left: 50%;
+    top: $top-gap-blue;
+    transform-origin: 0 50%;
+    transform: rotate(90deg);
+    @media screen and (max-width: $screen-size-w-pc){
+      top: $top-gap-pc;
+    }
+    @media screen and (max-width: $screen-size-w-pad-s){
+      text-align: center;
+      position: static;
+      transform: none;
+      & + .copyright{
+        margin-top: 50px;
+      }
+    }
+    .nav-ul{}
+    .nav-li{
+      display: inline-block;
+      .link-content{
+        font-size: $f-z-1-2;
+        letter-spacing: 1px;
+        position: relative;
+        @media screen and (max-width: $screen-size-w-pc){
+          font-size: $f-z-0-8;
+        }
+        @media screen and (max-width: $screen-size-w-pad-s){
+          font-size: $f-z-1-2;
+          color: $color-cis-white;
+        }
+        &:hover{
+          letter-spacing: 2px;
+        }
+        &:after{
+          display: block;
+          content: '';
+          width: 100%;
+          height: 2px;
+          background-color: $color-cis-green;
+          position: absolute;
+          bottom: -4px;
+        }
+        .text{
+          transition: 0.3s;
+        }
+      }
+    }
+  }
+  .copyright{
+    text-align: right;
+    position: absolute;
+    right: 50%;
+    transform-origin: 100% 50%;
+    transform: rotate(90deg);
+    bottom: $bottom-gap-blue;
+    @media screen and (max-width: $screen-size-w-pc){
+      bottom: $bottom-gap-pc;
+    }
+    @media screen and (max-width: $screen-size-w-pad-s){
+      text-align: center;
+      position: static;
+      transform: none;
+    }
+    &:hover{
+      .text-content{
+        &.small{
+          opacity: 1;
+        }
+      }
+    }
+    .text-content{
+      font-size: $f-z-1-2;
+      letter-spacing: 1px;
+      @media screen and (max-width: $screen-size-w-pc){
+        font-size: $f-z-0-8;
+        color: $color-cis-grey-8;
+      }
+      @media screen and (max-width: $screen-size-w-pad-s){
+        color: $color-cis-white;
+        & + .text-content{
+          margin-top: 5px;
+        }
+      }
+      &.small{
+        font-size: $f-z-1;
+        position: absolute;
+        transform: translateY(-100%);
+        right: 0;
+        opacity: 0;
+        transition: 0.3s;
+        @media screen and (max-width: $screen-size-w-pc){
+          font-size: $f-z-0-8;
+          color: $color-cis-grey-5;
+        }
+        @media screen and (max-width: $screen-size-w-pad-s){
+          color: $color-cis-white;
+          position: static;
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .text{
+        @include text-one();
+        @media screen and (max-width: $screen-size-w-pad-s){
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}

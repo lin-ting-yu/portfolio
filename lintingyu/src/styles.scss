@@ -1,1 +1,70 @@
 /* You can add global styles to this file, and also import other style files */
+@import "variables";
+*{
+	box-sizing: border-box;
+	-webkit-text-size-adjust: 100%;
+		  -ms-text-size-adjust: 100%;
+	padding: 0;
+	margin: 0;
+	border: 0;
+  outline: 0;
+  color: $color-cis-black;
+  list-style: none;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: Arial, '微軟正黑體';
+  vertical-align: middle;
+  word-wrap:break-word;
+}
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+body,html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+ol, ul {
+	list-style: none;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+caption, th, td {
+	text-align: left;
+	font-weight: normal;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: "";
+}
+blockquote, q {
+	quotes: "" "";
+}
+
+a,
+input:focus,
+select:focus,
+button:focus,
+span:focus{
+	outline: none !important;
+	box-shadow: none;
+	behavior:expression(this.onFocus=this.blur());
+  blr: expression(this.onFocus=this.blur());
+
+}
+p.text-content, a.link-content, span.text{
+	color: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	font-size: inherit;
+  line-height: inherit;
+  text-decoration: none;
+}
+
+
+@import "style-layout-basic";

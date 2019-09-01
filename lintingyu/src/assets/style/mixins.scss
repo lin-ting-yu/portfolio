@@ -1,0 +1,10 @@
+@import "variables";
+
+
+@mixin text-one($cut: false){
+  white-space: nowrap;
+  @if($cut){
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

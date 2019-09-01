@@ -1,1 +1,19 @@
-<p>layout-common works!</p>
+<div
+  #layout
+  class="layout"
+  [ngClass]="{
+    'content-scroll': scroll,
+    'content-full': full
+  }"
+  (scroll)="onContentScroll()"
+>
+  <header class="layout-header">
+    <app-header [scrollTop]="scrollTop"></app-header>
+  </header>
+  <div class="layout-content">
+    <ng-content></ng-content>
+  </div>
+  <footer class="layout-footer" *ngIf="windowWidth > 768">
+    <app-footer></app-footer>
+  </footer>
+</div>
