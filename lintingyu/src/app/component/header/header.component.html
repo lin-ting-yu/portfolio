@@ -11,7 +11,7 @@
       'logo-white': mobileNavShow && mobileNavListShow
     }"
   >
-    <a href="#" class="link-content">
+    <div href="#" class="link-content" (click)="linkClick('')">
       <div class="svg-contnet">
           <svg
             class="svg" version="1.1"
@@ -46,7 +46,7 @@
             </g>
           </svg>
       </div>
-    </a>
+    </div>
   </div>
   <div
     class="nav-content"
@@ -59,19 +59,19 @@
       <div class="nav-list">
         <ul class="nav-ul">
           <li class="nav-li">
-            <a href="#" class="link-content">
+            <div href="#" class="link-content" (click)="linkClick('/works')">
               <span class="text">works</span>
-            </a>
+            </div>
           </li>
           <li class="nav-li">
-            <a href="#" class="link-content">
+            <div href="#" class="link-content" (click)="linkClick('/about')">
               <span class="text">about</span>
-            </a>
+            </div>
           </li>
           <li class="nav-li">
-            <a href="#" class="link-content">
-              <span class="text">contant</span>
-            </a>
+            <div href="#" class="link-content" (click)="linkClick('/contact')">
+              <span class="text">contact</span>
+            </div>
           </li>
         </ul>
       </div>

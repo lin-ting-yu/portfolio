@@ -57,13 +57,16 @@ span:focus{
   blr: expression(this.onFocus=this.blur());
 
 }
-p.text-content, a.link-content, span.text{
+p.text-content, .link-content, span.text{
 	color: inherit;
 	font-weight: inherit;
 	line-height: inherit;
 	font-size: inherit;
   line-height: inherit;
   text-decoration: none;
+}
+.link-content{
+  cursor: pointer;
 }
 
 

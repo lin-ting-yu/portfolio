@@ -1,4 +1,6 @@
-import { Component, OnInit, HostListener, Input } from '@angular/core';
+import { Component, OnInit, HostListener, Input, Output, EventEmitter } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +11,18 @@ export class HeaderComponent implements OnInit {
   public windowWidth: number;
   public mobileNavShow =  false;
   public mobileNavListShow =  false;
+
+  // 接收Layout scrolltop
   @Input() scrollTop = 0;
-  constructor() { }
+
+  constructor(
+    private router: Router,
+    route: ActivatedRoute,
+    locationStrategy: LocationStrategy
+  ) { }
 
 
+  // 判斷顯示Mobile選單
   toggleNav() {
     if (!this.mobileNavShow) {
       this.mobileNavShow = !this.mobileNavShow;
@@ -28,6 +38,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  linkClick(path: string){
+    this.router.navigate([path]);
+  }
 
 
   @HostListener('window:resize',['$event'])
