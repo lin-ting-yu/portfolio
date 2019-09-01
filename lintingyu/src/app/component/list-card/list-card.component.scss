@@ -1,0 +1,172 @@
+@import "variables";
+@import "mixins";
+
+
+.list-card-content{
+  display: flex;
+  width: 100%;
+
+  //偏移值
+    $card-border-trans: 5px;
+
+  .list-card-ul{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    padding-right: $card-border-trans;
+    @media screen and (max-width: $screen-size-w-pad-s){
+      padding-right: 0;
+    }
+  }
+  .list-card-li{
+    //計算後寬高
+      //blue
+      $card-blue-w: calc(35vw - 40px);
+      $card-blue-h: calc(#{35vw * 0.5625} - #{40px * 0.5625});
+      //pc
+      $card-pc-w: calc(35vw - 35px);
+      $card-pc-h: calc(#{35vw * 0.5625} - #{35px * 0.5625});
+      //pad-b
+      $card-pad-b-w: calc(37.5vw - 20px);
+      $card-pad-b-h: calc(#{37.5vw * 0.5625} - #{20px * 0.5625});
+      //pad-s
+      $card-pad-s-w: calc(50vw - 40px);
+      $card-pad-s-h: calc(#{50vw * 0.5625} - #{40px * 0.5625});
+      //mobile
+      $card-mobile-w: calc(100vw - 40px);
+      $card-mobile-h: calc(#{100vw * 0.5625} - #{40px * 0.5625});
+
+
+    width: $card-blue-w;
+    @media screen and (min-width: $screen-size-w-pad-b + 1) and (max-width: $screen-size-w-pc){
+      width: $card-pc-w;
+    }
+    @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-width: $screen-size-w-pad-b){
+      width: $card-pad-b-w;
+    }
+    @media screen and (max-width: $screen-size-w-pad-s){
+      width: $card-pad-s-w;
+    }
+    @media screen and (min-width: $screen-size-w-mobile){
+      &:nth-child(n+3){
+        margin-top: 30px;
+      }
+    }
+    @media screen and (max-width: $screen-size-w-mobile){
+      width: $card-mobile-w;
+      &+.list-card-li{
+        margin-top: 30px;
+      }
+    }
+    //控制3d參數
+    &:hover{
+      .img-content,
+      .img-border,
+      .info-text-content{
+        transition: 0s;
+      }
+    }
+    .link-content{
+      perspective: 1000px;
+    }
+
+    .img-content,
+    .img-border,
+    .info-text-content{
+      transform-style: preserve-3d;
+      transition: 0.5s;
+    }
+    .link-content{
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    .img-content,.img-border{
+      width: 100%;
+      height: $card-blue-h;
+      background-color: #ddd;
+      border-radius: 5px;
+      @media screen and (min-width: $screen-size-w-pad-b + 1) and (max-width: $screen-size-w-pc){
+        height: $card-pc-h;
+      }
+      @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-width: $screen-size-w-pad-b){
+        height: $card-pad-b-h;
+      }
+      @media screen and (max-width: $screen-size-w-pad-s){
+        height: $card-pad-s-h;
+      }
+      @media screen and (max-width: $screen-size-w-mobile){
+        height: $card-mobile-h;
+      }
+    }
+    .img-border{
+      background-color: transparent;
+      background-image: none;
+      border: solid 1px #fff;
+      filter:invert(1);
+      position: absolute;
+      top: $card-border-trans;
+      left: $card-border-trans;
+      @media screen and (max-width: $screen-size-w-pad-s){
+        display: none;
+      }
+    }
+    .info-text-content{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+      margin-top: 10px;
+      position: relative;
+      left: $card-border-trans;
+      @media screen and (max-width: $screen-size-w-pad-s){
+        position: static;
+      }
+      @media screen and (max-width: $screen-size-w-pad-s){
+        margin-top: 5px;
+      }
+      .title-content{
+        font-size: $f-z-1-2;
+        letter-spacing: 1px;
+        position: relative;
+        margin-top: 12px;
+        @media screen and (max-width: $screen-size-w-pad-s){
+          font-size: $f-z-1;
+        }
+        &:before{
+          display: block;
+          content: '';
+          width: 80px;
+          height: 2px;
+          background-color: $color-cis-green;
+          border-radius: 1px;
+          position: absolute;
+          left: 0;
+          top: -7px;
+          transform: translateY(-100%);
+        }
+      }
+      .info-content{
+        text-align: right;
+        .text-content{
+          font-size: $f-z-1-2;
+          letter-spacing: 1px;
+          @media screen and (max-width: $screen-size-w-pad-s){
+            font-size: $f-z-1;
+          }
+          &.small{
+            font-size: $f-z-1;
+            color: $color-cis-grey-6;
+            @media screen and (max-width: $screen-size-w-pad-s){
+              font-size: $f-z-0-8;
+            }
+          }
+          .text{
+            @include text-one();
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,11 +1,9 @@
 <div
-  #layout
   class="layout"
   [ngClass]="{
     'content-scroll': scroll,
     'content-full': full
   }"
-  (scroll)="onContentScroll()"
 >
   <header class="layout-header">
     <app-header [scrollTop]="scrollTop"></app-header>

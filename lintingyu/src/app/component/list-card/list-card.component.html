@@ -1,0 +1,29 @@
+<div class="list-card-content">
+    <ul class="list-card-ul">
+      <li
+        class="list-card-li"
+        (mousemove)="getTransformNumber($event)"
+        (mouseenter)="startSetPos($event)"
+        (mouseleave)="stopSetPos()"
+        *ngFor="let card of [0,0,0,0,0,0,0]"
+      >
+        <div class="link-content">
+          <div class="img-content"></div>
+          <div class="img-border"></div>
+          <div class="info-text-content">
+            <div class="title-content">
+              <div class="title">TAIWAN FOLK TOY</div>
+            </div>
+            <div class="info-content">
+              <div class="text-content small">
+                <span class="text">2017</span>
+              </div>
+              <div class="text-content">
+                <span class="text">BOOK</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+</div>

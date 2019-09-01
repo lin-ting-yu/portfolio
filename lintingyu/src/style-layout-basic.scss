@@ -3,6 +3,7 @@
 .layout{
   width: 100%;
   height: 100%;
+  min-height: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
   padding-left: 19%;
@@ -14,10 +15,10 @@
   @media screen and (max-width: $screen-size-w-pad-s){
     padding-left: 0;
     padding-right: 0;
-    overflow-y: auto;
+    height: auto;
   }
   &.content-scroll{
-    overflow-y: auto;
+    height: auto;
   }
   &.content-full{
     padding-left: 0;
@@ -49,7 +50,18 @@
     width: 100%;
     height: auto;
     min-height: 100%;
-    background-color: #999;
+    background-color: #f6f6f6;
+    padding-top: $top-gap-blue;
+    padding-bottom: $bottom-gap-blue;
+    @media screen and (max-width: $screen-size-w-pc){
+      padding-top: $top-gap-pc;
+      padding-bottom: $bottom-gap-pc;
+    }
+    @media screen and (max-width: $screen-size-w-pad-s){
+      padding-top: 100px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
   .layout-footer{
     width: 11%;
