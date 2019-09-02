@@ -2,16 +2,22 @@
   class="layout"
   [ngClass]="{
     'content-scroll': scroll,
-    'content-full': full
+    'content-full': full,
+    'content-show-full': contentShowFull
   }"
 >
   <header class="layout-header">
-    <app-header [scrollTop]="scrollTop"></app-header>
+    <app-header [scrollTop]="scrollTop" [small]="contentShowFull"></app-header>
   </header>
-  <div class="layout-content">
+  <div
+    class="layout-content"
+    [ngClass]="{
+      'no-padding': !padding
+    }"
+  >
     <ng-content></ng-content>
   </div>
   <footer class="layout-footer" *ngIf="windowWidth > 768">
-    <app-footer></app-footer>
+    <app-footer [small]="contentShowFull"></app-footer>
   </footer>
 </div>

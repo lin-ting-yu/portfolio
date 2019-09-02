@@ -52,10 +52,15 @@ $z-index-1:   5;
 
 $top-gap-blue: 130px;
 $top-gap-pc: 75px;
+$top-gap-mobile: 100px;
 
 
 $bottom-gap-blue: $top-gap-blue;
 $bottom-gap-pc: $top-gap-pc;
+
+//header
+$header-nav-bottom-gap-blue: 200px;
+$header-nav-bottom-gap-pc: 150px;
 
 //form樣式
 $form-col-col-gap: 20px;

@@ -26,6 +26,9 @@
     @media screen and (max-width: $screen-size-w-pad-s){
       font-size: $f-z-3;
     }
+    @media screen and (max-width: $screen-size-w-mobile){
+      font-size: $f-z-2-5;
+    }
   }
   &:after{
     display: inline-block;

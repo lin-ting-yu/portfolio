@@ -10,6 +10,7 @@ import { TitleLavalFirstComponent } from './title-laval-first/title-laval-first.
 import { FormModule } from './form/form.module';
 import { ButtonContentComponent } from './button-content/button-content.component';
 import { ButtonComponent } from './button-content/button/button.component';
+import { ListTextComponent } from './list-text/list-text.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ButtonComponent } from './button-content/button/button.component';
     MessageComponent,
     TitleLavalFirstComponent,
     ButtonContentComponent,
-    ButtonComponent
+    ButtonComponent,
+    ListTextComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { ButtonComponent } from './button-content/button/button.component';
     FooterComponent,
     ListCardComponent,
     MessageComponent,
-    TitleLavalFirstComponent
+    TitleLavalFirstComponent,
+    ListTextComponent
   ]
 })
 export class ComponentModule { }

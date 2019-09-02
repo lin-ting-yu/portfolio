@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ListCardService } from './list-card.service';
 import { ToolFunctionService } from '../tool-function.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { LocationStrategy } from '@angular/common';
 
 @Component({
   selector: 'app-list-card',
@@ -12,12 +14,15 @@ import { ToolFunctionService } from '../tool-function.service';
 export class ListCardComponent implements OnInit {
   private targetPos = this.listCardService.targetPos;
   private transformNumber = null;
-  private anmation;
+  private anmation = null;
   private target = null;
 
   constructor(
     private listCardService: ListCardService,
-    private toolFunction: ToolFunctionService
+    private toolFunction: ToolFunctionService,
+    private router: Router,
+    route: ActivatedRoute,
+    locationStrategy: LocationStrategy
   ) { }
 
   startSetPos(event){
@@ -25,7 +30,6 @@ export class ListCardComponent implements OnInit {
       return;
     }
     this.listCardService.getTargetPos(event);
-    console.log(event);
     this.setTarget(event);
     this.setDOMTransform(event);
   }
@@ -35,11 +39,17 @@ export class ListCardComponent implements OnInit {
     }
     this.listCardService.reset();
     this.transformNumber = null;
-    clearInterval(this.anmation);
-    this.target.img.style.transform  = '';
-    this.target.text.style.transform = '';
-    this.target.bor.style.transform  = '';
-    this.target = null;
+    if(this.anmation){
+      clearInterval(this.anmation);
+      this.anmation = null;
+    }
+    if(this.target){
+      this.target.img.style.transform  = '';
+      this.target.text.style.transform = '';
+      this.target.bor.style.transform  = '';
+      this.target = null;
+    }
+
   }
   getTransformNumber(event){
     if (!this.toolFunction.DETECTOR.isDesktopDevice) {
@@ -85,7 +95,13 @@ export class ListCardComponent implements OnInit {
     }
   }
 
+  linkClick(path: string){
+    this.router.navigate([path]);
+  }
   ngOnInit() {
+  }
+  ngOnDestroy(){
+    this.stopSetPos();
   }
 
 }

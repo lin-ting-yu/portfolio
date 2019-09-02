@@ -12,8 +12,12 @@ export class HeaderComponent implements OnInit {
   public mobileNavShow =  false;
   public mobileNavListShow =  false;
 
+  // 判斷是否要縮小
+  @Input() small = false;
   // 接收Layout scrolltop
   @Input() scrollTop = 0;
+  // logo是否展開
+  @Input() logoOpen = true;
 
   constructor(
     private router: Router,

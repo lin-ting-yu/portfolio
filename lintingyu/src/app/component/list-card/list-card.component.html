@@ -5,6 +5,7 @@
         (mousemove)="getTransformNumber($event)"
         (mouseenter)="startSetPos($event)"
         (mouseleave)="stopSetPos()"
+        (click)="linkClick('/work')"
         *ngFor="let card of [0,0,0,0,0,0,0]"
       >
         <div class="link-content">

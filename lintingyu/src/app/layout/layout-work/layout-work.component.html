@@ -1,0 +1,19 @@
+<div class="layout-work">
+  <section class="first-section">
+    <div class="info-content">
+      <div class="title-content">
+        <app-title-laval-first
+          [text]="title"
+          [textAlign]="titleTextAlign"
+        ></app-title-laval-first>
+      </div>
+      <div class="list-content">
+        <app-list-text></app-list-text>
+      </div>
+    </div>
+    <div class="arrow"></div>
+  </section>
+  <div class="other-section">
+    <ng-content></ng-content>
+  </div>
+</div>
