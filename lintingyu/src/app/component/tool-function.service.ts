@@ -59,4 +59,14 @@ export class ToolFunctionService {
         rotateZ
     };
   }
+  isDOM(HTMLElement){
+    let isDOM = ( typeof HTMLElement === 'object' ) ?
+                function(obj) {
+                    return obj instanceof HTMLElement;
+                } :
+                function(obj) {
+                    return obj && typeof obj === 'object' && obj.nodeType === 1 && typeof obj.nodeName === 'string';
+                }
+    return isDOM;
+  }
 }

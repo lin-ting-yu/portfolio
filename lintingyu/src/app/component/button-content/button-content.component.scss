@@ -1,0 +1,12 @@
+@import "variables";
+
+:host{
+  display: block;
+  width: 100%;
+  .btns-content{
+    display: flex;
+		width: 100%;
+		justify-content: center;
+		align-content: stretch;
+  }
+}

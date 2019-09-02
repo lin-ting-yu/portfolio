@@ -8,6 +8,7 @@
   overflow-y: hidden;
   padding-left: 19%;
   padding-right: 11%;
+  background-image: url("src/assets/7962.png");
   @media screen and (max-width: $screen-size-w-pad-b){
     padding-left: 17%;
     padding-right: 8%;
@@ -50,7 +51,7 @@
     width: 100%;
     height: auto;
     min-height: 100%;
-    background-color: #f6f6f6;
+    box-shadow: 0px -1px 0px 2px #fff;
     padding-top: $top-gap-blue;
     padding-bottom: $bottom-gap-blue;
     @media screen and (max-width: $screen-size-w-pc){

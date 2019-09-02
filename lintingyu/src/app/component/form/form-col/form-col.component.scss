@@ -1,0 +1,7 @@
+@import "variables";
+
+:host{
+  flex: 1;
+  padding: 0px $form-col-col-gap / 2;
+  padding-bottom: $form-col-bottom-gap;
+}

@@ -1,0 +1,33 @@
+@import "variables";
+
+:host{
+  width: 100%;
+  max-width: 150px;
+}
+.btn-content{
+  width: 100%;
+  text-align: center;
+  border: solid 1px #333;
+  border-radius: 22px;
+  transition: 0.5s;
+  margin-left: 0;
+  margin-right: 0;
+  &.btn-big{
+    max-width: 180px;
+  }
+  &:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 2px 2px -1px rgba(0,0,0,0.2);
+  }
+  .link-content{
+    width: 100%;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    border-radius: 22px;
+    color: $color-cis-grey-6;
+    letter-spacing: 1px;
+  }
+  .text{}
+}

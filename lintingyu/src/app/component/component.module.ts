@@ -6,6 +6,10 @@ import { FooterComponent } from './footer/footer.component';
 import { ListCardComponent } from './list-card/list-card.component';
 import { DeviceDetectorModule } from 'ngx-device-detector';
 import { MessageComponent } from './message/message.component';
+import { TitleLavalFirstComponent } from './title-laval-first/title-laval-first.component';
+import { FormModule } from './form/form.module';
+import { ButtonContentComponent } from './button-content/button-content.component';
+import { ButtonComponent } from './button-content/button/button.component';
 
 @NgModule({
   declarations: [
@@ -13,16 +17,22 @@ import { MessageComponent } from './message/message.component';
     HeaderComponent,
     FooterComponent,
     ListCardComponent,
-    MessageComponent
+    MessageComponent,
+    TitleLavalFirstComponent,
+    ButtonContentComponent,
+    ButtonComponent
   ],
   imports: [
     CommonModule,
+    FormModule,
     DeviceDetectorModule.forRoot()
   ],
   exports: [
     HeaderComponent,
     FooterComponent,
-    ListCardComponent
+    ListCardComponent,
+    MessageComponent,
+    TitleLavalFirstComponent
   ]
 })
 export class ComponentModule { }

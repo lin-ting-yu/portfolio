@@ -66,6 +66,14 @@
       .info-text-content{
         transition: 0s;
       }
+      .info-text-content{
+        .title-content{
+          letter-spacing: 2px;
+          &:before{
+            width: 90px;
+          }
+        }
+      }
     }
     .link-content{
       perspective: 1000px;
@@ -131,6 +139,7 @@
         letter-spacing: 1px;
         position: relative;
         margin-top: 12px;
+        transition: 1s;
         @media screen and (max-width: $screen-size-w-pad-s){
           font-size: $f-z-1;
         }
@@ -145,6 +154,7 @@
           left: 0;
           top: -7px;
           transform: translateY(-100%);
+          transition: 1.5s;
         }
       }
       .info-content{
