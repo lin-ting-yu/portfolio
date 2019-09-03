@@ -3,6 +3,7 @@ import { ListCardService } from './list-card.service';
 import { ToolFunctionService } from '../tool-function.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocationStrategy } from '@angular/common';
+import { RouterEventService } from 'src/app/pageBase/_service/router-event.service';
 
 @Component({
   selector: 'app-list-card',
@@ -22,17 +23,9 @@ export class ListCardComponent implements OnInit {
   constructor(
     private listCardService: ListCardService,
     private toolFunction: ToolFunctionService,
-    private router: Router,
-    route: ActivatedRoute,
-    locationStrategy: LocationStrategy
+    private routerEvent: RouterEventService
   ) { }
 
-  getDatas(){
-    if (this.data) {
-      return this.data;
-    }
-    return [];
-  }
   startSetPos(event){
     if (!this.toolFunction.DETECTOR.isDesktopDevice) {
       return;
@@ -110,8 +103,8 @@ export class ListCardComponent implements OnInit {
     }
   }
 
-  linkClick(path: string){
-    this.router.navigate([path]);
+  linkClick(path: string, page: string){
+    this.routerEvent.linkClick(path, page);
   }
   ngOnInit() {
   }

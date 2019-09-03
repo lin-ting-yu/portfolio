@@ -1,3 +1,35 @@
 <app-layout-common [scroll]="true" [full]="true" [padding]="false">
-  <app-layout-work [title]="'TAIWAN FOLK TOY'"></app-layout-work>
+  <app-layout-work
+    [title]="thisPageData.title"
+    [titleImg]="thisPageData.titleImg"
+    [listData]="thisPageData.info"
+    [nextData]="nextPageData"
+    [prevData]="prevPageData"
+  >
+    <div class="work-other-layout">
+      <section
+        class="one-section"
+        *ngFor="let layout of thisPageData.layouts"
+        [ngClass]="{
+          'small': layout.layout !== 'bigImg' && layout.layout !== 'twoBigImg'
+        }"
+      >
+        <ng-container *ngIf="layout.layout === 'bigImg'">
+          <app-i-t-layout-big-img [data]="layout"></app-i-t-layout-big-img>
+        </ng-container>
+
+        <ng-container *ngIf="layout.layout === 'twoBigImg'">
+          <app-i-t-layout-two-big-img [data]="layout"></app-i-t-layout-two-big-img>
+        </ng-container>
+
+        <ng-container *ngIf="layout.layout === 'imgAndText'">
+          <app-i-t-layout-img-text [data]="layout"></app-i-t-layout-img-text>
+        </ng-container>
+
+        <ng-container *ngIf="layout.layout === 'imgsAndText'">
+            <app-i-t-layout-imgs-text [data]="layout"></app-i-t-layout-imgs-text>
+          </ng-container>
+      </section>
+    </div>
+  </app-layout-work>
 </app-layout-common>

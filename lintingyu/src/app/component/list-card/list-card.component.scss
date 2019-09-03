@@ -64,10 +64,11 @@
       .img-content{
         transition:
           0s transform,
-          0.5s background-size,
           0.5s filter;
-        background-size: 110%;
         filter: grayscale(0);
+        .img{
+          transform: scale(1.1);
+        }
       }
       .img-border,
       .info-text-content{
@@ -90,7 +91,6 @@
       transform-style: preserve-3d;
       transition:
         0.5s transform,
-        0.5s background-size,
         0.5s filter;
     }
     .img-border,
@@ -98,6 +98,7 @@
       transform-style: preserve-3d;
       transition:  0.5s transform;
     }
+    //控制3d參數 :end
     .link-content{
       width: 100%;
       height: 100%;
@@ -108,8 +109,6 @@
       height: $card-blue-h;
       background-color: #ddd;
       border-radius: 5px;
-      background-size: 100%;
-      background-position: center center;
       @media screen and (min-width: $screen-size-w-pad-b + 1) and (max-width: $screen-size-w-pc){
         height: $card-pc-h;
       }
@@ -124,7 +123,15 @@
       }
     }
     .img-content{
+      overflow: hidden;
       filter: grayscale(0.9);
+      .img{
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center center;
+        transition: 0.5s
+      }
     }
     .img-border{
       background-color: transparent;

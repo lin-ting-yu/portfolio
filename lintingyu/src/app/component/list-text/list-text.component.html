@@ -1,12 +1,12 @@
 <div class="list-content">
   <ul class="list-ul">
-    <li class="list-li" *ngFor="let list of [0,0,0,0,0]">
+    <li class="list-li" *ngFor="let list of data | keyvalue">
       <div class="title-content">
-        <span class="text">title</span>
+        <span class="text">{{list.key}}</span>
       </div>
       <div class="line"></div>
       <div class="text-content">
-        <span class="text">Red dot bast of bast</span>
+        <span class="text">{{list.value}}</span>
       </div>
     </li>
   </ul>

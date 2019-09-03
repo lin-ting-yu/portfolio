@@ -1,0 +1,94 @@
+@import "variables";
+@import "mixins";
+
+:host{
+  display: block;
+  width: 100%;
+}
+.imgs-text-content{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  @media screen and (max-width: $screen-size-w-pad-s){
+    display: block;
+    flex-wrap: wrap;
+  }
+  &.type-2{
+    justify-content: flex-end;
+    .imgs-content{
+      order: 2;
+    }
+    .text-content{
+      order: 1;
+      padding-left: 0;
+      padding-right: $layout-work-img-text-gap;
+      @media screen and (max-width: $screen-size-w-pad-s){
+        order: 3;
+        padding-left: $layout-work-text-gap-m;
+        padding-right: $layout-work-text-gap-m;
+      }
+    }
+  }
+  .imgs-content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 50%;
+    @media screen and (max-width: $screen-size-w-pad-s){
+      width: 100%;
+    }
+    @media screen and (max-width: $screen-size-w-mobile){
+      width: calc(100% + #{$layout-work-l-r-gap-mobile * 2});
+      margin-left: -$layout-work-l-r-gap-mobile;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      overflow-x: scroll;
+      -webkit-overflow-scrolling: touch;
+      &:before, &:after{
+        display: block;
+        content: '';
+        min-width: $layout-work-l-r-gap-mobile;
+        height: 1px;
+      }
+    }
+    .img-content{
+      width: 90%;
+      min-width: 90%;
+      @include i-t-layout-img();
+      @media screen and (max-width: $screen-size-w-mobile){
+        min-width: 80%;
+      }
+      &:nth-child(1){
+        transform: translateX(-6%);
+        @media screen and (max-width: $screen-size-w-mobile){
+          transform: none;
+        }
+      }
+      &:nth-child(2){
+        transform: translateX(6%);
+        @media screen and (max-width: $screen-size-w-mobile){
+          transform: none;
+        }
+      }
+      & + .img-content{
+        margin-top: -5%;
+        @media screen and (max-width: $screen-size-w-mobile){
+          margin-top: 0;
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+  .text-content{
+    width: $layout-work-img-w;
+    padding-left: $layout-work-img-text-gap;
+    @include i-t-layout-text();
+    @media screen and (max-width: $screen-size-w-pad-s){
+      width: 100%;
+      margin-top: 20px;
+      padding-left: $layout-work-text-gap-m;
+      padding-right: $layout-work-text-gap-m;
+    }
+  }
+}

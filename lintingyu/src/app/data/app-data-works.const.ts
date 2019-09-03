@@ -1,3 +1,17 @@
+export class WorksData {
+
+  title: string;
+  titleImg: string;
+  info: {
+    type: string;
+    year: string;
+  };
+  workLike: string;
+
+  constructor(init: WorksData) {
+    Object.assign(this, init);
+  }
+}
 export const worksData =
 [
   { title: 'TAIWAN FOLK TOY',

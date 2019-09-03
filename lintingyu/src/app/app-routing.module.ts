@@ -1,37 +1,37 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { PreloadAllModules } from '@angular/router';
 
-
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
-import { WorksComponent } from './works/works.component';
-import { WorkComponent } from './work/work.component';
+// import { HomeComponent } from './home/home.component';
+// import { AboutComponent } from './about/about.component';
+// import { ContactComponent } from './contact/contact.component';
+// import { WorksComponent } from './works/works.component';
+// import { WorkComponent } from './work/work.component';
 
 const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent
+    loadChildren: './home/home.module#HomeModule'
   },
   {
     path: 'about',
-    component: AboutComponent
+    loadChildren: './about/about.module#AboutModule'
   },
   {
     path: 'contact',
-    component: ContactComponent
+    loadChildren: './contact/contact.module#ContactModule'
   },
   {
     path: 'works',
-    component: WorksComponent
+    loadChildren: './works/works.module#WorksModule'
   },
   {
     path: 'work',
-    component: WorkComponent
+    loadChildren: './work/work.module#WorkModule'
   },
   {
     path: '',
-    component: HomeComponent
+    loadChildren: './home/home.module#HomeModule'
   },
 ];
 
@@ -40,7 +40,9 @@ const routes: Routes = [
     RouterModule.forRoot(
       routes,
       {
-        useHash: true
+        useHash: true,
+        preloadingStrategy: PreloadAllModules,
+        onSameUrlNavigation: 'reload'
       }
     )
   ],

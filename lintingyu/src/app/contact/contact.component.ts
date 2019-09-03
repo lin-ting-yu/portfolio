@@ -11,8 +11,4 @@ export class ContactComponent extends PageComponent {
   constructor() {
     super();
   }
-
-  ngOnInit() {
-  }
-
 }

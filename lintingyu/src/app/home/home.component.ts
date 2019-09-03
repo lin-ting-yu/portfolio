@@ -11,8 +11,4 @@ export class HomeComponent extends PageComponent {
   constructor() {
     super();
   }
-
-  ngOnInit() {
-  }
-
 }

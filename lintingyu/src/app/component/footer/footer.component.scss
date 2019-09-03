@@ -77,9 +77,10 @@
     .text-content{
       font-size: $f-z-1-2;
       letter-spacing: 1px;
+      color: #555555;
       @media screen and (max-width: $screen-size-w-pc){
         font-size: $f-z-0-8;
-        color: $color-cis-grey-8;
+
       }
       @media screen and (max-width: $screen-size-w-pad-s){
         color: $color-cis-white;

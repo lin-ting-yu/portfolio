@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocationStrategy } from '@angular/common';
+import { RouterEventService } from 'src/app/pageBase/_service/router-event.service';
 
 @Component({
   selector: 'app-header',
@@ -20,9 +21,7 @@ export class HeaderComponent implements OnInit {
   @Input() logoOpen = true;
 
   constructor(
-    private router: Router,
-    route: ActivatedRoute,
-    locationStrategy: LocationStrategy
+    private routerEvent: RouterEventService
   ) { }
 
 
@@ -43,7 +42,7 @@ export class HeaderComponent implements OnInit {
   }
 
   linkClick(path: string){
-    this.router.navigate([path]);
+    this.routerEvent.linkClick(path);
   }
 
 

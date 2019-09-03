@@ -12,6 +12,7 @@ export class PageComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(123);
   }
 
 }

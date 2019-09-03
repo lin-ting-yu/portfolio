@@ -76,3 +76,55 @@
     }
   }
 }
+
+//i-t-layout 版行文字規則
+@mixin i-t-layout-text(){
+  .title{
+    font-size: $f-z-2;
+    color: $color-cis-black;
+    line-height: 1.5em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    @media screen and (max-width: $screen-size-w-pc){
+      font-size: $f-z-1-5;
+    }
+    @media screen and (max-width: $screen-size-w-pad-b){
+      margin-bottom: 10px;
+      font-size: $f-z-1-2;
+    }
+  }
+  .info{
+    font-size: $f-z-1-5;
+    letter-spacing: 1px;
+    line-height: 1.6em;
+    color: $color-cis-grey-8;
+    @media screen and (max-width: $screen-size-w-pc){
+      font-size: $f-z-1-2;
+    }
+    @media screen and (max-width: $screen-size-w-pad-b){
+      font-size: $f-z-1;
+    }
+    .text{
+      display: block;
+      & + .text{
+        margin-top: 0.5em;
+        @media screen and (max-width: $screen-size-w-pad-b){
+
+        }
+      }
+    }
+  }
+}
+@mixin i-t-layout-img(){
+  border-radius: 5px;
+  overflow: hidden;
+
+    //測試用
+    min-width: 20px;
+    background-color: #555;
+  img{
+    width: 100%;
+
+  }
+}

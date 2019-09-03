@@ -43,7 +43,11 @@ import { ITLayoutImgsTextComponent } from './img-and-text/i-t-layout-imgs-text/i
     ListCardComponent,
     MessageComponent,
     TitleLavalFirstComponent,
-    ListTextComponent
+    ListTextComponent,
+    ITLayoutBigImgComponent,
+    ITLayoutTwoBigImgComponent,
+    ITLayoutImgTextComponent,
+    ITLayoutImgsTextComponent
   ]
 })
 export class ComponentModule { }
