@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ListCardService } from './list-card.service';
 import { ToolFunctionService } from '../tool-function.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,6 +12,8 @@ import { LocationStrategy } from '@angular/common';
 
 
 export class ListCardComponent implements OnInit {
+
+  @Input() data: Array<object>;
   private targetPos = this.listCardService.targetPos;
   private transformNumber = null;
   private anmation = null;
@@ -25,6 +27,12 @@ export class ListCardComponent implements OnInit {
     locationStrategy: LocationStrategy
   ) { }
 
+  getDatas(){
+    if (this.data) {
+      return this.data;
+    }
+    return [];
+  }
   startSetPos(event){
     if (!this.toolFunction.DETECTOR.isDesktopDevice) {
       return;
@@ -69,8 +77,9 @@ export class ListCardComponent implements OnInit {
       this.anmation = setInterval(() => {
         if (this.transformNumber){
           let speed = 0.2;
-          let imgTrans = this.toolFunction.getTransform(this.target.img);
-          let borTrans = this.toolFunction.getTransform(this.target.bor);
+          let imgTrans  = this.toolFunction.getTransform(this.target.img);
+          let borTrans  = this.toolFunction.getTransform(this.target.bor);
+          let textTrans = this.toolFunction.getTransform(this.target.text);
 
           let imgNewTrans =
             `rotateX(${
@@ -81,14 +90,20 @@ export class ListCardComponent implements OnInit {
 
           let borNewTrans =
             `rotateX(${
-              borTrans.rotateX + (this.transformNumber.rotateX - borTrans.rotateX) * speed
+              borTrans.rotateX + (this.transformNumber.rotateX * 1.5 - borTrans.rotateX) * speed
             }deg) rotateY(${
-              borTrans.rotateY + (this.transformNumber.rotateY - borTrans.rotateY) * speed
+              borTrans.rotateY + (this.transformNumber.rotateY * 1.5 - borTrans.rotateY) * speed
             }deg)`;
 
+          let textNewTrans =
+            `rotateX(${
+              textTrans.rotateX + (this.transformNumber.rotateX * 1 - textTrans.rotateX) * speed
+            }deg) rotateY(${
+              textTrans.rotateY + (this.transformNumber.rotateY * 1 - textTrans.rotateY) * speed
+            }deg)`;
           this.target.img.style.transform  = imgNewTrans;
-          this.target.text.style.transform = borNewTrans;
           this.target.bor.style.transform  = borNewTrans;
+          this.target.text.style.transform = textNewTrans;
         }
 
       }, 60);

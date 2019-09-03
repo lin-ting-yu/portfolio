@@ -1,82 +1,92 @@
 export const worksData =
-[ { title: 'TAIWAN FOLK TOY',
-    titleImg: 'image/worksTitleImg/titleImg-toy.jpg',
+[
+  { title: 'TAIWAN FOLK TOY',
+    titleImg: 'assets/worksTitleImg/titleImg-toy.jpg',
     info: {
       type: 'book',
       year: '2015'
     },
-    workLike: 'work.html?taiwanfolktoy'},
+    workLike: 'taiwanfolktoy'
+  },
 
   { title: 'TAIWAN AMAZING FOOD',
-    titleImg: 'image/worksTitleImg/titleImg-food.jpg',
+    titleImg: 'assets/worksTitleImg/titleImg-food.jpg',
     info: {
       type: 'book',
       year: '2015'
     },
-    workLike: 'work.html?taiwanfood'},
+    workLike: 'taiwanfood'
+  },
 
   { title: '爭鮮 SuShi Express',
-    titleImg: 'image/worksTitleImg/titleImg-SuShi.jpg',
+    titleImg: 'assets/worksTitleImg/titleImg-SuShi.jpg',
     info: {
       type: 'cis',
       year: '2015'
     },
-    workLike: 'work.html?sushi'},
+    workLike: 'sushi'
+  },
 
   { title: '米諾卡烘焙',
-    titleImg: 'image/worksTitleImg/titleImg-bakery.jpg',
+    titleImg: 'assets/worksTitleImg/titleImg-bakery.jpg',
     info: {
       type: 'cis',
       year: '2016'
     },
-    workLike: 'work.html?milocca'},
+    workLike: 'milocca'
+  },
 
   { title: 'Catch',
-    titleImg: 'image/worksTitleImg/titleImg-catch.jpg',
+    titleImg: 'assets/worksTitleImg/titleImg-catch.jpg',
     info: {
       type: 'package',
       year: '2015'
     },
-    workLike: 'work.html?catch'},
+    workLike: 'catch'
+  },
 
   { title: '永和豆漿',
-    titleImg: 'image/worksTitleImg/titleImg-soyMilk.jpg',
+    titleImg: 'assets/worksTitleImg/titleImg-soyMilk.jpg',
     info: {
       type: 'poster',
       year: '2015'
     },
-    workLike: 'work.html?soymilk'},
+    workLike: 'soymilk'
+  },
 
   { title: 'Honor!?',
-    titleImg: 'image/worksTitleImg/titleImg-honor.jpg',
+    titleImg: 'assets/worksTitleImg/titleImg-honor.jpg',
     info: {
       type: 'poster',
       year: '2017'
     },
-    workLike: 'work.html?honor'},
+    workLike: 'honor'
+  },
 
   { title: 'Another Logo',
-    titleImg: 'image/worksTitleImg/titleImg-logotype.jpg',
+    titleImg: 'assets/worksTitleImg/titleImg-logotype.jpg',
     info: {
       type: 'logotype',
-      year: '2013-201
+      year: '2013-2015'
       , },
-    workLike: 'work.html?anotherlogo'},
+    workLike: 'anotherlogo'
+  },
 
   { title: 'PSI',
-    titleImg: 'image/worksTitleImg/titleImg-psi.jpg',
+    titleImg: 'assets/worksTitleImg/titleImg-psi.jpg',
     info: {
       type: 'logo',
       year: '2016'
     },
-    workLike: 'work.html?psi'},
+    workLike: 'psi'
+  },
 
   { title: '糾結',
-    titleImg: 'image/worksTitleImg/titleImg-kind.jpg',
+    titleImg: 'assets/worksTitleImg/titleImg-kind.jpg',
     info: {
       type: 'poster',
       year: '2016'
     },
-    workLike: 'work.html?kink'}
-
+    workLike: 'kink'
+  }
 ];

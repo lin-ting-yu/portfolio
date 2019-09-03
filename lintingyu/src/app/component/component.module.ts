@@ -11,6 +11,7 @@ import { FormModule } from './form/form.module';
 import { ButtonContentComponent } from './button-content/button-content.component';
 import { ButtonComponent } from './button-content/button/button.component';
 import { ListTextComponent } from './list-text/list-text.component';
+import { ITLayoutBigImgComponent } from './img-and-text/i-t-layout-big-img/i-t-layout-big-img.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ListTextComponent } from './list-text/list-text.component';
     TitleLavalFirstComponent,
     ButtonContentComponent,
     ButtonComponent,
-    ListTextComponent
+    ListTextComponent,
+    ITLayoutBigImgComponent
   ],
   imports: [
     CommonModule,

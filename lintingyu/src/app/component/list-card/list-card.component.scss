@@ -61,7 +61,14 @@
     }
     //控制3d參數
     &:hover{
-      .img-content,
+      .img-content{
+        transition:
+          0s transform,
+          0.5s background-size,
+          0.5s filter;
+        background-size: 110%;
+        filter: grayscale(0);
+      }
       .img-border,
       .info-text-content{
         transition: 0s;
@@ -79,11 +86,17 @@
       perspective: 1000px;
     }
 
-    .img-content,
+    .img-content{
+      transform-style: preserve-3d;
+      transition:
+        0.5s transform,
+        0.5s background-size,
+        0.5s filter;
+    }
     .img-border,
     .info-text-content{
       transform-style: preserve-3d;
-      transition: 0.5s;
+      transition:  0.5s transform;
     }
     .link-content{
       width: 100%;
@@ -95,6 +108,8 @@
       height: $card-blue-h;
       background-color: #ddd;
       border-radius: 5px;
+      background-size: 100%;
+      background-position: center center;
       @media screen and (min-width: $screen-size-w-pad-b + 1) and (max-width: $screen-size-w-pc){
         height: $card-pc-h;
       }
@@ -108,11 +123,14 @@
         height: $card-mobile-h;
       }
     }
+    .img-content{
+      filter: grayscale(0.9);
+    }
     .img-border{
       background-color: transparent;
       background-image: none;
       border: solid 1px #fff;
-      filter:invert(1);
+      filter: invert(1);
       position: absolute;
       top: $card-border-trans;
       left: $card-border-trans;
