@@ -12,6 +12,9 @@ import { ButtonContentComponent } from './button-content/button-content.componen
 import { ButtonComponent } from './button-content/button/button.component';
 import { ListTextComponent } from './list-text/list-text.component';
 import { ITLayoutBigImgComponent } from './img-and-text/i-t-layout-big-img/i-t-layout-big-img.component';
+import { ITLayoutTwoBigImgComponent } from './img-and-text/i-t-layout-two-big-img/i-t-layout-two-big-img.component';
+import { ITLayoutImgTextComponent } from './img-and-text/i-t-layout-img-text/i-t-layout-img-text.component';
+import { ITLayoutImgsTextComponent } from './img-and-text/i-t-layout-imgs-text/i-t-layout-imgs-text.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { ITLayoutBigImgComponent } from './img-and-text/i-t-layout-big-img/i-t-l
     ButtonContentComponent,
     ButtonComponent,
     ListTextComponent,
-    ITLayoutBigImgComponent
+    ITLayoutBigImgComponent,
+    ITLayoutTwoBigImgComponent,
+    ITLayoutImgTextComponent,
+    ITLayoutImgsTextComponent
   ],
   imports: [
     CommonModule,
