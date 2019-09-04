@@ -7,6 +7,7 @@ import { FormRowComponent } from './form-row/form-row.component';
 import { FormColComponent } from './form-col/form-col.component';
 import { InputComponent } from './component/input/input.component';
 import { TextareaComponent } from './component/textarea/textarea.component';
+import { BooleanComponent } from './component/boolean/boolean.component';
 
 
 
@@ -18,7 +19,8 @@ import { TextareaComponent } from './component/textarea/textarea.component';
     FormRowComponent,
     FormColComponent,
     InputComponent,
-    TextareaComponent
+    TextareaComponent,
+    BooleanComponent
   ],
   imports: [
     CommonModule

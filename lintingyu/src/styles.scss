@@ -27,6 +27,9 @@ body,html {
   background-image: url("src/assets/7962.png");
   background-attachment: fixed;
 }
+body{
+  overflow-x: hidden;
+}
 ol, ul {
 	list-style: none;
 }

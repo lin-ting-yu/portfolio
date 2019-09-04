@@ -8,7 +8,7 @@
       <div class="title-content">
         <app-title-laval-first
           [text]="title"
-          [textAlign]="titleTextAlign"
+          [textAlign]="0"
         ></app-title-laval-first>
       </div>
       <div class="list-content">
@@ -24,7 +24,7 @@
     <ng-container *ngIf="prevData !== null">
       <div class="btn-content prev">
         <div class="img" [ngStyle]="{'background-image':'url(' + prevData.titleImg + ')'}"></div>
-        <div class="link-content" (click)="linkClick('work', prevData.linkPath)">
+        <div class="link-content" (click)="linkClick(prevComp, {page: prevData.linkPath, comp: prevComp})">
           <div class="arrow"></div>
           <div class="text-content">
             <span class="text">PREV</span>
@@ -35,7 +35,7 @@
     <ng-container *ngIf="nextData !== null">
       <div class="btn-content next">
         <div class="img" [ngStyle]="{'background-image':'url(' + nextData.titleImg + ')'}"></div>
-        <div class="link-content" (click)="linkClick('work', nextData.linkPath)">
+        <div class="link-content" (click)="linkClick(nextComp, {page: nextData.linkPath, comp: nextComp})">
           <div class="arrow"></div>
           <div class="text-content">
             <span class="text">NEXT</span>

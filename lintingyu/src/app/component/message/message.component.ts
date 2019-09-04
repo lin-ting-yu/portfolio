@@ -24,6 +24,7 @@ export class MessageComponent implements OnInit {
 
 
   send(){
+    console.log(45646546);
     if (!this.isSend) {
       this.isSend = true;
       this.onSend.emit();

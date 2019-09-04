@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { WorkData, ITLayout } from 'src/app/data/app-data-work.const';
 
 @Component({
   selector: 'app-i-t-layout-big-img',
@@ -6,17 +7,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./i-t-layout-big-img.component.scss']
 })
 export class ITLayoutBigImgComponent implements OnInit {
-  @Input() data;
+  @Input() data: ITLayout;
 
   constructor() { }
 
-  getData(){
-    if (this.data) {
-      return this.data;
-    }
-    return {};
-  }
-  getTextArray(text: string){
+  getTextArray(text: string) {
     return text.split('\n');
   }
   ngOnInit() {

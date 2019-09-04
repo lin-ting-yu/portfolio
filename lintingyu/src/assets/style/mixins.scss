@@ -122,9 +122,43 @@
 
     //測試用
     min-width: 20px;
-    background-color: #555;
+    // background-color: #555;
   img{
     width: 100%;
 
+  }
+}
+
+@mixin page-layout(){
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  .one-section{
+    width: 100%;
+    & + .one-section{
+      margin-top: 100px;
+      @media screen and (max-width: $screen-size-w-pc){
+        margin-top: 8%;
+      }
+      @media screen and (max-width: $screen-size-w-mobile){
+        margin-top: $layout-work-section-gap-mobile;
+      }
+    }
+    &.small{
+      max-width: 70%;
+      @media screen and (max-width: $screen-size-w-pc){
+        max-width: 80%;
+      }
+      @media screen and (max-width: $screen-size-w-pad-b){
+        max-width: 90%;
+      }
+      @media screen and (max-width: $screen-size-w-pad-s){
+        max-width: 80%;
+      }
+      @media screen and (max-width: $screen-size-w-mobile){
+        max-width: 100%;
+      }
+    }
   }
 }

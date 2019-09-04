@@ -7,6 +7,7 @@ import { PageComponent } from '../pageBase/page.component';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent extends PageComponent {
+  public scroll = true;
 
   constructor() {
     super();

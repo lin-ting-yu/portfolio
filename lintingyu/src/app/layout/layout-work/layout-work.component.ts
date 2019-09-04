@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { LocationStrategy } from '@angular/common';
 import { RouterEventService } from 'src/app/pageBase/_service/router-event.service';
+import { pathData } from '../../data/app-data-path.const';
 
 
 @Component({
@@ -15,31 +14,35 @@ export class LayoutWorkComponent implements OnInit {
   @Input() listData = {};
   @Input() nextData;
   @Input() prevData;
+
+  private pathData = pathData;
+  public prevComp = pathData.workB;
+  public nextComp = pathData.workC;
+
   private windowWidth: number;
-  public titleTextAlign = 0;
+
   constructor(
     private routerEvent: RouterEventService
   ) { }
 
-  @HostListener('window:resize', ['$event'])
-    onResize(event){
-      this.windowWidth = event.target.innerWidth;
-      this.handleTitle();
-    }
-  handleTitle(){
-    if (this.windowWidth < 769){
-      this.titleTextAlign = 1;
-    }
-    else{
-      this.titleTextAlign = 0;
-    }
+
+  linkClick(path: string, queryParams: object) {
+    this.routerEvent.linkClick(path, queryParams);
   }
-  linkClick(path: string, page: string) {
-    this.routerEvent.linkClick(path, page)
+  getSublingsComp(){
+    let thisComp = this.routerEvent.getQueryParamse('comp');
+    if (thisComp === pathData.workB){
+      this.prevComp = pathData.workA;
+      this.nextComp = pathData.workC;
+    }
+    else if (thisComp === pathData.workC) {
+      this.prevComp = pathData.workA;
+      this.nextComp = pathData.workB;
+    }
+    console.log(this.prevComp, this.nextComp);
   }
   ngOnInit() {
-    this.windowWidth = window.innerWidth;
-    this.handleTitle();
+    this.getSublingsComp();
   }
 
 }

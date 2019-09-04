@@ -6,7 +6,7 @@
         (mousemove)="getTransformNumber($event)"
         (mouseenter)="startSetPos($event)"
         (mouseleave)="stopSetPos()"
-        (click)="linkClick('/work', item.linkPath)"
+        (click)="linkClick(pathData.workA, {page: item.linkPath, comp: pathData.workA})"
       >
         <div class="link-content">
           <div class="img-content">

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageComponent } from '../pageBase/page.component';
 import { workDatas } from '../data/app-data-work.const';
-import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { RouterEventService } from '../pageBase/_service/router-event.service';
 
 
 @Component({
@@ -20,29 +20,13 @@ export class WorkComponent extends PageComponent {
   public nextPageData = null;
   // 當前頁面資訊
   public thisPageData;
-  private navigationSubscription;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {
+  constructor(private routerEvent: RouterEventService) {
     super();
-    this.navigationSubscription = this.router.events.subscribe((e: any) => {
-      // If it is a NavigationEnd event re-initalise the component
-      if (e instanceof NavigationEnd) {
-        this.initialiseInvites();
-      }
-    });
   }
-  initialiseInvites() {
-    this.getPageName();
-    this.setPageData();
-    this.getSublingsData();
-  }
+
   getPageName() {
-    this.activatedRoute.queryParams.subscribe(queryParams => {
-      this.pageName = queryParams.page;
-    });
+    this.pageName = this.routerEvent.getQueryParamse('page');
   }
   getSublingsData() {
     if (this.pageName !== '') {
@@ -61,17 +45,13 @@ export class WorkComponent extends PageComponent {
           return false;
         })[0];
   }
-  // tslint:disable-next-line: use-lifecycle-interface
+  initialiseInvites() {
+    this.getPageName();
+    this.setPageData();
+    this.getSublingsData();
+  }
   ngOnInit() {
     this.initialiseInvites();
-  }
-  ngOnDestroy() {
-    // avoid memory leaks here by cleaning up after ourselves. If we
-    // don't then we will continue to run our initialiseInvites()
-    // method on every navigationEnd event.
-    if (this.navigationSubscription) {
-      this.navigationSubscription.unsubscribe();
-    }
   }
 
 }

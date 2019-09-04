@@ -1,42 +1,57 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PreloadAllModules } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { pathData } from './data/app-data-path.const';
 
-// import { HomeComponent } from './home/home.component';
-// import { AboutComponent } from './about/about.component';
-// import { ContactComponent } from './contact/contact.component';
-// import { WorksComponent } from './works/works.component';
-// import { WorkComponent } from './work/work.component';
+
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: './home/home.module#HomeModule'
+    path: pathData.home,
+    loadChildren: './home/home.module#HomeModule',
+    data: {animation: 'fadeInOut'}
   },
   {
-    path: 'about',
-    loadChildren: './about/about.module#AboutModule'
+    path: pathData.about,
+    loadChildren: './about/about.module#AboutModule',
+    data: {animation: 'fadeInOut'}
   },
   {
-    path: 'contact',
-    loadChildren: './contact/contact.module#ContactModule'
+    path: pathData.contact,
+    loadChildren: './contact/contact.module#ContactModule',
+    data: {animation: 'fadeInOut'}
   },
   {
-    path: 'works',
-    loadChildren: './works/works.module#WorksModule'
+    path: pathData.works,
+    loadChildren: './works/works.module#WorksModule',
+    data: {animation: 'fadeInOut'}
   },
   {
-    path: 'work',
-    loadChildren: './work/work.module#WorkModule'
+    path: pathData.workA,
+    loadChildren: './work/work-a/work-a.module#WorkAModule',
+    data: {animation: 'workA'}
+  },
+  {
+    path: pathData.workB,
+    loadChildren: './work/work-b/work-b.module#WorkBModule',
+    data: {animation: 'workB'}
+  },
+  {
+    path: pathData.workC,
+    loadChildren: './work/work-c/work-c.module#WorkCModule',
+    data: {animation: 'workC'}
   },
   {
     path: '',
-    loadChildren: './home/home.module#HomeModule'
+    loadChildren: './home/home.module#HomeModule',
+    data: {animation: 'fadeInOut'}
   },
 ];
 
 @NgModule({
   imports: [
+    BrowserAnimationsModule,
     RouterModule.forRoot(
       routes,
       {

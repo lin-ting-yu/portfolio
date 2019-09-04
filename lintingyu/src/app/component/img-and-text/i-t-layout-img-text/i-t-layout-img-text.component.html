@@ -1,18 +1,18 @@
 <div
   class="img-text-content"
   [ngClass]="{
-    'type-2': getData().layoutType === 1
+    'type-2': data.layoutType === 1
   }"
 >
   <div class="img-content">
-    <img [src]="getData().imgs[0]" alt="">
+    <img [src]="data.imgs[0]" alt="">
   </div>
   <div class="text-content">
-    <div class="title">
-      <span class="text">{{getData().title}}</span>
+    <div class="title" *ngIf="data.title">
+      <span class="text">{{data.title}}</span>
     </div>
     <div class="info">
-      <span class="text" *ngFor="let text of getTextArray(getData().text)">{{text}}</span>
+      <span class="text" *ngFor="let text of getTextArray(data.text)">{{text}}</span>
     </div>
   </div>
 </div>

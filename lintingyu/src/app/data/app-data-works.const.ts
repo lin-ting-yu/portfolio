@@ -1,4 +1,4 @@
-export class WorksData {
+class WorksData {
 
   title: string;
   titleImg: string;
@@ -12,7 +12,7 @@ export class WorksData {
     Object.assign(this, init);
   }
 }
-export const worksData =
+const worksData =
 [
   { title: 'TAIWAN FOLK TOY',
     titleImg: 'assets/worksTitleImg/titleImg-toy.jpg',
@@ -104,3 +104,6 @@ export const worksData =
     workLike: 'kink'
   }
 ];
+
+
+export {WorksData, worksData};

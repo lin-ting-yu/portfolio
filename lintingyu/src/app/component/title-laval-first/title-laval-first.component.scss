@@ -8,12 +8,18 @@
   }
   &.text-align-l{
     text-align: left;
+    @media screen and (max-width: $screen-size-w-pad-s){
+      text-align: center;
+    }
   }
   &.text-align-c{
     text-align: center;
   }
   &.text-align-r{
     text-align: right;
+    @media screen and (max-width: $screen-size-w-pad-s){
+      text-align: center;
+    }
   }
   .text-content{
     font-size: $f-z-5;

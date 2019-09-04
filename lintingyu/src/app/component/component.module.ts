@@ -15,6 +15,11 @@ import { ITLayoutBigImgComponent } from './img-and-text/i-t-layout-big-img/i-t-l
 import { ITLayoutTwoBigImgComponent } from './img-and-text/i-t-layout-two-big-img/i-t-layout-two-big-img.component';
 import { ITLayoutImgTextComponent } from './img-and-text/i-t-layout-img-text/i-t-layout-img-text.component';
 import { ITLayoutImgsTextComponent } from './img-and-text/i-t-layout-imgs-text/i-t-layout-imgs-text.component';
+import { ITLayoutTextSvgComponent } from './img-and-text/i-t-layout-text-svg/i-t-layout-text-svg.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { HttpClientModule } from '@angular/common/http';
+import { TextBarComponent } from './text-bar/text-bar.component';
+
 
 @NgModule({
   declarations: [
@@ -30,11 +35,15 @@ import { ITLayoutImgsTextComponent } from './img-and-text/i-t-layout-imgs-text/i
     ITLayoutBigImgComponent,
     ITLayoutTwoBigImgComponent,
     ITLayoutImgTextComponent,
-    ITLayoutImgsTextComponent
+    ITLayoutImgsTextComponent,
+    ITLayoutTextSvgComponent,
+    TextBarComponent
   ],
   imports: [
     CommonModule,
     FormModule,
+    AngularSvgIconModule,
+    HttpClientModule,
     DeviceDetectorModule.forRoot()
   ],
   exports: [
@@ -47,7 +56,8 @@ import { ITLayoutImgsTextComponent } from './img-and-text/i-t-layout-imgs-text/i
     ITLayoutBigImgComponent,
     ITLayoutTwoBigImgComponent,
     ITLayoutImgTextComponent,
-    ITLayoutImgsTextComponent
+    ITLayoutImgsTextComponent,
+    ITLayoutTextSvgComponent
   ]
 })
 export class ComponentModule { }

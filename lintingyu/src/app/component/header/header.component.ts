@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener, Input, Output, EventEmitter } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { LocationStrategy } from '@angular/common';
 import { RouterEventService } from 'src/app/pageBase/_service/router-event.service';
+import { pathData } from '../../data/app-data-path.const';
+
 
 @Component({
   selector: 'app-header',
@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
   public windowWidth: number;
   public mobileNavShow =  false;
   public mobileNavListShow =  false;
-
+  public pathData = pathData;
   // 判斷是否要縮小
   @Input() small = false;
   // 接收Layout scrolltop

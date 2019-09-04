@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ListCardService } from './list-card.service';
 import { ToolFunctionService } from '../tool-function.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { LocationStrategy } from '@angular/common';
 import { RouterEventService } from 'src/app/pageBase/_service/router-event.service';
+import { pathData } from '../../data/app-data-path.const';
+import { WorkData } from 'src/app/data/app-data-work.const';
 
 @Component({
   selector: 'app-list-card',
@@ -14,11 +14,12 @@ import { RouterEventService } from 'src/app/pageBase/_service/router-event.servi
 
 export class ListCardComponent implements OnInit {
 
-  @Input() data: Array<object>;
+  @Input() data: Array<WorkData>;
   private targetPos = this.listCardService.targetPos;
   private transformNumber = null;
   private anmation = null;
   private target = null;
+  public pathData = pathData;
 
   constructor(
     private listCardService: ListCardService,
@@ -103,8 +104,8 @@ export class ListCardComponent implements OnInit {
     }
   }
 
-  linkClick(path: string, page: string){
-    this.routerEvent.linkClick(path, page);
+  linkClick(path: string, queryParams: object){
+    this.routerEvent.linkClick(path, queryParams);
   }
   ngOnInit() {
   }
