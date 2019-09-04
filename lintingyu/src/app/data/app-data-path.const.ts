@@ -6,4 +6,4 @@ export const pathData = {
   workA:    'work_anA',
   workB:    'work_anB',
   workC:    'work_anC'
-}
+};

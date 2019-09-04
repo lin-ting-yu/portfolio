@@ -13,9 +13,7 @@ export class RouterEventService {
   ) { }
 
   linkClick(path: string, queryParams?: object) {
-    setTimeout(() => {
-      window.scroll(0, 0);
-    },375);
+    window.scroll(0, 0);
 
     if (queryParams) {
       this.router.navigate(

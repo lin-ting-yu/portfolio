@@ -5,19 +5,45 @@
   width: 100%;
   padding: 0 7%;
   padding-left: 7%;
-  @include page-layout();
+  @include page-layout(1.2, 2);
   // border: solid 1px #888;
   @media screen and (max-width: $screen-size-w-pad-s){
     padding: 0;
   }
-  .one-section.child{
-    ::ng-deep{
-      app-i-t-layout-text-svg{
-        .text-svg-content{
-          .img-content{
-            padding-left: 15%;
-            @media screen and (max-width: $screen-size-w-pad-s){
-              padding-left: 0;
+  .one-section{
+    &.child{
+      ::ng-deep{
+        app-i-t-layout-text-svg{
+          .text-svg-content{
+            .img-content{
+              padding-left: 15%;
+              @media screen and (max-width: $screen-size-w-pad-s){
+                padding-left: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.skills{
+      @media screen and (max-width: 870px) and (min-width: $screen-size-w-pad-s){
+        ::ng-deep{
+          app-radial-char{
+            .radial-char-content{
+              .radial-char-info{
+                .info-content{
+                  .info-content-ul{
+                    .info-content-li{
+                      .li-info{
+                        app-text-bar{
+                          transform-origin: 50% 50%;
+                          transform: scale(0.8);
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

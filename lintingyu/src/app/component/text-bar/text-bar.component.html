@@ -1,1 +1,28 @@
-<p>text-bar works!</p>
+<div class="text-bar-content">
+  <div class="text-bar-info">
+    <div
+      class="title-content"
+      [ngClass]="{
+        'small': small
+      }"
+    >
+      <span class="text">{{data.title}}</span>
+    </div>
+    <div class="info-content">
+      <div class="text-content">
+        <span class="text">{{data.text}}</span>
+      </div>
+      <div class="bar-content">
+        <div
+          class="bar"
+          [ngClass]="{
+            'fill': fill
+          }"
+          [ngStyle]="{
+            'width': data.percentage * 100 + '%'
+          }"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>

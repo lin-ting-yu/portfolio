@@ -32,7 +32,8 @@ import { BooleanComponent } from './component/boolean/boolean.component';
     FormRowComponent,
     FormColComponent,
     InputComponent,
-    TextareaComponent
+    TextareaComponent,
+    BooleanComponent
   ]
 })
 export class FormModule { }

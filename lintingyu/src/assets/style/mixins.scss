@@ -76,23 +76,25 @@
     }
   }
 }
-
+@mixin content-title-style(){
+  font-size: $f-z-2;
+  color: $color-cis-black;
+  line-height: 1.5em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  @media screen and (max-width: $screen-size-w-pc){
+    font-size: $f-z-1-5;
+  }
+  @media screen and (max-width: $screen-size-w-pad-b){
+    margin-bottom: 10px;
+    font-size: $f-z-1-2;
+  }
+}
 //i-t-layout 版行文字規則
 @mixin i-t-layout-text(){
   .title{
-    font-size: $f-z-2;
-    color: $color-cis-black;
-    line-height: 1.5em;
-    font-weight: bold;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-    @media screen and (max-width: $screen-size-w-pc){
-      font-size: $f-z-1-5;
-    }
-    @media screen and (max-width: $screen-size-w-pad-b){
-      margin-bottom: 10px;
-      font-size: $f-z-1-2;
-    }
+    @include content-title-style();
   }
   .info{
     font-size: $f-z-1-5;
@@ -129,7 +131,7 @@
   }
 }
 
-@mixin page-layout(){
+@mixin page-layout($s-g-pc-multiply: 1, $s-g-m-multiply: 1){
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -139,10 +141,10 @@
     & + .one-section{
       margin-top: 100px;
       @media screen and (max-width: $screen-size-w-pc){
-        margin-top: 8%;
+        margin-top: 8% * $s-g-pc-multiply;
       }
       @media screen and (max-width: $screen-size-w-mobile){
-        margin-top: $layout-work-section-gap-mobile;
+        margin-top: $layout-work-section-gap-mobile * $s-g-m-multiply;
       }
     }
     &.small{

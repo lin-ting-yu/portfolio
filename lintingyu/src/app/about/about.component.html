@@ -14,7 +14,15 @@
         ></div>
       </app-i-t-layout-text-svg>
     </div>
-    <div class="one-section"></div>
+    <div class="one-section skills">
+      <app-radial-char
+        [title]="'SKILLS'"
+        [falseText]="'DESIGN'"
+        [trueText]="'CODING'"
+        [falseDatas] = "skillDatas.design"
+        [trueDatas] = "skillDatas.coding"
+      ></app-radial-char>
+    </div>
     <div class="one-section child">
       <app-i-t-layout-text-svg
         [data]="firstSectionData2"

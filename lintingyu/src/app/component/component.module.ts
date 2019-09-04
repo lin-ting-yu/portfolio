@@ -19,6 +19,8 @@ import { ITLayoutTextSvgComponent } from './img-and-text/i-t-layout-text-svg/i-t
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { HttpClientModule } from '@angular/common/http';
 import { TextBarComponent } from './text-bar/text-bar.component';
+import { RadialCharComponent } from './radial-char/radial-char.component';
+import { HistoryMapComponent } from './history-map/history-map.component';
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { TextBarComponent } from './text-bar/text-bar.component';
     ITLayoutImgTextComponent,
     ITLayoutImgsTextComponent,
     ITLayoutTextSvgComponent,
-    TextBarComponent
+    TextBarComponent,
+    RadialCharComponent,
+    HistoryMapComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +61,8 @@ import { TextBarComponent } from './text-bar/text-bar.component';
     ITLayoutTwoBigImgComponent,
     ITLayoutImgTextComponent,
     ITLayoutImgsTextComponent,
-    ITLayoutTextSvgComponent
+    ITLayoutTextSvgComponent,
+    RadialCharComponent
   ]
 })
 export class ComponentModule { }

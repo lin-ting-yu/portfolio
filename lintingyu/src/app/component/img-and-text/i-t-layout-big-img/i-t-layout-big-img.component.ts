@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { WorkData, ITLayout } from 'src/app/data/app-data-work.const';
+import { WorkData } from 'src/app/data/app-data-work.const';
+import { ITLayout } from '../i-t-layout.type';
 
 @Component({
   selector: 'app-i-t-layout-big-img',
