@@ -5,6 +5,7 @@ import { AboutRoutingModule } from './about-routing.module';
 import { AboutComponent } from './about.component';
 import { LayoutModule } from '../layout/layout.module';
 import { ComponentModule } from '../component/component.module';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @NgModule({
   declarations: [AboutComponent],
@@ -12,7 +13,8 @@ import { ComponentModule } from '../component/component.module';
     CommonModule,
     AboutRoutingModule,
     LayoutModule,
-    ComponentModule
+    ComponentModule,
+    AngularSvgIconModule
   ]
 })
 export class AboutModule { }

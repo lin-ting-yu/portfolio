@@ -62,7 +62,8 @@ import { HistoryMapComponent } from './history-map/history-map.component';
     ITLayoutImgTextComponent,
     ITLayoutImgsTextComponent,
     ITLayoutTextSvgComponent,
-    RadialCharComponent
+    RadialCharComponent,
+    HistoryMapComponent
   ]
 })
 export class ComponentModule { }

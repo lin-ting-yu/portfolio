@@ -1,1 +1,77 @@
-<p>history-map works!</p>
+<div class="history-map-content">
+  <div class="history-text-content">
+    <div class="title" >
+      <span class="text">{{title}}</span>
+    </div>
+    <div class="info" *ngIf="text !== ''">
+      <span
+        class="text"
+        *ngFor="let text of getTextArray(text)"
+      >{{text}}</span>
+    </div>
+  </div>
+  <div class="img-content">
+    <ng-content></ng-content>
+  </div>
+
+  <!-- list pc版 -->
+  <div class="svg-line-list-content" *ngIf="!mobileShow">
+    <div class="svg-line-content" #svgLineContent>
+      <svg-icon
+        [src]="svg"
+        [svgStyle]="{
+          'width.%':100,
+          'height.%':100
+        }"
+      ></svg-icon>
+    </div>
+    <div class="list-content">
+      <ul class="list-ul" *ngIf="allRadey">
+        <li
+          class="list-li"
+          *ngFor="let item of data; let i = index;"
+          [ngStyle]="{
+            'top':  itemsPos[i][1] * 100 + '%',
+            'left': itemsPos[i][0] * 100 + '%'
+          }"
+          [ngClass]="{
+            'big': item.type === 'important',
+            'show': allRadey
+          }"
+        >
+          <div class="li-info">
+            <div class="title-content">
+              <span class="text">{{item.title}}</span>
+            </div>
+            <div class="text-content" *ngIf="item.text && item.text !== ''">
+              <span class="text">{{item.text}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- list mobile版 -->
+  <div class="list-mobile-content"   *ngIf="mobileShow">
+    <div class="list-content">
+      <ul class="list-ul">
+        <li
+          class="list-li"
+          *ngFor="let item of data; let i = index;"
+          [ngClass]="{
+            'big': item.type === 'important'
+          }"
+        >
+          <div class="li-info">
+            <div class="title-content">
+              <span class="text">{{item.title}}</span>
+            </div>
+            <div class="text-content" *ngIf="item.text && item.text !== ''">
+              <span class="text">{{item.text}}</span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

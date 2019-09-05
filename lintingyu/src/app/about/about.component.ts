@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ITLayout } from '../component/img-and-text/i-t-layout.type';
 import { skillDatas } from '../data/app-data-skills.const';
+import { historyDatas } from '../data/app-data-history.const';
 
 @Component({
   selector: 'app-about',
@@ -29,6 +30,7 @@ export class AboutComponent implements OnInit {
       text: '這是我小時候大概 1歲，記得當時在用雷射眼攻擊蚊子，我覺得很可愛，所以放上來跟大家分享。'
     });
   public skillDatas = skillDatas;
+  public history = historyDatas;
   constructor() { }
 
   showGreenLine(){

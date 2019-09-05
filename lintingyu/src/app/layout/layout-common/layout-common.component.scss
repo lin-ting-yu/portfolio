@@ -60,9 +60,10 @@
     width: 100%;
     height: auto;
     min-height: 100%;
-    box-shadow: 0px -1px 0px 2px #fff;
     padding-top: $top-gap-blue;
     padding-bottom: $bottom-gap-blue;
+
+      // box-shadow: 0px -1px 0px 2px #fff;
     &.no-padding{
       padding: 0;
     }

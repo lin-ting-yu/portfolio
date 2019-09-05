@@ -38,7 +38,15 @@
     .title-content{
       @include content-title-style();
     }
-    .btn-content{}
+    .btn-content{
+      margin-top: 20px;
+      @media screen and (max-width: $screen-size-w-pad-b){
+        margin-top: 15px;
+      }
+      @media screen and (max-width: $screen-size-w-pad-s - 1){
+        margin-top: 0px;
+      }
+    }
   }
   .info-contents{
     position: relative;
@@ -46,7 +54,7 @@
     height: 100%;
     @media screen and (max-width: $screen-size-w-pad-s - 1){
       height: auto;
-      margin-top: 30px;
+      margin-top: 40px;
     }
   }
   .info-content{

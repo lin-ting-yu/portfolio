@@ -47,14 +47,14 @@ export class HeaderComponent implements OnInit {
 
 
   @HostListener('window:resize',['$event'])
-  onResize(event) {
-    this.windowWidth = event.target.innerWidth;
-    if(this.windowWidth > 768){
-      if(this.mobileNavShow && this.mobileNavListShow){
-        this.toggleNav();
+    onResize(event) {
+      this.windowWidth = event.target.innerWidth;
+      if(this.windowWidth > 768){
+        if(this.mobileNavShow && this.mobileNavListShow){
+          this.toggleNav();
+        }
       }
     }
-  }
   ngOnInit() {
     this.windowWidth = window.innerWidth;
   }

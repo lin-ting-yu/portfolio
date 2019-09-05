@@ -5,7 +5,7 @@
   width: 100%;
   padding: 0 7%;
   padding-left: 7%;
-  @include page-layout(1.2, 2);
+  @include page-layout(1.5, 2);
   // border: solid 1px #888;
   @media screen and (max-width: $screen-size-w-pad-s){
     padding: 0;
@@ -26,6 +26,14 @@
       }
     }
     &.skills{
+      & + .one-section.awards{
+        @media screen and (min-width: $screen-size-w-pc + 1){
+          margin-top: 150px;
+        }
+        @media screen and (max-width: $screen-size-w-pc) and (min-width: $screen-size-w-mobile + 1){
+          margin-top: 12%;
+        }
+      }
       @media screen and (max-width: 870px) and (min-width: $screen-size-w-pad-s){
         ::ng-deep{
           app-radial-char{
@@ -45,6 +53,26 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+    &.awards{
+      .img-content{
+        width: 30%;
+        position: absolute;
+        top: 32%;
+        transform: rotate(-15deg);
+        animation: awardBookAn 5s linear infinite;
+        @keyframes awardBookAn {
+          0%{
+            margin-top: 0px;
+          }
+          50%{
+            margin-top: -20px;
+          }
+          100%{
+            margin-top: 0px;
           }
         }
       }

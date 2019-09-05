@@ -13,6 +13,7 @@ export class ToolFunctionService {
 
   public DETECTOR = this.epicFunction();
 
+  // 判斷裝置
   epicFunction() {
     console.log('hello `Home` component');
     this.deviceInfo = this.deviceService.getDeviceInfo();
@@ -25,9 +26,11 @@ export class ToolFunctionService {
       isDesktopDevice
     }
   }
+  // 取得樣式
   getStyle(obj, attr){
     return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
   }
+  // 取得Transform rotate
   getTransform(obj) {
 
     let matrix = this.getStyle(obj, 'transform');
@@ -59,6 +62,7 @@ export class ToolFunctionService {
         rotateZ
     };
   }
+  // 判斷是否為DOM物件
   isDOM(HTMLElement){
     let isDOM = ( typeof HTMLElement === 'object' ) ?
                 function(obj) {
@@ -68,5 +72,20 @@ export class ToolFunctionService {
                     return obj && typeof obj === 'object' && obj.nodeType === 1 && typeof obj.nodeName === 'string';
                 }
     return isDOM;
+  }
+  // 重複獲取直到獲取到
+  reCheck(parent, bool, success?, fail?, lime?: number){
+    let times = 0;
+    let reCheck = setInterval(() => {
+
+      if ( bool.call(parent) ) {
+        success.call(parent);
+        clearInterval(reCheck);
+      }
+      else if (lime && ++times > lime){
+        fail.call(parent);
+        clearInterval(reCheck);
+      }
+    }, 10);
   }
 }

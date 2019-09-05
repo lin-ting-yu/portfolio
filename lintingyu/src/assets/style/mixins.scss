@@ -77,17 +77,15 @@
   }
 }
 @mixin content-title-style(){
-  font-size: $f-z-2;
+  font-size: $f-z-2-5;
   color: $color-cis-black;
   line-height: 1.5em;
   font-weight: bold;
-  margin-bottom: 15px;
   letter-spacing: 1px;
   @media screen and (max-width: $screen-size-w-pc){
     font-size: $f-z-1-5;
   }
   @media screen and (max-width: $screen-size-w-pad-b){
-    margin-bottom: 10px;
     font-size: $f-z-1-2;
   }
 }
@@ -95,6 +93,12 @@
 @mixin i-t-layout-text(){
   .title{
     @include content-title-style();
+    & + .info{
+      margin-top: 15px;
+      @media screen and (max-width: $screen-size-w-pad-b){
+        margin-top: 10px;
+      }
+    }
   }
   .info{
     font-size: $f-z-1-5;

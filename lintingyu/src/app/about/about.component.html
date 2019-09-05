@@ -23,6 +23,24 @@
         [trueDatas] = "skillDatas.coding"
       ></app-radial-char>
     </div>
+    <div class="one-section awards">
+      <app-history-map
+        [data]="history"
+        [svg]="'assets/about/history-line.svg'"
+        [title] = "'AWARDS'"
+        [text] = "'設計相關的得獎經歷，有興趣看一下吧，想知道作品可以在works裡找找，找不到可以聯絡給我！'"
+      >
+        <div class="img-content">
+          <svg-icon
+            src="assets/about/book.svg"
+            [svgStyle]="{
+              'width.%':100,
+              'height.%':100
+            }"
+          ></svg-icon>
+        </div>
+      </app-history-map>
+    </div>
     <div class="one-section child">
       <app-i-t-layout-text-svg
         [data]="firstSectionData2"
