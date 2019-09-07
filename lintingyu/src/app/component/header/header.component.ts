@@ -9,6 +9,7 @@ import { pathData } from '../../data/app-data-path.const';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  @Input() mobileAlwaysNavShow = false;
   public windowWidth: number;
   public mobileNavShow =  false;
   public mobileNavListShow =  false;

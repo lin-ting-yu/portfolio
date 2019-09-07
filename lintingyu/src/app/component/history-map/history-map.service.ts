@@ -24,7 +24,7 @@ export class HistoryMapService {
         return result;
 
       }
-      else if (times > 100) {
+      else if (times > 10000) {
         console.error('no ".point" in ".points" in "' + path + '"' );
         clearInterval(CheckSetInterval);
       }

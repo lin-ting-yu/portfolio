@@ -29,7 +29,7 @@ export class LayoutCommonComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
     onResize(event) {
       this.windowWidth  = event.target.innerWidth;
-      this.windowHeight = event.target.innerWidth;
+      this.windowHeight = event.target.innerHeight;
     }
 
   ngOnInit() {

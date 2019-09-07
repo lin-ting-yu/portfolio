@@ -1,0 +1,118 @@
+@import "variables";
+
+.home-content{
+  width: 100%;
+  height: 100%;
+  .home-inner-content{
+    width: 100%;
+    height: 100%;
+    .cavnas{
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .select-point-list{
+      position: absolute;
+      top: $top-gap-blue + 35px;
+      // transform: translateX(100%);
+      @media screen and (max-width: $screen-size-w-pc){
+        top: $top-gap-pc + 30px;
+      }
+      @media screen and (max-width: $screen-size-w-pad-s){
+        left: 50% !important;
+        top: auto;
+        bottom: 30px;
+        transform: translateX(-50%);
+      }
+      .type-content{
+        display: flex;
+        align-items: flex-start;
+        height: 1em;
+        width: 130px;
+        font-size: 10px;
+        overflow: hidden;
+        margin-top: 40px;
+        @media screen and (max-width: $screen-size-w-pad-s){
+          width: auto;
+          margin-top: 20px;
+          justify-content: center;
+        }
+        &:before{
+          display: block;
+          content: '';
+          height: 1px;
+          width: 100%;
+          background-color: $color-cis-grey-5;
+          flex: 1;
+          position: relative;
+          top: 50%;
+          @media screen and (max-width: $screen-size-w-pad-s){
+            display: none;
+          }
+        }
+        .text-content{
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          padding-left: 10px;
+          font-size: inherit;
+          line-height: 1em;
+          letter-spacing: 1px;
+          transition: transform 0.5s;
+          white-space: nowrap;
+          @media screen and (max-width: $screen-size-w-pad-s){
+            align-items: center;
+            padding-left: 0;
+          }
+          .text{
+            height: 1em;
+
+          }
+        }
+      }
+    }
+    .home-inner-mobile-header{
+      @media screen and (min-width: $screen-size-w-pad-s + 1){
+        display: none;
+      }
+      ::ng-deep{
+        app-header{
+          .header{
+            .logo, .nav-mobile-btn{
+              display: none;
+            }
+            .nav-content{
+              width: 100px;
+              height: 150px;
+              top: 120px;
+              left: 50%;
+              transform: translateX(-50%);
+              background-color: transparent;
+              .nav{
+                width: 100%;
+                top: 0;
+                .nav-list{
+                  .nav-ul{
+                    .nav-li{
+                      color: $color-cis-black;
+                      font-size: $f-z-1-5;
+                      & + .nav-li{
+                        margin-top: 35px;
+                      }
+                    }
+                  }
+                }
+              }
+              .footer{
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

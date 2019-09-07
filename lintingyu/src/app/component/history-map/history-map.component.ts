@@ -75,8 +75,8 @@ export class HistoryMapComponent implements OnInit {
     let contentPos = this.svgContent.nativeElement.getBoundingClientRect();
     let pointPos = point.getBoundingClientRect();
     this.itemsPos.push([
-      (pointPos.x - contentPos.x + pointPos.width  / 2) / contentPos.width,
-      (pointPos.y - contentPos.y + pointPos.height / 2) / contentPos.height
+      (pointPos.left - contentPos.left + pointPos.width  / 2) / contentPos.width,
+      (pointPos.top  - contentPos.top  + pointPos.height / 2) / contentPos.height
     ]);
   }
   // 取得ponit後執行
@@ -126,6 +126,7 @@ export class HistoryMapComponent implements OnInit {
   }
   ngAfterViewInit() {
     if (!this.mobileShow) {
+      console.log('ngAfterViewInit work');
       this.afterViewInitFn();
     }
   }

@@ -55,8 +55,8 @@
   <div
     class="nav-content"
     [ngClass]="{
-      'show': mobileNavShow,
-      'show-list': mobileNavListShow
+      'show': mobileNavShow || mobileAlwaysNavShow,
+      'show-list': mobileNavListShow || mobileAlwaysNavShow
     }"
   >
     <nav
