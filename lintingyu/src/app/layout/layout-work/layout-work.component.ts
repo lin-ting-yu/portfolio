@@ -14,10 +14,11 @@ export class LayoutWorkComponent implements OnInit {
   @Input() listData = {};
   @Input() nextData;
   @Input() prevData;
-
-  private pathData = pathData;
-  public prevComp = pathData.workB;
-  public nextComp = pathData.workC;
+  public goToPage = null;
+  public showFirstInfo = false;
+  public pathData = pathData;
+  // public prevComp = pathData.workB;
+  // public nextComp = pathData.workC;
 
   private windowWidth: number;
 
@@ -26,23 +27,17 @@ export class LayoutWorkComponent implements OnInit {
   ) { }
 
 
-  linkClick(path: string, queryParams: object) {
-    this.routerEvent.linkClick(path, queryParams);
-  }
-  getSublingsComp(){
-    let thisComp = this.routerEvent.getQueryParamse('comp');
-    if (thisComp === pathData.workB){
-      this.prevComp = pathData.workA;
-      this.nextComp = pathData.workC;
-    }
-    else if (thisComp === pathData.workC) {
-      this.prevComp = pathData.workA;
-      this.nextComp = pathData.workB;
-    }
-    console.log(this.prevComp, this.nextComp);
+  linkClick(goTo: string, path: string, queryParams: object) {
+    this.goToPage = goTo;
+    this.showFirstInfo = false;
+    setTimeout(() => {
+      this.goToPage = null;
+      this.routerEvent.linkClick(path, queryParams, false);
+      this.showFirstInfo = true;
+    }, 510);
   }
   ngOnInit() {
-    this.getSublingsComp();
+    this.showFirstInfo = true;
   }
 
 }

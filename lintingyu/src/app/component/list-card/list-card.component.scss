@@ -204,4 +204,36 @@
       }
     }
   }
+
+  // 點擊後縮放用Class
+  .list-card-li.img-zoom-in{
+    .link-content{
+      // perspective: none;
+      z-index: $z-index-top;
+      transition: 1s;
+    }
+
+    .img-content,
+    .img-border,
+    .info-text-content{
+      // transform-style: flat;
+      transition:  0.3s;
+    }
+    .img-content{
+      width: 100%;
+      height: 100%;
+      transform-origin: 50% 0%;
+      transition: 0.3s;
+      filter: grayscale(0);
+      // z-index: $z-index-top;
+      border-radius: 0;
+      .img{
+        transform: scale(1);
+      }
+    }
+    .img-border,
+    .info-text-content{
+      opacity: 0;
+    }
+  }
 }

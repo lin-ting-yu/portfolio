@@ -12,9 +12,9 @@ import { slideInAnimation } from './animations';
   ]
 })
 export class AppComponent {
-  title = 'lintingyu';
+  title = 'LinTingYu';
 
   prepareRoute(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData.animation;
   }
 }

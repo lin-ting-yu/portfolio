@@ -1,12 +1,15 @@
 <div class="list-card-content">
-    <ul class="list-card-ul">
+    <ul class="list-card-ul" #listCardUl>
       <li
         class="list-card-li"
-        *ngFor="let item of data"
+        *ngFor="let item of data; let i = index;"
         (mousemove)="getTransformNumber($event)"
         (mouseenter)="startSetPos($event)"
         (mouseleave)="stopSetPos()"
-        (click)="linkClick(pathData.workA, {page: item.linkPath, comp: pathData.workA})"
+        (click)="onClick($event, i, pathData.work, {page: item.linkPath})"
+        [ngClass]="{
+          'img-zoom-in': onCardClickId === i
+        }"
       >
         <div class="link-content">
           <div class="img-content">

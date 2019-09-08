@@ -126,7 +126,6 @@ export class HistoryMapComponent implements OnInit {
   }
   ngAfterViewInit() {
     if (!this.mobileShow) {
-      console.log('ngAfterViewInit work');
       this.afterViewInitFn();
     }
   }

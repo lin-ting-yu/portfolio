@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   public mobileNavShow =  false;
   public mobileNavListShow =  false;
   public pathData = pathData;
+  public activePath = '';
   // 判斷是否要縮小
   @Input() small = false;
   // 接收Layout scrolltop
@@ -58,6 +59,7 @@ export class HeaderComponent implements OnInit {
     }
   ngOnInit() {
     this.windowWidth = window.innerWidth;
+    this.activePath = this.routerEvent.getPathName();
+    console.log(this.activePath);
   }
-
 }

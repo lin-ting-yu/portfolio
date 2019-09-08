@@ -1,4 +1,11 @@
-<div class="layout-work">
+<div
+  class="layout-work"
+  [ngClass]="{
+    'next': goToPage === 'next',
+    'prev': goToPage === 'prev',
+    'show': showFirstInfo
+  }"
+>
   <section class="first-section">
     <div
       class="background-img"
@@ -24,7 +31,10 @@
     <ng-container *ngIf="prevData !== null">
       <div class="btn-content prev">
         <div class="img" [ngStyle]="{'background-image':'url(' + prevData.titleImg + ')'}"></div>
-        <div class="link-content" (click)="linkClick(prevComp, {page: prevData.linkPath, comp: prevComp})">
+        <div
+          class="link-content"
+          (click)="linkClick('prev', pathData.work, {page: prevData.linkPath})"
+        >
           <div class="arrow"></div>
           <div class="text-content">
             <span class="text">PREV</span>
@@ -35,7 +45,10 @@
     <ng-container *ngIf="nextData !== null">
       <div class="btn-content next">
         <div class="img" [ngStyle]="{'background-image':'url(' + nextData.titleImg + ')'}"></div>
-        <div class="link-content" (click)="linkClick(nextComp, {page: nextData.linkPath, comp: nextComp})">
+        <div
+          class="link-content"
+          (click)="linkClick('next', pathData.work, {page: nextData.linkPath})"
+        >
           <div class="arrow"></div>
           <div class="text-content">
             <span class="text">NEXT</span>
@@ -45,5 +58,17 @@
     </ng-container>
 
 
+  </div>
+  <div class="prev-next-img-content">
+    <ng-container *ngIf="prevData !== null">
+      <div class="img-content prev">
+        <div class="background-img" [ngStyle]="{'background-image':'url(' + prevData.titleImg + ')'}"></div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="nextData !== null">
+      <div class="img-content next">
+        <div class="background-img" [ngStyle]="{'background-image':'url(' + nextData.titleImg + ')'}"></div>
+      </div>
+    </ng-container>
   </div>
 </div>

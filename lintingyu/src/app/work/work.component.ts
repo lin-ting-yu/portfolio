@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PageComponent } from '../pageBase/page.component';
 import { workDatas } from '../data/app-data-work.const';
 import { RouterEventService } from '../pageBase/_service/router-event.service';
+import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
 
 
 @Component({
@@ -21,8 +22,18 @@ export class WorkComponent extends PageComponent {
   // 當前頁面資訊
   public thisPageData;
 
-  constructor(private routerEvent: RouterEventService) {
+  private navigationSubscription;
+  constructor(
+    private routerEvent: RouterEventService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
     super();
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      if (e instanceof NavigationEnd) {
+        this.initialiseInvites();
+      }
+    });
   }
 
   getPageName() {
@@ -50,8 +61,16 @@ export class WorkComponent extends PageComponent {
     this.setPageData();
     this.getSublingsData();
   }
+
   ngOnInit() {
     this.initialiseInvites();
   }
-
+  ngOnDestroy() {
+    // avoid memory leaks here by cleaning up after ourselves. If we
+    // don't then we will continue to run our initialiseInvites()
+    // method on every navigationEnd event.
+    if (this.navigationSubscription) {
+      this.navigationSubscription.unsubscribe();
+    }
+  }
 }

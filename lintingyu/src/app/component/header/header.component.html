@@ -68,17 +68,31 @@
       <div class="nav-list">
         <ul class="nav-ul">
           <li class="nav-li">
-            <div href="#" class="link-content" (click)="linkClick(pathData.works)">
+            <div
+              href="#" class="link-content"
+              (click)="linkClick(pathData.works)"
+              [ngClass]="{'active': activePath === pathData.works || activePath === pathData.work}"
+            >
               <span class="text">works</span>
             </div>
           </li>
           <li class="nav-li">
-            <div href="#" class="link-content" (click)="linkClick(pathData.about)">
+            <div
+              href="#"
+              class="link-content"
+              (click)="linkClick(pathData.about)"
+              [ngClass]="{'active': activePath === pathData.about}"
+            >
               <span class="text">about</span>
             </div>
           </li>
           <li class="nav-li">
-            <div href="#" class="link-content" (click)="linkClick(pathData.contact)">
+            <div
+              href="#"
+              class="link-content"
+              (click)="linkClick(pathData.contact)"
+              [ngClass]="{'active': activePath === pathData.contact}"
+            >
               <span class="text">contact</span>
             </div>
           </li>

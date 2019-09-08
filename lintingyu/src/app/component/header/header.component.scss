@@ -283,32 +283,54 @@
       .link-content{
         display: block;
         width: 100%;
+        height: calc(1.2em + 4px);
         position: relative;
         letter-spacing: 1px;
+        padding-top: 1px;
+        padding-bottom: 3px;
         //內部變數 控制綠色波浪
-        $nav-li-green-line-h: 3px;
-        &:not(.active):hover{
+        $nav-li-green-line-h: 4px;
+        // 先暫時取消這種效果 改成與active同 20190907 :start
+        // &:not(.active):hover{
+        //   letter-spacing: 2px;
+        //   &:before{
+        //     top: -3px;
+        //     transform: translateX(-50%) translateY(0);
+        //   }
+        //   &:after{
+        //     top: calc(100% - 2px);
+        //     transform: translateX(-50%) translateY(0);
+        //   }
+        // }
+        // 先暫時取消這種效果 改成與active同  20190907 :end
+        &:hover, &.active{
           letter-spacing: 2px;
+          &:before, &:after{
+            transition:
+            width 0.3s,
+            top 0.3s,
+            left 0.5s,
+            transform 1s;
+          }
           &:before{
-            top: 2px;
-            transform: translateY(0);
+            width: 1.2em;
+            left: 0%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(110deg);
           }
           &:after{
-            bottom: -1px;
-            transform: translateY(0);
+            width: 1.2em;
+            left: 100%;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(110deg);
           }
         }
         &.active{
-          letter-spacing: 2px;
-          &:before{
-            width: 1.2em;
-            top: 0;
-            transform: translateY(0) rotate(90deg);
+          &:before, &:after{
+            transition: 0s;
           }
-          &:after{
-            width: 1.2em;
-            bottom: 0;
-            transform: translateY(0) rotate(90deg);
+          .text{
+            transition: 0s;
           }
         }
         &:before, &:after{
@@ -323,20 +345,24 @@
           position: absolute;
 
           animation: greenLineMove 4s infinite linear;
-          transition: 0.3s;
+          transition:
+            width 1s,
+            top 0.3s,
+            left 0.5s,
+            transform 1s;
         }
 
         &:before{
-          transform-origin: 0% 50%;
-          left: 0;
-          top: calc(50% + 2px);
-          transform: translateY(-50%);
+          transform-origin: 50 50%;
+          left: 50%;
+          top: calc(50%);
+          transform: translateX(-50%) translateY(-50%);
         }
         &:after{
-          transform-origin: 100% 50%;
-          right: 0;
-          bottom: calc(50% - 2px);
-          transform: translateY(50%);
+          transform-origin: 50% 50%;
+          left: 50%;
+          top: calc(50%);
+          transform: translateX(-50%) translateY(-50%);
         }
         @keyframes greenLineMove{
           0%{
@@ -345,6 +371,9 @@
           100%{
             background-position: $nav-li-green-line-h * 35 / 2 center;
           }
+        }
+        .text{
+          transition: 0.3s;
         }
       }
     }

@@ -10,38 +10,43 @@ const routes: Routes = [
   {
     path: pathData.home,
     loadChildren: './home/home.module#HomeModule',
-    data: {animation: 'fadeInOut'}
+    data: {animation: 'home'}
   },
   {
     path: pathData.about,
     loadChildren: './about/about.module#AboutModule',
-    data: {animation: 'fadeInOut'}
+    data: {animation: 'about'}
   },
   {
     path: pathData.contact,
     loadChildren: './contact/contact.module#ContactModule',
-    data: {animation: 'fadeInOut'}
+    data: {animation: 'contact'}
   },
   {
     path: pathData.works,
     loadChildren: './works/works.module#WorksModule',
-    data: {animation: 'fadeInOut'}
+    data: {animation: 'works'}
   },
   {
-    path: pathData.workA,
-    loadChildren: './work/work-a/work-a.module#WorkAModule',
-    data: {animation: 'workA'}
+    path: pathData.work,
+    loadChildren: './work/work.module#WorkModule',
+    data: {animation: 'work'}
   },
-  {
-    path: pathData.workB,
-    loadChildren: './work/work-b/work-b.module#WorkBModule',
-    data: {animation: 'workB'}
-  },
-  {
-    path: pathData.workC,
-    loadChildren: './work/work-c/work-c.module#WorkCModule',
-    data: {animation: 'workC'}
-  },
+  // {
+  //   path: pathData.workA,
+  //   loadChildren: './work/work-a/work-a.module#WorkAModule',
+  //   data: {animation: 'workA'}
+  // },
+  // {
+  //   path: pathData.workB,
+  //   loadChildren: './work/work-b/work-b.module#WorkBModule',
+  //   data: {animation: 'workB'}
+  // },
+  // {
+  //   path: pathData.workC,
+  //   loadChildren: './work/work-c/work-c.module#WorkCModule',
+  //   data: {animation: 'workC'}
+  // },
   {
     path: '',
     loadChildren: './home/home.module#HomeModule',
@@ -55,7 +60,7 @@ const routes: Routes = [
     RouterModule.forRoot(
       routes,
       {
-        useHash: true,
+        useHash: false,
         preloadingStrategy: PreloadAllModules,
         onSameUrlNavigation: 'reload'
       }
