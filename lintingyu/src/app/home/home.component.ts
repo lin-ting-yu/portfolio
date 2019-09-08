@@ -89,6 +89,9 @@ export class HomeComponent extends PageComponent {
   mouseMove(event) {
     if (this.toolFn.DETECTOR.isDesktopDevice) {
       if (this.canvasAllRadey) {
+        if (this.canvasEvent.targetPos.top < 0) {
+          this.canvasEvent.setTargetPos(this.canvasDOM);
+        }
         this.ineerCtxPos = this.canvasEvent.bindingMouseMove(event);
       }
     }
@@ -98,6 +101,9 @@ export class HomeComponent extends PageComponent {
       this.linePower = 20000;
       this.fillPower = 10000;
     } else {
+      if (this.canvasEvent.targetPos.top < 0) {
+        this.canvasEvent.setTargetPos(this.canvasDOM);
+      }
       this.ineerCtxPos = this.canvasEvent.bindingMouseMove(event);
     }
   }

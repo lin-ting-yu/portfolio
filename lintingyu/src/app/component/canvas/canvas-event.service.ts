@@ -7,7 +7,7 @@ import { Vector } from './canvas-drow';
 export class CanvasEventService {
 
   constructor() { }
-  private targetPos = null;
+  public targetPos = null;
 
   setTargetPos(target) {
     this.targetPos = target.getBoundingClientRect();
@@ -23,7 +23,7 @@ export class CanvasEventService {
       x: innerPageX - this.targetPos.left,
       y: innerPageY - this.targetPos.top
     }
-
+    // console.log(mousePos,this.targetPos);
     return mousePos;
   }
   _style(ctx, style){
