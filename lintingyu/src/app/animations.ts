@@ -107,6 +107,6 @@ export const slideInAnimation =
     // transition('workA  => workC', an_Right2Left),
     // transition('workC <=> workB', an_Right2Left),
     // transition('workA <=> workB', an_Left2Right),
-    transition('works  => work', fadeInOut2),
+    transition('works => work', fadeInOut2),
     transition('* <=> *', fadeInOut)
   ]);

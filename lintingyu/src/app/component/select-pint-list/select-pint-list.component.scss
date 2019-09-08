@@ -24,6 +24,7 @@
         height: 15px;
         position: relative;
         transition: 1s;
+        cursor: pointer;
         &:before{
           display: block;
           content: '';

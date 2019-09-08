@@ -58,6 +58,9 @@
       height: 60px * $logo-proportion;
       top: 20px;
     }
+    @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-height: $screen-size-h-small){
+      top: $header-footer-h-to-small-gap;
+    }
     &.small{
       @media screen and (min-width: $screen-size-w-pad-s + 1){
         transform: rotate(90deg) translateY(-10%) translateX(-7%);
@@ -152,6 +155,7 @@
       }
     }
   }
+  // 手機用
   .nav-content{
     @media screen and (max-width: $screen-size-w-pad-s){
       width: 100%;
@@ -198,10 +202,14 @@
         width: 170px;
         bottom: auto;
         top: 120px;
+        @media screen and (max-height: $screen-size-h-small){
+          top: 80px;
+        }
       }
       @media screen and (max-width: $screen-size-w-mobile-s){
         top: 100px;
       }
+
       .nav-li{
         @media screen and (max-width: $screen-size-w-pad-s){
           font-size: $f-z-2-5;
@@ -209,6 +217,11 @@
           opacity: 0;
           transform: translateY(40px);
           transition: 1s;
+          & + .nav-li{
+            @media screen and (max-height: $screen-size-h-small){
+              margin-top: 30px;
+            }
+          }
         }
       }
     }
@@ -230,16 +243,24 @@
     left: 50%;
     transform: translateX(-50%);
     transition: 0.3s;
+    @mixin window-h-to-small(){
+      @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-height: $screen-size-h-small){
+        bottom: $header-footer-h-to-small-gap;
+      }
+    }
     @media screen and (max-width: $screen-size-w-pc){
       width: 80px;
       bottom: $header-nav-bottom-gap-pc;
     }
+    @include window-h-to-small();
     &.small{
       @media screen and (min-width: $screen-size-w-blue){
         bottom: $top-gap-blue - 20;
+        @include window-h-to-small();
       }
       @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-width: $screen-size-w-blue - 1){
         bottom: $top-gap-pc  - 10;
+        @include window-h-to-small();
       }
 
       @media screen and (min-width: $screen-size-w-pad-s + 1){

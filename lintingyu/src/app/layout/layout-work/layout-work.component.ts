@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { RouterEventService } from 'src/app/pageBase/_service/router-event.service';
 import { pathData } from '../../data/app-data-path.const';
+import { ToolFunctionService } from 'src/app/component/tool-function.service';
 
 
 @Component({
@@ -14,6 +15,7 @@ export class LayoutWorkComponent implements OnInit {
   @Input() listData = {};
   @Input() nextData;
   @Input() prevData;
+  public mobile = null;
   public goToPage = null;
   public showFirstInfo = false;
   public pathData = pathData;
@@ -23,7 +25,8 @@ export class LayoutWorkComponent implements OnInit {
   private windowWidth: number;
 
   constructor(
-    private routerEvent: RouterEventService
+    private routerEvent: RouterEventService,
+    private toolFn: ToolFunctionService
   ) { }
 
 
@@ -38,6 +41,7 @@ export class LayoutWorkComponent implements OnInit {
   }
   ngOnInit() {
     this.showFirstInfo = true;
+    this.mobile = this.toolFn.epicFunction().isMobile;
   }
 
 }

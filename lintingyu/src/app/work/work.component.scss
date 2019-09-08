@@ -2,8 +2,10 @@
 @import "mixins";
 
 .work-other-layout{
-  @include page-layout();
+  @include page-layout(1, 1.5);
+  @media screen and (max-width: $screen-size-w-mobile){
 
+  }
 
   // text
   ::ng-deep{
@@ -11,7 +13,7 @@
     app-i-t-layout-two-big-img,
     app-i-t-layout-img-text,
     app-i-t-layout-imgs-text{
-      display: block;
+      // display: block;
       // border: solid 1px ;
     }
   }

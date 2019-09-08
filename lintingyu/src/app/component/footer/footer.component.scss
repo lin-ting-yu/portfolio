@@ -20,6 +20,9 @@
         margin-top: 50px;
       }
     }
+    @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-height: $screen-size-h-small){
+      top: $header-footer-h-to-small-gap;
+    }
     .nav-ul{}
     .nav-li{
       display: inline-block;
@@ -66,6 +69,9 @@
       text-align: center;
       position: static;
       transform: none;
+    }
+    @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-height: $screen-size-h-small){
+      bottom: $header-footer-h-to-small-gap;
     }
     &:hover{
       .text-content{

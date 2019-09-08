@@ -7,6 +7,10 @@ $screen-size-w-mobile:    480px;
 $screen-size-w-mobile-s:  360px;
 
 
+$screen-size-h-small:  500px;
+$screen-size-h-mini:  400px;
+
+
 $color-cis-green: #73F28D;
 $color-cis-white: #f6f6f6;
 $color-bg-white: #FCF8F7;
@@ -61,6 +65,8 @@ $bottom-gap-pc: $top-gap-pc;
 //header
 $header-nav-bottom-gap-blue: 200px;
 $header-nav-bottom-gap-pc: 150px;
+
+$header-footer-h-to-small-gap: 20px;
 
 //form樣式
 $form-col-col-gap: 20px;

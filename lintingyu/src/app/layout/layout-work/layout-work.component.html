@@ -29,7 +29,12 @@
   </div>
   <div class="next-page-content">
     <ng-container *ngIf="prevData !== null">
-      <div class="btn-content prev">
+      <div
+        class="btn-content prev"
+        [ngClass]="{
+          'mobile': mobile
+        }"
+      >
         <div class="img" [ngStyle]="{'background-image':'url(' + prevData.titleImg + ')'}"></div>
         <div
           class="link-content"
@@ -43,7 +48,12 @@
       </div>
     </ng-container>
     <ng-container *ngIf="nextData !== null">
-      <div class="btn-content next">
+      <div
+        class="btn-content next"
+        [ngClass]="{
+          'mobile': mobile
+        }"
+      >
         <div class="img" [ngStyle]="{'background-image':'url(' + nextData.titleImg + ')'}"></div>
         <div
           class="link-content"
