@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { ITLayout } from '../component/img-and-text/i-t-layout.type';
 import { skillDatas } from '../data/app-data-skills.const';
 import { historyDatas } from '../data/app-data-history.const';
+import { scrollEffect } from '../component/scroll-effect/scroll-effect-list.enum';
+import { ToolFunctionService } from '../component/tool-function.service';
 
 @Component({
   selector: 'app-about',
@@ -9,8 +11,10 @@ import { historyDatas } from '../data/app-data-history.const';
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent implements OnInit {
-  @Input() initShowGreenLine = true;
-  public greenLine = false;
+  // @ViewChild('book', {static: false}) book: ElementRef;
+  // private bookDOMPos = null;
+  public Math = Math;
+  public bookMT = 0;
   public firstSectionData = new ITLayout(
     { layout: 'imgsAndText',
       layoutType: 1,
@@ -31,15 +35,71 @@ export class AboutComponent implements OnInit {
     });
   public skillDatas = skillDatas;
   public history = historyDatas;
-  constructor() { }
+  public scrollEffect = scrollEffect;
 
-  showGreenLine(){
-    this.greenLine = true;
+  // 控制顯示
+  public aboutGreenLine = false;
+  public skill = false;
+  public historyMap = false;
+  public child = false;
+  public childGreenLine = false;
+
+  // 動畫 方法
+  private requestAnimationFrame = window.requestAnimationFrame;
+  private animationFrame;
+  constructor(
+    private toolFn: ToolFunctionService
+  ) { }
+
+  showAboutGreenLine(){
+    this.aboutGreenLine = true;
   }
-  ngOnInit() {
-    if (this.initShowGreenLine) {
-      this.showGreenLine();
+  showSkill(event){
+    this.skill = event;
+  }
+  showHistoryMap(event) {
+    this.historyMap = event;
+  }
+  showChild(event) {
+    this.child = event;
+    this.childGreenLine = event;
+  }
+  setBookMT() {
+    let allHeight = document.body.scrollHeight - window.innerHeight;
+    let result = window.pageYOffset / allHeight;
+
+    this.bookMT =  result;
+  }
+  // setBookDOM() {
+  //   this.bookDOMPos = this.book.nativeElement.getBoundingClientRect();
+  // }
+  // afterGetDOM() {
+  //   this.setBookDOM();
+  // }
+  aniamtionFrameInit(fn) {
+    fn();
+    this.animationFrame = this.requestAnimationFrame(() => this.aniamtionFrameInit(fn));
+  }
+  @HostListener('window:resize',['$event'])
+    onResize(event) {
+
     }
+  ngOnInit() {
+    this.showAboutGreenLine();
   }
-
+  ngAfterViewInit() {
+    this.aniamtionFrameInit(
+      () => {
+        this.setBookMT();
+      }
+    );
+    // this.toolFn.reCheck(
+    //   this,
+    //   () => this.book,
+    //   this.afterGetDOM
+    // )
+  }
+  ngOnDestroy() {
+    cancelAnimationFrame(this.animationFrame);
+  }
 }

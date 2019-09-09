@@ -57,6 +57,18 @@
       margin-top: 40px;
     }
   }
+  &:not(.show){
+    .info-content{
+      .info-content-ul{
+        .info-content-li{
+          @media screen and (min-width: $screen-size-w-pad-s){
+            opacity: 0 !important;
+            width: 0 !important;
+          }
+        }
+      }
+    }
+  }
   .info-content{
     width: 100%;
     height: 100%;

@@ -58,9 +58,26 @@
   }
   .svg-line-content{
     width: 100%;
+    &.show{
+      ::ng-deep{
+        svg-icon{
+          svg{
+            path{
+              stroke-dashoffset: 0;
+              transition: 10s;
+            }
+          }
+        }
+      }
+    }
     ::ng-deep{
       svg-icon{
         svg{
+          path{
+            stroke-dasharray: 3000;
+            stroke-dashoffset: 3000;
+            transition: 2s;
+          }
           .points{
             .point{
               fill: transparent;

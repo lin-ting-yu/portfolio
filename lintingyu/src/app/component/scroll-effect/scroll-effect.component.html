@@ -1,0 +1,9 @@
+<div
+  class="scroll-effect-content"
+  #effectContent
+  [ngClass]="[effectTypeClass(), show ? 'show' : '']"
+>
+  <div class="move-content">
+    <ng-content></ng-content>
+  </div>
+</div>

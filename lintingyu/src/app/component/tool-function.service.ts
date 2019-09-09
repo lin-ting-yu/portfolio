@@ -15,7 +15,6 @@ export class ToolFunctionService {
 
   // 判斷裝置
   epicFunction() {
-    console.log('hello `Home` component');
     this.deviceInfo = this.deviceService.getDeviceInfo();
     const isMobile = this.deviceService.isMobile();
     const isTablet = this.deviceService.isTablet();

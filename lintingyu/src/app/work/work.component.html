@@ -7,6 +7,7 @@
     [prevData]="prevPageData"
   >
     <div class="work-other-layout">
+
       <section
         class="one-section"
         *ngFor="let layout of thisPageData.layouts"
@@ -14,21 +15,23 @@
           'small': layout.layout !== 'bigImg' && layout.layout !== 'twoBigImg'
         }"
       >
-        <ng-container *ngIf="layout.layout === 'bigImg'">
-          <app-i-t-layout-big-img [data]="layout"></app-i-t-layout-big-img>
-        </ng-container>
-
-        <ng-container *ngIf="layout.layout === 'twoBigImg'">
-          <app-i-t-layout-two-big-img [data]="layout"></app-i-t-layout-two-big-img>
-        </ng-container>
-
-        <ng-container *ngIf="layout.layout === 'imgAndText'">
-          <app-i-t-layout-img-text [data]="layout"></app-i-t-layout-img-text>
-        </ng-container>
-
-        <ng-container *ngIf="layout.layout === 'imgsAndText'">
-            <app-i-t-layout-imgs-text [data]="layout"></app-i-t-layout-imgs-text>
+        <app-scroll-effect>
+          <ng-container *ngIf="layout.layout === 'bigImg'">
+            <app-i-t-layout-big-img [data]="layout"></app-i-t-layout-big-img>
           </ng-container>
+
+          <ng-container *ngIf="layout.layout === 'twoBigImg'">
+            <app-i-t-layout-two-big-img [data]="layout"></app-i-t-layout-two-big-img>
+          </ng-container>
+
+          <ng-container *ngIf="layout.layout === 'imgAndText'">
+            <app-i-t-layout-img-text [data]="layout"></app-i-t-layout-img-text>
+          </ng-container>
+
+          <ng-container *ngIf="layout.layout === 'imgsAndText'">
+              <app-i-t-layout-imgs-text [data]="layout"></app-i-t-layout-imgs-text>
+          </ng-container>
+        </app-scroll-effect>
       </section>
     </div>
   </app-layout-work>

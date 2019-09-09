@@ -17,7 +17,7 @@ export class HistoryMapComponent implements OnInit {
   @Input() svg; //svg路徑
   @Input() title = '';
   @Input() text = '';
-
+  @Input() showMapLine = false;
   private pointsList: Array<any>;
   private pointsUseList: Array<any> = [];
   // 關於點的事情全部執行完

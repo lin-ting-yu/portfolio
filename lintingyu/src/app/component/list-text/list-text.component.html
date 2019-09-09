@@ -1,12 +1,12 @@
 <div class="list-content">
   <ul class="list-ul">
-    <li class="list-li" *ngFor="let list of data | keyvalue">
+    <li class="list-li" *ngFor="let key of Object.keys(data)">
       <div class="title-content">
-        <span class="text">{{list.key}}</span>
+        <span class="text">{{key}}</span>
       </div>
       <div class="line"></div>
       <div class="text-content">
-        <span class="text">{{list.value}}</span>
+        <span class="text">{{data[key]}}</span>
       </div>
     </li>
   </ul>

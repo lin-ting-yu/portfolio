@@ -10,7 +10,7 @@ export class ITLayoutTextSvgComponent extends ITLayoutBigImgComponent {
   @Input() pageTitle = '';
 
   @Input() initShowSvg = true;
-  public svg = false;
+  @Input() svg = true;
 
   constructor() {
     super();
@@ -19,9 +19,5 @@ export class ITLayoutTextSvgComponent extends ITLayoutBigImgComponent {
   showSvg(){
     this.svg = true;
   }
-  ngOnInit() {
-    if (this.initShowSvg) {
-      this.showSvg();
-    }
-  }
+  ngOnInit() {}
 }

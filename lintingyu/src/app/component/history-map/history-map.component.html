@@ -15,8 +15,17 @@
   </div>
 
   <!-- list pc版 -->
-  <div class="svg-line-list-content" *ngIf="!mobileShow">
-    <div class="svg-line-content" #svgLineContent>
+  <div
+    class="svg-line-list-content"
+    *ngIf="!mobileShow"
+  >
+    <div
+      class="svg-line-content"
+      #svgLineContent
+      [ngClass]="{
+        'show': showMapLine
+      }"
+    >
       <svg-icon
         [src]="svg"
         [svgStyle]="{
@@ -39,14 +48,16 @@
             'show': allRadey
           }"
         >
-          <div class="li-info">
-            <div class="title-content">
-              <span class="text">{{item.title}}</span>
+          <app-scroll-effect [activePosition]="4">
+            <div class="li-info">
+              <div class="title-content">
+                <span class="text">{{item.title}}</span>
+              </div>
+              <div class="text-content" *ngIf="item.text && item.text !== ''">
+                <span class="text">{{item.text}}</span>
+              </div>
             </div>
-            <div class="text-content" *ngIf="item.text && item.text !== ''">
-              <span class="text">{{item.text}}</span>
-            </div>
-          </div>
+          </app-scroll-effect>
         </li>
       </ul>
     </div>

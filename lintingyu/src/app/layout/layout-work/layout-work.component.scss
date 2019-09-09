@@ -82,6 +82,7 @@
       }
       @media screen and (max-height: $screen-size-h-small){
         padding-top: 80px;
+        padding-bottom: 80px;
       }
       .title-content{
         width: 100%;
@@ -95,9 +96,9 @@
       }
       .list-content{
         width: 100%;
+        // height: 200px;
         display: flex;
         align-items: flex-end;
-        height: 200px;
       }
     }
     .arrow{

@@ -7,6 +7,7 @@ import { TextBar } from '../text-bar/text-bar.type';
   styleUrls: ['./radial-char.component.scss']
 })
 export class RadialCharComponent implements OnInit {
+  @Input() showInfo;
   @Input() title = 'title';
   @Input() falseText = '';
   @Input() trueText = '';
@@ -16,7 +17,6 @@ export class RadialCharComponent implements OnInit {
   public toggleShow = false;
   constructor() { }
   toggleContentShow(event){
-    console.log(event);
     this.toggleShow = event;
   }
   ngOnInit() {

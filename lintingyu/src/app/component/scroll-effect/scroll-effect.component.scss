@@ -1,0 +1,13 @@
+.scroll-effect-content{
+  .move-content{
+    transition:
+      opacity 2s,
+      transform 2s;
+  }
+  &:not(.show).fade-up{
+    .move-content{
+      transform: translateY(100px);
+      opacity: 0;
+    }
+  }
+}

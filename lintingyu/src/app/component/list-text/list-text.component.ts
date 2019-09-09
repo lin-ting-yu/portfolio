@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ListTextComponent implements OnInit {
   @Input() data = {};
-
+  public Object = Object;
   constructor() { }
 
   ngOnInit() {

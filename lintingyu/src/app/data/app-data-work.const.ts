@@ -25,8 +25,8 @@ const workDatas: Array<WorkData> =
       linkPath: 'taiwanfolktoy',
       info: {
         type:     'book',
-        partner:  '簡文娟、張修華',
         year:     '2015',
+        partner:  '簡文娟、張修華',
         award:    'red dot bast of bast'
       },
       layouts: [
@@ -68,8 +68,8 @@ const workDatas: Array<WorkData> =
       linkPath: 'taiwanfood',
       info: {
         type:     'book',
-        partner:  '簡文娟、張修華',
         year:     '2015',
+        partner:  '簡文娟、張修華',
         award:    'iF design award'
       },
       layouts: [

@@ -22,6 +22,7 @@ import { TextBarComponent } from './text-bar/text-bar.component';
 import { RadialCharComponent } from './radial-char/radial-char.component';
 import { HistoryMapComponent } from './history-map/history-map.component';
 import { SelectPintListComponent } from './select-pint-list/select-pint-list.component';
+import { ScrollEffectComponent } from './scroll-effect/scroll-effect.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { SelectPintListComponent } from './select-pint-list/select-pint-list.com
     TextBarComponent,
     RadialCharComponent,
     HistoryMapComponent,
-    SelectPintListComponent
+    SelectPintListComponent,
+    ScrollEffectComponent
   ],
   imports: [
     CommonModule,
@@ -66,7 +68,8 @@ import { SelectPintListComponent } from './select-pint-list/select-pint-list.com
     ITLayoutTextSvgComponent,
     RadialCharComponent,
     HistoryMapComponent,
-    SelectPintListComponent
+    SelectPintListComponent,
+    ScrollEffectComponent
   ]
 })
 export class ComponentModule { }
