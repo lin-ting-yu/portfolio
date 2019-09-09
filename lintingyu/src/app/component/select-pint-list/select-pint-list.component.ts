@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { AnimationFrameService } from 'src/app/pageBase/_service/animation-frame.service';
 
 @Component({
   selector: 'app-select-pint-list',
@@ -34,10 +35,9 @@ export class SelectPintListComponent implements OnInit {
   // 線條初始中間高
   private y = (this.svgSizeHeight - 1) / 2 + 1;
 
-  // 動畫 方法
-  private requestAnimationFrame = window.requestAnimationFrame;
-  private animationFrame;
-  constructor() { }
+  constructor(
+    private anFrame: AnimationFrameService
+  ) { }
 
   lineYMove() {
     for (let point = 0; point <= this.lineLength - 2; point++) {
@@ -124,10 +124,7 @@ export class SelectPintListComponent implements OnInit {
     this.setPointsArrayToPoints();
     this.setArrowArrayToArrow();
   }
-  aniamtionFrameInit(fn) {
-    fn();
-    this.animationFrame = this.requestAnimationFrame(() => this.aniamtionFrameInit(fn));
-  }
+
   ngOnInit() {
     this.forNgForArray.length = this.pointLength;
     this.initWidth();
@@ -137,13 +134,11 @@ export class SelectPintListComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.aniamtionFrameInit(() => {
-        this.animation();
-      });
+      this.anFrame.bindingAniamtionFrame(() => this.animation());
     }, 0);
   }
   // 關閉動畫
   ngOnDestroy() {
-    cancelAnimationFrame(this.animationFrame);
+    this.anFrame.unbindingAniamtionFrame();
   }
 }

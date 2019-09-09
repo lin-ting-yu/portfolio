@@ -11,6 +11,8 @@ export class ITLayoutTextSvgComponent extends ITLayoutBigImgComponent {
 
   @Input() initShowSvg = true;
   @Input() svg = true;
+  public width: 0;
+  public height: 0;
 
   constructor() {
     super();

@@ -4,6 +4,7 @@ import { Vector } from '../component/canvas/canvas-drow';
 import { CanvasEventService } from '../component/canvas/canvas-event.service';
 import { ToolFunctionService } from '../component/tool-function.service';
 import { linStrokeData, linFillData } from '../data/app-data-canvas.const';
+import { AnimationFrameService } from '../pageBase/_service/animation-frame.service';
 
 @Component({
   selector: 'app-home',
@@ -19,9 +20,6 @@ export class HomeComponent extends PageComponent {
   public canvasSize = {width:0, height:0};
   // canvas DOM get 2d
   public ctx;
-  // 動畫 方法
-  private requestAnimationFrame = window.requestAnimationFrame;
-  private animationFrame;
   // canvas 初始設定結束
   private canvasAllRadey = false;
 
@@ -61,7 +59,8 @@ export class HomeComponent extends PageComponent {
   constructor(
     private el: ElementRef,
     private canvasEvent: CanvasEventService,
-    private toolFn: ToolFunctionService
+    private toolFn: ToolFunctionService,
+    private anFrame: AnimationFrameService
   ) {
     super();
   }
@@ -242,15 +241,10 @@ export class HomeComponent extends PageComponent {
     this.ctx = this.canvasDOM.getContext("2d");
     this.canvasEvent.setTargetPos(this.canvasDOM);
     this.canvasAllRadey = true;
-    this.aniamtionFrameInit(() => {
-      // console.log(this.id);
+    this.anFrame.bindingAniamtionFrame(() => {
       this.ctx.clearRect(0, 0, this.canvasSize.width, this.canvasSize.height);
       this.drowCanvas();
     });
-  }
-  aniamtionFrameInit(fn) {
-    fn();
-    this.animationFrame = this.requestAnimationFrame(() => this.aniamtionFrameInit(fn));
   }
   // 以下為 hooks
   ngOnInit() {
@@ -260,7 +254,7 @@ export class HomeComponent extends PageComponent {
     this.calculateTransform();
     this.dotsTransform();
     // 僅此頁控制 body
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow = 'hidden';
   }
   // tslint:disable-next-line: use-lifecycle-interface
   ngAfterViewInit (): void {
@@ -273,8 +267,8 @@ export class HomeComponent extends PageComponent {
   }
   // 關閉動畫
   ngOnDestroy() {
-    cancelAnimationFrame(this.animationFrame);
+    this.anFrame.unbindingAniamtionFrame();
     // 僅此頁控制 body
-    document.body.style.overflow = "";
+    document.body.style.overflow = '';
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import { ToolFunctionService } from '../tool-function.service';
 import { scrollEffect } from './scroll-effect-list.enum';
+import { AnimationFrameService } from 'src/app/pageBase/_service/animation-frame.service';
 
 @Component({
   selector: 'app-scroll-effect',
@@ -22,12 +23,9 @@ export class ScrollEffectComponent implements OnInit {
   private effectContentSize = null;
 
 
-  // 動畫 方法
-  private requestAnimationFrame = window.requestAnimationFrame;
-  private animationFrame;
-
   constructor(
-    private toolFn: ToolFunctionService
+    private toolFn: ToolFunctionService,
+    private anFrame: AnimationFrameService
   ) { }
 
 
@@ -71,31 +69,9 @@ export class ScrollEffectComponent implements OnInit {
     this.setEffectContentSize();
     this.setShowheight();
     this.watchBottom();
-    this.aniamtionFrameInit(() => this.handleScroll());
+    this.anFrame.bindingAniamtionFrame(() => this.handleScroll());
   }
 
-  // @HostListener('window:scroll', ['$event'])
-  //   onScroll(event) {
-  //     // if (this.isScroll) {
-  //     //   return;
-  //     // }
-  //     // this.isScroll = true;
-  //     // this.scrollTop = window.pageYOffset;
-  //     // this.checkActiveHeight();
-  //     // this.checkShow();
-  //     // this.onScrollShow.emit(this.show);
-  //     // this.watchBottom();
-  //     // requestAnimationFrame(() => {this.isScroll = false; });
-  //   }
-
-  // @HostListener('window:resize', ['$event'])
-  //   onResize(event) {
-  //     this.checkActiveHeight();
-  //   }
-  aniamtionFrameInit(fn) {
-    fn();
-    this.animationFrame = this.requestAnimationFrame(() => this.aniamtionFrameInit(fn));
-  }
   ngOnInit() {
     this.scrollTop = window.pageYOffset;
   }
@@ -109,6 +85,6 @@ export class ScrollEffectComponent implements OnInit {
   }
   // 關閉動畫
   ngOnDestroy() {
-    cancelAnimationFrame(this.animationFrame);
+    this.anFrame.unbindingAniamtionFrame();
   }
 }

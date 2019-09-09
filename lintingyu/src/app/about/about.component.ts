@@ -4,6 +4,7 @@ import { skillDatas } from '../data/app-data-skills.const';
 import { historyDatas } from '../data/app-data-history.const';
 import { scrollEffect } from '../component/scroll-effect/scroll-effect-list.enum';
 import { ToolFunctionService } from '../component/tool-function.service';
+import { AnimationFrameService } from '../pageBase/_service/animation-frame.service';
 
 @Component({
   selector: 'app-about',
@@ -44,11 +45,12 @@ export class AboutComponent implements OnInit {
   public child = false;
   public childGreenLine = false;
 
-  // 動畫 方法
-  private requestAnimationFrame = window.requestAnimationFrame;
-  private animationFrame;
+  //
+  private scrolltop = 0;
+
   constructor(
-    private toolFn: ToolFunctionService
+    private toolFn: ToolFunctionService,
+    private anFrame: AnimationFrameService
   ) { }
 
   showAboutGreenLine(){
@@ -65,20 +67,14 @@ export class AboutComponent implements OnInit {
     this.childGreenLine = event;
   }
   setBookMT() {
+    if (this.scrolltop === window.pageYOffset) {
+      return;
+    }
+    this.scrolltop = window.pageYOffset;
     let allHeight = document.body.scrollHeight - window.innerHeight;
     let result = window.pageYOffset / allHeight;
 
     this.bookMT =  result;
-  }
-  // setBookDOM() {
-  //   this.bookDOMPos = this.book.nativeElement.getBoundingClientRect();
-  // }
-  // afterGetDOM() {
-  //   this.setBookDOM();
-  // }
-  aniamtionFrameInit(fn) {
-    fn();
-    this.animationFrame = this.requestAnimationFrame(() => this.aniamtionFrameInit(fn));
   }
   @HostListener('window:resize',['$event'])
     onResize(event) {
@@ -88,18 +84,9 @@ export class AboutComponent implements OnInit {
     this.showAboutGreenLine();
   }
   ngAfterViewInit() {
-    this.aniamtionFrameInit(
-      () => {
-        this.setBookMT();
-      }
-    );
-    // this.toolFn.reCheck(
-    //   this,
-    //   () => this.book,
-    //   this.afterGetDOM
-    // )
+    this.anFrame.bindingAniamtionFrame(() => this.setBookMT());
   }
   ngOnDestroy() {
-    cancelAnimationFrame(this.animationFrame);
+    this.anFrame.unbindingAniamtionFrame();
   }
 }
