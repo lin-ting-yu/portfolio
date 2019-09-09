@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   // logo是否展開
   @Input() logoOpen = true;
 
+  private isScroll = false;
   constructor(
     private routerEvent: RouterEventService
   ) { }
@@ -50,12 +51,17 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:resize',['$event'])
     onResize(event) {
+      if (this.isScroll) {
+        return;
+      }
+      this.isScroll = true;
       this.windowWidth = event.target.innerWidth;
       if(this.windowWidth > 768){
         if(this.mobileNavShow && this.mobileNavListShow){
           this.toggleNav();
         }
       }
+      requestAnimationFrame(() => {this.isScroll = false; });
     }
   ngOnInit() {
     this.windowWidth = window.innerWidth;

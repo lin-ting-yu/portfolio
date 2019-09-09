@@ -4,70 +4,70 @@ const skillDatas = {
   coding: [
     new TextBar({
       title: 'CSS3',
-      text: 'good',
-      percentage: 0.6
+      text: 'Very Good',
+      percentage: 0.85
     }),
     new TextBar({
       title: 'JS',
-      text: 'good',
-      percentage: 0.6
+      text: 'Very Good',
+      percentage: 0.83
     }),
     new TextBar({
       title: 'Angular',
-      text: 'good',
-      percentage: 0.6
+      text: 'Good',
+      percentage: 0.62
     }),
     new TextBar({
       title: 'HTML5',
-      text: 'good',
-      percentage: 0.6
+      text: 'Very Good',
+      percentage: 0.82
     }),
     new TextBar({
       title: 'Git',
-      text: 'good',
-      percentage: 0.6
+      text: 'Good',
+      percentage: 0.65
     }),
     new TextBar({
       title: 'Three.js',
-      text: 'good',
-      percentage: 0.6
+      text: 'Good',
+      percentage: 0.72
     }),
     new TextBar({
       title: 'scss',
-      text: 'good',
-      percentage: 0.6
+      text: 'Very Good',
+      percentage: 0.82
     }),
     new TextBar({
       title: 'Canvas',
-      text: 'good',
-      percentage: 0.6
+      text: 'Good',
+      percentage: 0.68
     })
   ],
   design: [
     new TextBar({
       title: 'Sketch',
-      text: 'good',
-      percentage: 0.6
+      text: 'Very Good',
+      percentage: 0.8
     }),
     new TextBar({
       title: 'Ai',
-      text: 'good',
-      percentage: 0.6
+      text: 'Very Good',
+      percentage: 0.89
     }),
     new TextBar({
       title: 'Ps',
-      text: 'good',
-      percentage: 0.6
+      text: 'Very Good',
+      percentage: 0.85
     }),
     new TextBar({
       title: 'Ae',
-      text: 'good',
+      text: 'Good',
       percentage: 0.6
     }),
     new TextBar({
       title: 'Xd',
-      text: 'good',
-      percentage: 0.6
+      text: 'Good',
+      percentage: 0.7
     })
   ]
 }

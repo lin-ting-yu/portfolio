@@ -85,6 +85,9 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "es5": {
+              "tsConfig": "./tsconfig.es5.json"
             }
           }
         },
@@ -96,6 +99,9 @@
           "configurations": {
             "production": {
               "browserTarget": "lintingyu:build:production"
+            },
+            "es5": {
+              "browserTarget": "lintingyu:build:es5"
             }
           }
         },

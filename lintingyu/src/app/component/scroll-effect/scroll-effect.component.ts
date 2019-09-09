@@ -22,6 +22,10 @@ export class ScrollEffectComponent implements OnInit {
   private effectContentSize = null;
 
 
+  // 動畫 方法
+  private requestAnimationFrame = window.requestAnimationFrame;
+  private animationFrame;
+
   constructor(
     private toolFn: ToolFunctionService
   ) { }
@@ -53,25 +57,45 @@ export class ScrollEffectComponent implements OnInit {
   checkShow() {
     this.show = this.scrollTop >= this.showheight || this.toBottom;
   }
+  handleScroll(){
+    if (this.scrollTop === window.pageYOffset) {
+      return;
+    }
+    this.scrollTop = window.pageYOffset;
+    this.checkActiveHeight();
+    this.watchBottom();
+    this.checkShow();
+    this.onScrollShow.emit(this.show);
+  }
   afterGetDOM() {
     this.setEffectContentSize();
     this.setShowheight();
     this.watchBottom();
+    this.aniamtionFrameInit(() => this.handleScroll());
   }
 
-  @HostListener('window:scroll', ['$event'])
-    onScroll(event) {
-      this.scrollTop = window.pageYOffset;
-      this.checkActiveHeight();
-      this.checkShow();
-      this.onScrollShow.emit(this.show);
-      this.watchBottom();
-    }
+  // @HostListener('window:scroll', ['$event'])
+  //   onScroll(event) {
+  //     // if (this.isScroll) {
+  //     //   return;
+  //     // }
+  //     // this.isScroll = true;
+  //     // this.scrollTop = window.pageYOffset;
+  //     // this.checkActiveHeight();
+  //     // this.checkShow();
+  //     // this.onScrollShow.emit(this.show);
+  //     // this.watchBottom();
+  //     // requestAnimationFrame(() => {this.isScroll = false; });
+  //   }
 
-  @HostListener('window:resize', ['$event'])
-    onResize(event) {
-      this.checkActiveHeight();
-    }
+  // @HostListener('window:resize', ['$event'])
+  //   onResize(event) {
+  //     this.checkActiveHeight();
+  //   }
+  aniamtionFrameInit(fn) {
+    fn();
+    this.animationFrame = this.requestAnimationFrame(() => this.aniamtionFrameInit(fn));
+  }
   ngOnInit() {
     this.scrollTop = window.pageYOffset;
   }
@@ -82,5 +106,9 @@ export class ScrollEffectComponent implements OnInit {
       () => this.effectContent,
       this.afterGetDOM
     )
+  }
+  // 關閉動畫
+  ngOnDestroy() {
+    cancelAnimationFrame(this.animationFrame);
   }
 }

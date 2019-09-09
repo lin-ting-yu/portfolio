@@ -115,6 +115,7 @@
     }
     .link-content{
       display: block;
+      height: 100%;
       .svg-contnet{
         width: 100%;
         height: 100%;
@@ -328,10 +329,13 @@
           letter-spacing: 2px;
           &:before, &:after{
             transition:
-            width 0.3s,
-            top 0.3s,
-            left 0.5s,
-            transform 1s;
+              width 0.3s,
+              top 0.3s,
+              left 0.5s,
+              transform 1s;
+            // @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            //   transition: 0s;
+            // }
           }
           &:before{
             width: 1.2em;
@@ -371,19 +375,22 @@
             top 0.3s,
             left 0.5s,
             transform 1s;
+          // @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+          //   transition: 0s;
+          // }
         }
 
         &:before{
           transform-origin: 50 50%;
           left: 50%;
-          top: calc(50%);
-          transform: translateX(-50%) translateY(-50%);
+          top: 50%;
+          transform: translateX(-50%) translateY(-50%) rotate(0deg);
         }
         &:after{
           transform-origin: 50% 50%;
           left: 50%;
-          top: calc(50%);
-          transform: translateX(-50%) translateY(-50%);
+          top: 50%;
+          transform: translateX(-50%) translateY(-50%) rotate(0deg);
         }
         @keyframes greenLineMove{
           0%{

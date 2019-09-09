@@ -12,7 +12,7 @@ export class LayoutCommonComponent implements OnInit {
 
   //控制content是否要padding
   @Input() padding = true;
-
+  private isScroll = false;
   public contentShowFull = false;
   public scrollTop = 0;
 
@@ -22,8 +22,13 @@ export class LayoutCommonComponent implements OnInit {
 
   @HostListener('window:scroll', ['$event'])
     onContentScroll(event){
+      if (this.isScroll) {
+        return;
+      }
+      this.isScroll = true;
       this.scrollTop = window.pageYOffset;
-      this.contentShowFull = this.scroll && this.full && this.scrollTop / this.windowHeight > 1 / 6
+      this.contentShowFull = this.scroll && this.full && this.scrollTop / this.windowHeight > 1 / 6;
+      requestAnimationFrame(() => {this.isScroll = false; });
     }
 
   @HostListener('window:resize', ['$event'])
