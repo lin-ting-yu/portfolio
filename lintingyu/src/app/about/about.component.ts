@@ -31,7 +31,7 @@ export class AboutComponent implements OnInit {
       imgs: [
         'assets/about/child-face.svg'
       ],
-      title: 'ONE TEAR OLD',
+      title: 'ONE YEAR OLD',
       text: '這是我小時候大概 1歲，記得當時在用雷射眼攻擊蚊子，我覺得很可愛，所以放上來跟大家分享。'
     });
   public skillDatas = skillDatas;
