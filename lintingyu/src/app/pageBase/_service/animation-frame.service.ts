@@ -31,7 +31,7 @@ export class AnimationFrameService {
   unbindingAniamtionFrame() {
     this.clearFrameList();
     this.cancelAnimationFrame();
-    console.log('45646AAAA54');
+    // console.log('45646AAAA54');
   }
   cancelAnimationFrame(){
     cancelAnimationFrame(this.animationFrame);

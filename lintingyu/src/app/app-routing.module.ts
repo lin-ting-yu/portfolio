@@ -60,7 +60,7 @@ const routes: Routes = [
     RouterModule.forRoot(
       routes,
       {
-        useHash: false,
+        useHash: true,
         preloadingStrategy: PreloadAllModules,
         onSameUrlNavigation: 'reload'
       }

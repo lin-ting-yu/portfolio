@@ -1,8 +1,6 @@
 <app-layout-common [scroll]="true" [full]="true" [padding]="false">
   <app-layout-work
-    [title]="thisPageData.title"
-    [titleImg]="thisPageData.titleImg"
-    [listData]="thisPageData.info"
+    [thisData]="thisPageData"
     [nextData]="nextPageData"
     [prevData]="prevPageData"
     (onChangePage)="onChangePage()"

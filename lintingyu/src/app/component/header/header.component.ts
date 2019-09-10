@@ -1,6 +1,7 @@
 import { Component, OnInit, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import { RouterEventService } from 'src/app/pageBase/_service/router-event.service';
 import { pathData } from '../../data/app-data-path.const';
+import { ToolFunctionService } from '../tool-function.service';
 
 
 @Component({
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit {
   public mobileNavListShow =  false;
   public pathData = pathData;
   public activePath = '';
+  public isMobile = null;
   // 判斷是否要縮小
   @Input() small = false;
   // 接收Layout scrolltop
@@ -24,7 +26,8 @@ export class HeaderComponent implements OnInit {
 
   private isScroll = false;
   constructor(
-    private routerEvent: RouterEventService
+    private routerEvent: RouterEventService,
+    private toolFn: ToolFunctionService
   ) { }
 
 
@@ -37,14 +40,19 @@ export class HeaderComponent implements OnInit {
       }, 10);
     }
     else {
+      this.closeNav();
+    }
+  }
+  closeNav() {
+    if (this.mobileNavShow) {
       this.mobileNavListShow = !this.mobileNavListShow;
       setTimeout(() => {
         this.mobileNavShow = !this.mobileNavShow;
       }, 500);
     }
   }
-
   linkClick(path: string){
+    this.closeNav();
     this.routerEvent.linkClick(path);
   }
 
@@ -66,6 +74,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.windowWidth = window.innerWidth;
     this.activePath = this.routerEvent.getPathName();
+    this.isMobile = !this.toolFn.DETECTOR.isDesktopDevice;
     console.log(this.activePath);
   }
 }

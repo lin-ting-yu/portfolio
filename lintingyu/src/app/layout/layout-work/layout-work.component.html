@@ -14,17 +14,17 @@
   >
     <div
       class="background-img"
-      [ngStyle]="{ 'background-image': 'url(' + titleImg + ')'}"
+      [ngStyle]="{ 'background-image': 'url(' + thisData.titleImg + ')'}"
     ></div>
     <div class="info-content">
       <div class="title-content">
         <app-title-laval-first
-          [text]="title"
+          [text]="thisData.title"
           [textAlign]="0"
         ></app-title-laval-first>
       </div>
       <div class="list-content">
-        <app-list-text [data]="listData"></app-list-text>
+        <app-list-text [data]="thisData.info"></app-list-text>
       </div>
     </div>
     <div class="arrow"></div>

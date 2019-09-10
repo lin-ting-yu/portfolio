@@ -158,6 +158,21 @@
   }
   // 手機用
   .nav-content{
+    &.mobile{
+      .nav{
+        .nav-ul{
+          .nav-li{
+            .link-content{
+              &, &:hover, &.active{
+                &:before, &:after{
+                  transition: 0s;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
     @media screen and (max-width: $screen-size-w-pad-s){
       width: 100%;
       height: 100%;

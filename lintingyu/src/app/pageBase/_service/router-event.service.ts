@@ -12,11 +12,13 @@ export class RouterEventService {
     private router: Router
   ) { }
   getPathName(){
-    if (location.pathname === "/" || location.pathname === ""){
+    if (this.router.url === "/" || this.router.url === ""){
       return '';
     }
-
-    return location.pathname.match(/\/(.*)/)[1];
+    return this.router.url.match(/\/([^?]*)/)[1];
+  }
+  getUrl() {
+    return this.router.url;
   }
   linkClick(path: string, queryParams?: object, wait: boolean = true, time: number = 300) {
     if (this.router.url === '/' + path){

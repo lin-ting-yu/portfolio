@@ -136,12 +136,12 @@ export class HomeComponent extends PageComponent {
       let width = (this.canvasSize.width - 50);
       let scale = width / this.originalW;
 
-      if ((scale * this.originalH) / this.canvasSize.height > 0.35) {
-        scale = this.canvasSize.height * 0.35 / this.originalH;
+      if ((scale * this.originalH) / this.canvasSize.height > 0.3) {
+        scale = this.canvasSize.height * 0.3 / this.originalH;
       }
       this.transform.scale = scale;
       this.transform.translate.x = (this.canvasSize.width - scale * this.originalW) / 2;
-      this.transform.translate.y = this.canvasSize.height - 130 - scale * this.originalH;
+      this.transform.translate.y = this.canvasSize.height - 120 - scale * this.originalH;
     }
   }
   dotsTransform() {

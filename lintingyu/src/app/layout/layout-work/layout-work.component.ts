@@ -10,9 +10,7 @@ import { ToolFunctionService } from 'src/app/component/tool-function.service';
   styleUrls: ['./layout-work.component.scss']
 })
 export class LayoutWorkComponent implements OnInit {
-  @Input() title = '';
-  @Input() titleImg = '';
-  @Input() listData = {};
+  @Input() thisData;
   @Input() nextData;
   @Input() prevData;
   @Output() onChangePage = new EventEmitter();
@@ -49,7 +47,7 @@ export class LayoutWorkComponent implements OnInit {
   ngOnInit() {
     this.windowHeight = window.innerHeight;
     this.showFirstInfo = true;
-    this.mobile = this.toolFn.DETECTOR.isMobile;
+    this.mobile = !this.toolFn.DETECTOR.isDesktopDevice;
   }
 
 }
