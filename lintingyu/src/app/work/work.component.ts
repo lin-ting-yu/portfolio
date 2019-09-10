@@ -3,6 +3,7 @@ import { PageComponent } from '../pageBase/page.component';
 import { workDatas } from '../data/app-data-work.const';
 import { RouterEventService } from '../pageBase/_service/router-event.service';
 import { Router, ActivatedRoute, ParamMap, NavigationEnd } from '@angular/router';
+import { AnimationFrameService } from '../pageBase/_service/animation-frame.service';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class WorkComponent extends PageComponent {
   constructor(
     private routerEvent: RouterEventService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
+    private anFrame: AnimationFrameService) {
     super();
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       // If it is a NavigationEnd event re-initalise the component
@@ -60,15 +61,25 @@ export class WorkComponent extends PageComponent {
     this.getPageName();
     this.setPageData();
     this.getSublingsData();
+    setTimeout(() => {
+      this.anFrame.startAniamtionFrame();
+    }, 0);
   }
-
+  onChangePage() {
+    this.anFrame.unbindingAniamtionFrame();
+  }
   ngOnInit() {
     this.initialiseInvites();
   }
+  ngAfterViewInit(){
+    this.anFrame.startAniamtionFrame();
+  }
+
   ngOnDestroy() {
     // avoid memory leaks here by cleaning up after ourselves. If we
     // don't then we will continue to run our initialiseInvites()
     // method on every navigationEnd event.
+    this.anFrame.unbindingAniamtionFrame();
     if (this.navigationSubscription) {
       this.navigationSubscription.unsubscribe();
     }

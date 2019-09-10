@@ -9,7 +9,10 @@ class WorkData {
     type: string,
     partner?: string,
     year: string,
-    award?: string
+    award?: string,
+    design?: string,
+    coding?: string,
+    link?: Array<string>
   };
   layouts: Array<ITLayout>;
   constructor(init: WorkData) {
@@ -19,6 +22,40 @@ class WorkData {
 
 const workDatas: Array<WorkData> =
   [
+    new WorkData({
+      title: 'BEER',
+      titleImg: 'assets/worksTitleImg/titleImg-beer.jpg',
+      linkPath: 'beer',
+      info: {
+        type:     'website',
+        year:     '2019',
+        design:   '林庭佑',
+        coding:   '林庭佑',
+        link: ['網站連結', 'https://lin-ting-yu.github.io/beer/index.html']
+      },
+
+      layouts: [
+        { layout: 'bigImg',
+          imgs: [
+            'assets/workImg/beer/beer-01.png'
+          ]
+        },
+        { layout: 'imgAndText',
+          layoutType: 0,
+          imgs: [
+            'assets/workImg/beer/beer-02.png',
+          ],
+          text: '酒精自古以來都是讓人著迷，在不影響健康的情況下，酒往往是大家聚會首選。在台灣，啤酒通常是入門的首選，因此作了這個網站。'
+        },
+        { layout: 'imgAndText',
+          layoutType: 1,
+          imgs: [
+            'assets/workImg/beer/beer-03.png',
+          ],
+          text: '運用 three.js將啤酒呈現在網頁上，就算沒有看過，也可以馬上熟悉它。'
+        }
+      ]
+    }),
     new WorkData({
       title: 'TAIWAN FOLK TOY',
       titleImg: 'assets/worksTitleImg/titleImg-toy.jpg',

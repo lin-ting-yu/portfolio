@@ -46,6 +46,10 @@
     }
     &.show-svg{
       ::ng-deep{
+        svg-icon{
+          display: block;
+          width: 100%;
+        }
         path {
           stroke-dasharray: 1000;
           stroke-dashoffset: 1000;
@@ -54,6 +58,12 @@
           animation-timing-function: linear;
           animation-fill-mode: forwards;
           opacity: 0;
+          @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            stroke-dasharray: none;
+            stroke-dashoffset: none;
+            animation-name: none;
+            opacity: 1;
+          }
         }
         .time-1 path{
           animation-duration: 1s;

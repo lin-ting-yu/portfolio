@@ -83,8 +83,4 @@ export class ScrollEffectComponent implements OnInit {
       this.afterGetDOM
     )
   }
-  // 關閉動畫
-  ngOnDestroy() {
-    this.anFrame.unbindingAniamtionFrame();
-  }
 }

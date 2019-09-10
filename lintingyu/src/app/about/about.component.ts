@@ -76,15 +76,15 @@ export class AboutComponent implements OnInit {
 
     this.bookMT =  result;
   }
-  @HostListener('window:resize',['$event'])
-    onResize(event) {
 
-    }
   ngOnInit() {
     this.showAboutGreenLine();
   }
   ngAfterViewInit() {
     this.anFrame.bindingAniamtionFrame(() => this.setBookMT());
+    setTimeout(() => {
+      this.anFrame.startAniamtionFrame();
+    }, 0);
   }
   ngOnDestroy() {
     this.anFrame.unbindingAniamtionFrame();

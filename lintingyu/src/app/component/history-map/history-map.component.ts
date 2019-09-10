@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, HostListener, ViewChildren } from '@angular/core';
 import { HistoryMapItem } from './history-map.type';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { HistoryMapService } from './history-map.service';
@@ -11,8 +11,13 @@ import { ToolFunctionService } from '../tool-function.service';
 })
 export class HistoryMapComponent implements OnInit {
   @ViewChild(SvgIconComponent, {static: false}) svgComp;
-  @ViewChild('svgLineContent', {static: false}) svgContent;
-
+  // @ViewChild('svgLineContent', {static: false}) svgContent;
+  // @ViewChildren('svgIcon') svgIcon;
+  public svgSize = {
+    width: 0,
+    height: 0,
+    percen: 1
+  };
   @Input() data: Array<HistoryMapItem>;
   @Input() svg; //svg路徑
   @Input() title = '';
@@ -32,6 +37,7 @@ export class HistoryMapComponent implements OnInit {
   private pointGapPercen;
 
   public windowWidth: number;
+  public oldWindowWidth: number;
   public mobileShow = false;
 
   constructor(
@@ -61,27 +67,38 @@ export class HistoryMapComponent implements OnInit {
   getEventPoint(){
     let gap = 0;
     this.data.forEach((item, i) => {
-      // console.log(this.pointGapPercen);
       gap += this.dataGapArray[i];
       const point = this.pointsList[gap * this.pointGapPercen];
       this.pointsUseList.push(point);
-      point.classList.add('event');
+      // console.log(point);
+      // point.classList.add('event');
       this.setItemPos(point);
     });
     this.allRadey = true;
   }
   // 計算位置list位置
   setItemPos(point){
-    let contentPos = this.svgContent.nativeElement.getBoundingClientRect();
-    let pointPos = point.getBoundingClientRect();
+    let contentPos = this.svgSize;
+    let pointPos = point.getBBox();
+    // console.log(pointPos);
     this.itemsPos.push([
-      (pointPos.left - contentPos.left + pointPos.width  / 2) / contentPos.width,
-      (pointPos.top  - contentPos.top  + pointPos.height / 2) / contentPos.height
+      (pointPos.x * contentPos.percen + pointPos.width ) / contentPos.width,
+      (pointPos.y * contentPos.percen + pointPos.height) / contentPos.height
     ]);
+  }
+  // 設定svg寬高
+  setSvgSize() {
+    if (this.windowWidth !== this.oldWindowWidth || !this.svgSize.width) {
+      if (this.svgComp) {
+        const svgComp = this.svgComp.element.nativeElement;
+        this.svgSize = this.toolFn.getSvgSize(svgComp);
+      }
+    }
   }
   // 取得ponit後執行
   afterGatPoint(list) {
     this.pointsList = list;
+    this.setSvgSize();
     this.setPointGap(
       this.pointsList.length,
       this.dataGap
@@ -94,6 +111,7 @@ export class HistoryMapComponent implements OnInit {
       this.windowWidth = event.target.innerWidth;
       if (this.windowWidth > 768) {
         this.mobileShow = false;
+        this.setSvgSize();
         if (!this.allRadey) {
           this.afterViewInitFn();
         }
@@ -101,6 +119,7 @@ export class HistoryMapComponent implements OnInit {
       else{
         this.mobileShow = true;
       }
+      this.oldWindowWidth = this.windowWidth;
     }
   ngOnInit() {
     this.windowWidth = window.innerWidth;

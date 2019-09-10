@@ -6,7 +6,12 @@
     'show': showFirstInfo
   }"
 >
-  <section class="first-section">
+  <section
+    class="first-section"
+    [ngStyle]="{
+      'height': windowHeight + 'px'
+    }"
+  >
     <div
       class="background-img"
       [ngStyle]="{ 'background-image': 'url(' + titleImg + ')'}"
@@ -71,12 +76,21 @@
   </div>
   <div class="prev-next-img-content">
     <ng-container *ngIf="prevData !== null">
-      <div class="img-content prev">
+      <div
+        class="img-content prev"
+        [ngStyle]="{
+          'height': windowHeight + 'px'
+        }"
+      >
         <div class="background-img" [ngStyle]="{'background-image':'url(' + prevData.titleImg + ')'}"></div>
       </div>
     </ng-container>
     <ng-container *ngIf="nextData !== null">
-      <div class="img-content next">
+      <div class="img-content next"
+        [ngStyle]="{
+          'height': windowHeight + 'px'
+        }"
+      >
         <div class="background-img" [ngStyle]="{'background-image':'url(' + nextData.titleImg + ')'}"></div>
       </div>
     </ng-container>

@@ -76,6 +76,27 @@
       @media screen and (max-width: $screen-size-w-pad-s){
         max-width: none;
       }
+      .link-content{
+        display: block;
+        position: relative;
+        font-weight: bold;
+        &:hover {
+          letter-spacing: 2px;
+        }
+        &:after {
+          display: block;
+          content: '';
+          width: 100%;
+          height: 2px;
+          background-color: $color-cis-green;
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+        }
+        .text{
+          transition: 0.5s;
+        }
+      }
     }
   }
 }

@@ -245,6 +245,7 @@ export class HomeComponent extends PageComponent {
       this.ctx.clearRect(0, 0, this.canvasSize.width, this.canvasSize.height);
       this.drowCanvas();
     });
+    this.anFrame.startAniamtionFrame();
   }
   // 以下為 hooks
   ngOnInit() {

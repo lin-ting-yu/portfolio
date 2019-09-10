@@ -9,12 +9,16 @@
     [ngClass]="{
       'show-svg': svg
     }"
+    [ngStyle]="{
+      'height': svgSize.height + 'px',
+      'max-height': '80vh'
+    }"
   >
     <svg-icon
       [src]="data.imgs[0]"
       [svgStyle]="{
-        'width.%':100,
-        'height.%':100,
+        'width.px': svgSize.width,
+        'height.px': svgSize.height,
         'stroke-width.px': 1,
         'opacity': 0.5,
         'max-height.vh': 80

@@ -61,6 +61,8 @@
     &.show{
       ::ng-deep{
         svg-icon{
+          display: block;
+          width: 100%;
           svg{
             path{
               stroke-dashoffset: 0;

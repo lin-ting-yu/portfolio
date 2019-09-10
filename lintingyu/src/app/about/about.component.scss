@@ -5,8 +5,9 @@
   width: 100%;
   padding: 0 7%;
   padding-left: 7%;
+
   @include page-layout(1.5, 2);
-  // border: solid 1px #888;
+  overflow: hidden;
   @media screen and (max-width: $screen-size-w-pad-s){
     padding: 0;
   }
@@ -62,7 +63,18 @@
         width: 30%;
         position: absolute;
         top: 60%;
+        padding-top: 44%;
         animation: awardBookAn 5s linear infinite;
+        ::ng-deep{
+          svg-icon{
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+          }
+        }
         @keyframes awardBookAn {
           0%{
             transform: translateY(0) rotate(-15deg);
@@ -121,10 +133,11 @@
         animation: fase-block-flicker 3s infinite;
       }
       &.child-1{
-        top: 23%;
+        top: 30%;
         right: 50%;
         @media screen and (max-width: $screen-size-w-pad-s){
-          right: 65%;
+          top: 22%;
+          right: 66%;
         }
         animation-duration: 10s;
         &.show-green-line{
@@ -133,10 +146,11 @@
         }
       }
       &.child-2{
-        top: 24.2%;
+        top: 30.4%;
         right: 44.5%;
         animation-duration: 13s;
         @media screen and (max-width: $screen-size-w-pad-s){
+          top: 24.1%;
           right: 59%;
         }
         &.show-green-line{

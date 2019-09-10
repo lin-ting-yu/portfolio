@@ -17,6 +17,9 @@
       opacity: 1;
       transition: opacity 0.5s;
     }
+    .prev-next-img-content{
+      opacity: 0;
+    }
   }
   .first-section{
     display: flex;
@@ -144,6 +147,7 @@
     box-shadow: 0 -20px 30px -25px rgba(black, 0.5);
     opacity: 0;
     z-index: $z-index-1;
+    overflow: hidden;
     @media screen and (max-width: $screen-size-w-mobile){
       padding: 50px $layout-work-l-r-gap-mobile;
       padding-bottom: 80px;

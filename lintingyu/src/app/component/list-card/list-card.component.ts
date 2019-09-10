@@ -109,7 +109,7 @@ export class ListCardComponent implements OnInit {
     }
   }
   onClick(event, id, path: string, queryParams: object){
-    const isPc = this.toolFunction.epicFunction().isDesktopDevice;
+    const isPc = this.toolFunction.DETECTOR.isDesktopDevice;
 
     if (!isPc) {
       this.setTarget(this.listCardUl.nativeElement.querySelectorAll('.list-card-li')[id]);
@@ -144,8 +144,8 @@ export class ListCardComponent implements OnInit {
       this.onCardClickId = id;
       linkContent.style.top  = '0';
       linkContent.style.left = '0';
-      linkContent.style.width  = '100%';
-      linkContent.style.height = '100vh';
+      linkContent.style.width  = window.innerWidth  + 'px';
+      linkContent.style.height = window.innerHeight + 'px';
       img.style.transform = 'rotateX(' + (rX * 15) + 'deg) rotateY(' + (rY * 5) + 'deg) translateY(' + (rX * -10) + 'px)';
       setTimeout(() => {
         img.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0)';

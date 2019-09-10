@@ -26,8 +26,34 @@ export class ToolFunctionService {
     }
   }
   // 取得樣式
-  getStyle(obj, attr){
-    return obj.currentStyle ? obj.currentStyle[attr] : getComputedStyle(obj)[attr];
+  getStyle(el, styleProp) {
+    var value, defaultView = (el.ownerDocument || document).defaultView;
+    // W3C standard way:
+    if (defaultView && defaultView.getComputedStyle) {
+      // sanitize property name to css notation
+      // (hypen separated words eg. font-Size)
+      styleProp = styleProp.replace(/([A-Z])/g, "-$1").toLowerCase();
+      return defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
+    } else if (el.currentStyle) { // IE
+      // sanitize property name to camelCase
+      styleProp = styleProp.replace(/\-(\w)/g, function(str, letter) {
+        return letter.toUpperCase();
+      });
+      value = el.currentStyle[styleProp];
+      // convert other units to pixels on IE
+      if (/^\d+(em|pt|%|ex)?$/i.test(value)) {
+        return (function(value) {
+          var oldLeft = el.style.left, oldRsLeft = el.runtimeStyle.left;
+          el.runtimeStyle.left = el.currentStyle.left;
+          el.style.left = value || 0;
+          value = el.style.pixelLeft + "px";
+          el.style.left = oldLeft;
+          el.runtimeStyle.left = oldRsLeft;
+          return value;
+        })(value);
+      }
+      return value;
+    }
   }
   // 取得Transform rotate
   getTransform(obj) {
@@ -86,5 +112,41 @@ export class ToolFunctionService {
         clearInterval(reCheck);
       }
     }, 10);
+  }
+
+
+  // 設定svg尺寸
+  getSvgSize(svgComp, callback?) {
+    if (svgComp) {
+      // this.windowWidth = window.innerWidth;
+      let svgDOM = svgComp.querySelector('svg');
+      if (svgDOM) {
+        let result;
+        let svgWidth  = parseFloat(svgDOM.getAttribute('width'));
+        let svgHeight = parseFloat(svgDOM.getAttribute('height'));
+
+        let parent = svgComp.offsetParent;
+        let parentPL = parseFloat(this.getStyle(parent, 'padding-left'));
+        let parentPR = parseFloat(this.getStyle(parent, 'padding-right'));
+
+        let parentClientRect = parent.getBoundingClientRect();
+        let parentWidth = parentClientRect.width;
+        let percen = parentWidth / svgWidth;
+        result = {
+          width: parentWidth - parentPL - parentPR,
+          height: parentWidth / svgWidth * svgHeight,
+          percen
+        };
+        if (callback) {
+          callback();
+        }
+        return result;
+      }
+    }
+    return {
+      width: 0,
+      height: 0,
+      percen: 1
+    };
   }
 }
