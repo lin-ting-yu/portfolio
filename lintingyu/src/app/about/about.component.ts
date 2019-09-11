@@ -23,7 +23,7 @@ export class AboutComponent implements OnInit {
         'assets/about/about-face.svg'
       ],
       title: 'PROFILE',
-      text: '台灣人喜歡設計、網頁特效、數學、手工以及貓咪。平常有在騎自行車，期望未來能在專業上有所突破，以及騎自行車不會爆胎！'
+      text: '現居台灣，喜歡設計、網頁特效、數學、手工以及貓咪。平常有在騎自行車，期望未來能在專業上有所突破，以及騎自行車不會爆胎！'
     });
   public firstSectionData2 = new ITLayout(
     { layout: 'imgsAndText',

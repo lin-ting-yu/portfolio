@@ -52,7 +52,7 @@ export const historyDatas: Array<HistoryMapItem> =
     }),
     new HistoryMapItem({
       type:  'event',
-      title: 'MJ 紀念館 LOGO 設計',
+      title: '麥可·傑克森 紀念館 LOGO 設計',
       text:  '第一名'
     }),
   ];
