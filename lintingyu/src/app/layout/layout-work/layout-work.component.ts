@@ -17,6 +17,7 @@ export class LayoutWorkComponent implements OnInit {
   public mobile = null;
   public goToPage = null;
   public showFirstInfo = false;
+  public showNextAndPrevImg = false;
   public pathData = pathData;
   // public prevComp = pathData.workB;
   // public nextComp = pathData.workC;
@@ -30,9 +31,12 @@ export class LayoutWorkComponent implements OnInit {
 
 
   linkClick(goTo: string, path: string, queryParams: object) {
-    this.goToPage = goTo;
-    this.showFirstInfo = false;
-    this.onChangePage.emit();
+    this.showNextAndPrevImg = true;
+    setTimeout(() => {
+      this.goToPage = goTo;
+      this.showFirstInfo = false;
+      this.onChangePage.emit();
+    }, 10);
     setTimeout(() => {
       this.goToPage = null;
       this.routerEvent.linkClick(path, queryParams, false);
@@ -45,6 +49,8 @@ export class LayoutWorkComponent implements OnInit {
 
     }
   ngOnInit() {
+    console.log(this.showNextAndPrevImg);
+    this.showNextAndPrevImg = false;
     this.windowHeight = window.innerHeight;
     this.showFirstInfo = true;
     this.mobile = !this.toolFn.DETECTOR.isDesktopDevice;

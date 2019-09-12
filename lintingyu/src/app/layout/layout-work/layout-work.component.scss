@@ -9,6 +9,7 @@
   overflow: hidden;
   &.show{
     .first-section{
+      opacity: 1;
       .info-content{
         opacity: 1;
       }
@@ -29,6 +30,8 @@
     height: 100vh;
     position: fixed;
     top: 0;
+    opacity: 0;
+    transition: opacity 1s;
     .background-img{
       width: 100%;
       height: 100vh;
@@ -50,8 +53,6 @@
       padding-bottom: $header-nav-bottom-gap-blue;
       position: relative;
       z-index: 2;
-      opacity: 0;
-      transition: opacity 1s;
       @media screen and (max-width: $screen-size-w-pc) {
         padding-top: calc(#{$top-gap-pc} + 15vh);
         padding-bottom: $header-nav-bottom-gap-pc;
@@ -314,15 +315,16 @@
       background-attachment: fixed;
       overflow: hidden;
       &.prev{
-        transform: translateX(-100%);
+        left: -100%;
       }
       &.next{
-        transform: translateX(100%);
+        left: 100%;
       }
       .background-img{
         width: 100%;
         height: 100vh;
         background-position: center center;
+        background-repeat: no-repeat;
         background-size: cover;
         @include first-section-bgi-style();
       }
@@ -339,7 +341,7 @@
         .img-content{
           &.next{
             transition: 0.5s;
-            transform: translateX(0%);
+            left: 0%;
           }
         }
       }
@@ -354,11 +356,10 @@
         .img-content{
           &.prev{
             transition: 0.5s;
-            transform: translateX(0%);
+            left: 0%;
           }
         }
       }
     }
   }
-
 }
