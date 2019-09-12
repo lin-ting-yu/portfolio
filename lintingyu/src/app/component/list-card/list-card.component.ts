@@ -131,6 +131,7 @@ export class ListCardComponent implements OnInit {
     linkContent.style.left = linkContentSize.left + 'px';
     linkContent.style.position = 'fixed';
 
+
     // 判斷點擊得位置
     let rX = isPc ? parseInt( this.imgTrans.rotateX ) : 1;
     let rY = isPc ? parseInt( this.imgTrans.rotateY ) : 1;
@@ -141,6 +142,7 @@ export class ListCardComponent implements OnInit {
 
     setTimeout(() => {
       // 設定啟動ID
+      linkContent.style.transition = '0.5s';
       this.onCardClickId = id;
       linkContent.style.top  = '0';
       linkContent.style.left = '0';
