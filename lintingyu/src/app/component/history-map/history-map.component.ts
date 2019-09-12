@@ -123,7 +123,7 @@ export class HistoryMapComponent implements OnInit {
     }
   ngOnInit() {
     this.windowWidth = window.innerWidth;
-    if (this.windowWidth < 768) {
+    if (this.windowWidth <= 768) {
       this.mobileShow = true;
     }
     this.getDataLength(this.data);
