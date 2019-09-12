@@ -17,7 +17,8 @@ export class HomeComponent extends PageComponent {
   // canvas DOM
   public canvasDOM;
   // canvas size
-  public canvasSize = {width:0, height:0};
+  public canvasSize = {width: 0, height: 0};
+
   // canvas DOM get 2d
   public ctx;
   // canvas 初始設定結束
@@ -28,14 +29,16 @@ export class HomeComponent extends PageComponent {
   private originalH = 150;
   private aspectRatio = this.originalW / this.originalH;
   // mouse in canvas pos
-  public ineerCtxPos = {x: 0, y: 0};
+  public innerCtxPos = {x: 0, y: 0};
   // 縮放
   public transform = {
     scale: 4,
     translate: {
       x: 500, y: 400
     }
-  }
+  };
+  // canvas proportion fo mouse size
+  private canvasMouseTranslate = {x: null, y: null};
   // 彈力 & 摩擦力
   private spring = 0.2;  // 彈力細數
   private friction = 0.9; // 摩擦力
@@ -70,15 +73,15 @@ export class HomeComponent extends PageComponent {
     this.active = i;
     if (i === 0) {
       this.spring = 0.2;
-      this.friction = 0.9
+      this.friction = 0.9;
       this.speed = 1;
     } else if (i === 1) {
       this.spring = 0.2;
-      this.friction = 0.9
+      this.friction = 0.9;
       this.speed = 0.01;
     } else if (i === 2) {
       this.spring = 0.4;
-      this.friction = 0.99
+      this.friction = 0.99;
       this.speed = 1.5;
     }
 
@@ -91,7 +94,7 @@ export class HomeComponent extends PageComponent {
         if (this.canvasEvent.targetPos.top < 0) {
           this.canvasEvent.setTargetPos(this.canvasDOM);
         }
-        this.ineerCtxPos = this.canvasEvent.bindingMouseMove(event);
+        this.innerCtxPos = this.canvasEvent.bindingMouseMove(event);
       }
     }
   }
@@ -103,7 +106,7 @@ export class HomeComponent extends PageComponent {
       if (this.canvasEvent.targetPos.top < 0) {
         this.canvasEvent.setTargetPos(this.canvasDOM);
       }
-      this.ineerCtxPos = this.canvasEvent.bindingMouseMove(event);
+      this.innerCtxPos = this.canvasEvent.bindingMouseMove(event);
     }
   }
   mouseUp(event) {
@@ -111,7 +114,7 @@ export class HomeComponent extends PageComponent {
       this.linePower = 5000;
       this.fillPower = 3000;
     } else {
-      this.ineerCtxPos = {x: -999, y: -999};
+      this.innerCtxPos = {x: 0, y: 0};
     }
   }
   @HostListener('window:resize', ['$event'])
@@ -119,7 +122,15 @@ export class HomeComponent extends PageComponent {
       this.setCanvasSize(event.target.innerWidth, event.target.innerHeight);
       this.calculateTransform();
       this.dotsTransform();
+      this.setCanvasProportionMmouseSize();
     }
+  // 滑鼠偏移
+  setCanvasProportionMmouseSize() {
+    if (this.toolFn.DETECTOR.isDesktopDevice) {
+      this.canvasMouseTranslate.x = 25 - this.innerCtxPos.x * 50 / this.canvasSize.width;
+      this.canvasMouseTranslate.y = 25 - this.innerCtxPos.y * 50 / this.canvasSize.height;
+    }
+  }
   // 型變
   calculateTransform() {
     if (this.canvasSize.width > 768) {
@@ -136,8 +147,8 @@ export class HomeComponent extends PageComponent {
       let width = (this.canvasSize.width - 50);
       let scale = width / this.originalW;
 
-      if ((scale * this.originalH) / this.canvasSize.height > 0.3) {
-        scale = this.canvasSize.height * 0.3 / this.originalH;
+      if ((scale * this.originalH) / this.canvasSize.height > 0.26) {
+        scale = this.canvasSize.height * 0.26 / this.originalH;
       }
       this.transform.scale = scale;
       this.transform.translate.x = (this.canvasSize.width - scale * this.originalW) / 2;
@@ -145,7 +156,7 @@ export class HomeComponent extends PageComponent {
     }
   }
   dotsTransform() {
-    // fill控制變形
+    // fill控制變形\
     this.fillDotVector.forEach(line => {
       line.forEach(dot => {
         dot.transform(
@@ -177,14 +188,21 @@ export class HomeComponent extends PageComponent {
   }
   // 繪製
   drowCanvas() {
-    // this.mouse.moveTo(this.ineerCtxPos);
+    // this.mouse.moveTo(this.innerCtxPos);
     // this.canvasEvent.dorwDot(this.ctx, this.mouse, 10, {drowFill: true});
     // fill動畫控制
+    // this.dotsTransform();
+    this.setCanvasProportionMmouseSize();
+    let moveX = this.canvasMouseTranslate.x !== null ? this.canvasMouseTranslate.x : 0;
+    let moveY = this.canvasMouseTranslate.y !== null ? this.canvasMouseTranslate.y : 0;
+
     this.fillDotVector.forEach(line => {
       line.forEach(dot => {
         let dotMoveTo = this.canvasEvent.dotInteractive(
-          dot, this.ineerCtxPos, this.fillPower, false
+          dot, this.innerCtxPos, this.fillPower, false
         );
+        dotMoveTo.x -= moveX;
+        dotMoveTo.y -= moveY;
         dot.moveTo(dotMoveTo);
       });
       this.canvasEvent.dorwPath(
@@ -192,7 +210,7 @@ export class HomeComponent extends PageComponent {
         line,
         true,
         { drowFill: true,
-          fillStyle: "rgba(115, 242, 141, 0.6)"
+          fillStyle: 'rgba(115, 242, 141, 0.6)'
         }
       );
     });
@@ -200,8 +218,10 @@ export class HomeComponent extends PageComponent {
     this.strokeDotVector.forEach(line => {
       line.forEach(dot => {
         let dotMoveTo = this.canvasEvent.dotInteractive(
-          dot, this.ineerCtxPos, this.linePower
+          dot, this.innerCtxPos, this.linePower
         );
+        dotMoveTo.x += moveX;
+        dotMoveTo.y += moveY;
         dot.moveTo(dotMoveTo);
       });
       this.canvasEvent.dorwPath(
@@ -238,7 +258,7 @@ export class HomeComponent extends PageComponent {
     this.strokeDotVector = this.dataToVector(this.linStrokeData);
   }
   afterGetCanvasDOM() {
-    this.ctx = this.canvasDOM.getContext("2d");
+    this.ctx = this.canvasDOM.getContext('2d');
     this.canvasEvent.setTargetPos(this.canvasDOM);
     this.canvasAllRadey = true;
     this.anFrame.bindingAniamtionFrame(() => {
@@ -254,11 +274,12 @@ export class HomeComponent extends PageComponent {
     this.linDataDotInit();
     this.calculateTransform();
     this.dotsTransform();
+    this.setCanvasProportionMmouseSize();
     // 僅此頁控制 body
     document.body.style.overflow = 'hidden';
   }
   // tslint:disable-next-line: use-lifecycle-interface
-  ngAfterViewInit (): void {
+  ngAfterViewInit(): void {
     this.getCanvasDOM();
     this.toolFn.reCheck(
       this,

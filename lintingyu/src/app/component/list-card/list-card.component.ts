@@ -145,7 +145,7 @@ export class ListCardComponent implements OnInit {
       linkContent.style.top  = '0';
       linkContent.style.left = '0';
       linkContent.style.width  = window.innerWidth  + 'px';
-      linkContent.style.height = window.innerHeight + 'px';
+      linkContent.style.height = '100vh';
       img.style.transform = 'rotateX(' + (rX * 15) + 'deg) rotateY(' + (rY * 5) + 'deg) translateY(' + (rX * -10) + 'px)';
       setTimeout(() => {
         img.style.transform = 'rotateX(0deg) rotateY(0deg) translateY(0)';

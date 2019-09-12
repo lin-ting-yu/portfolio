@@ -26,6 +26,9 @@
         bottom: 30px;
         transform: translateX(-50%);
       }
+      @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-height: $screen-size-h-small){
+        top: $header-footer-h-to-small-gap;
+      }
       .type-content{
         display: flex;
         align-items: flex-start;
@@ -99,7 +102,7 @@
                       color: $color-cis-black;
                       font-size: $f-z-1-5;
                       & + .nav-li{
-                        margin-top: 35px;
+                        margin-top: 25px;
                       }
                     }
                   }
