@@ -41,7 +41,7 @@ export class LayoutWorkComponent implements OnInit {
   }
   @HostListener('window:resize',['$event'])
     onResize(event) {
-      this.windowHeight = event.targer.innerHeight;
+      this.windowHeight = window.innerHeight;
 
     }
   ngOnInit() {
