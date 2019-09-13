@@ -3,6 +3,7 @@ import { HistoryMapItem } from './history-map.type';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { HistoryMapService } from './history-map.service';
 import { ToolFunctionService } from '../tool-function.service';
+import { AnimationFrameService } from 'src/app/pageBase/_service/animation-frame.service';
 
 @Component({
   selector: 'app-history-map',
@@ -16,7 +17,11 @@ export class HistoryMapComponent implements OnInit {
   public svgSize = {
     width: 0,
     height: 0,
-    percen: 1
+    percen: 1,
+    originSvgSize:{
+      width: 0,
+      height: 0
+    }
   };
   @Input() data: Array<HistoryMapItem>;
   @Input() svg; //svg路徑
@@ -42,7 +47,8 @@ export class HistoryMapComponent implements OnInit {
 
   constructor(
     private HistorySv: HistoryMapService,
-    private toolFn: ToolFunctionService
+    private toolFn: ToolFunctionService,
+    private anFrame: AnimationFrameService
   ) { }
 
   getTextArray(text: string) {
@@ -78,13 +84,18 @@ export class HistoryMapComponent implements OnInit {
   }
   // 計算位置list位置
   setItemPos(point){
-    let contentPos = this.svgSize;
     let pointPos = point.getBBox();
     // console.log(pointPos);
+
+    console.log(pointPos.x);
     this.itemsPos.push([
-      (pointPos.x * contentPos.percen + pointPos.width ) / contentPos.width,
-      (pointPos.y * contentPos.percen + pointPos.height) / contentPos.height
+      'calc(' + ((pointPos.x + pointPos.width ) / this.svgSize.originSvgSize.width  * 100) + '% + ' + '1px)',
+      'calc(' + ((pointPos.y + pointPos.height) / this.svgSize.originSvgSize.height * 100) + '% + ' + '1px)'
     ]);
+    // this.itemsPos.push([
+    //   (pointPos.x + pointPos.width  / 2) * this.svgSize.percen / this.svgSize.width ,
+    //   (pointPos.y + pointPos.height / 2) * this.svgSize.percen / this.svgSize.height
+    // ]);
   }
   // 設定svg寬高
   setSvgSize() {
@@ -104,11 +115,12 @@ export class HistoryMapComponent implements OnInit {
       this.dataGap
     );
     this.getEventPoint();
+    this.anFrame.bindingAniamtionFrame(() => this.onResize());
   }
   // resize動作
-  @HostListener('window:resize',['$event'])
-    onResize(event) {
-      this.windowWidth = event.target.innerWidth;
+  onResize() {
+    if (this.windowWidth !== window.innerWidth) {
+      this.windowWidth = window.innerWidth;
       if (this.windowWidth > 768) {
         this.mobileShow = false;
         this.setSvgSize();
@@ -121,6 +133,8 @@ export class HistoryMapComponent implements OnInit {
       }
       this.oldWindowWidth = this.windowWidth;
     }
+  }
+
   ngOnInit() {
     this.windowWidth = window.innerWidth;
     if (this.windowWidth <= 768) {

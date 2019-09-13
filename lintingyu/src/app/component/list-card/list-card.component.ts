@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { ListCardService } from './list-card.service';
 import { ToolFunctionService } from '../tool-function.service';
 import { RouterEventService } from 'src/app/pageBase/_service/router-event.service';
@@ -15,7 +15,8 @@ import { WorkData } from 'src/app/data/app-data-work.const';
 export class ListCardComponent implements OnInit {
 
   @Input() data: Array<WorkData>;
-  @ViewChild('listCardUl', {static: false}) listCardUl: ElementRef;
+  @ViewChildren('listCardLi') listCardsLi:　QueryList<ElementRef>;
+  private listCardsLiDom = null;
   private targetPos = this.listCardService.targetPos;
   private transformNumber = null;
   private anmation = null;
@@ -28,7 +29,14 @@ export class ListCardComponent implements OnInit {
     private toolFunction: ToolFunctionService,
     private routerEvent: RouterEventService
   ) { }
+  cardInitShow() {
+    this.listCardsLiDom.forEach((card, i) => {
+      setTimeout(() => {
 
+        card.nativeElement.classList.add('show');
+      }, (i + 1) * 250);
+    });
+  }
   startSetPos(event){
     if (!this.onCardClickId && this.onCardClickId !== 0) {
       if (!this.toolFunction.DETECTOR.isDesktopDevice) {
@@ -112,7 +120,7 @@ export class ListCardComponent implements OnInit {
     const isPc = this.toolFunction.DETECTOR.isDesktopDevice;
 
     if (!isPc) {
-      this.setTarget(this.listCardUl.nativeElement.querySelectorAll('.list-card-li')[id]);
+      this.setTarget(this.listCardsLiDom[id].nativeElement);
     }
     const linkContent = this.target.target.querySelector('.link-content');
     const img = this.target.img;
@@ -129,6 +137,7 @@ export class ListCardComponent implements OnInit {
     linkContent.style.height = linkContentSize.height + 'px';
     linkContent.style.top  = linkContentSize.top  + 'px';
     linkContent.style.left = linkContentSize.left + 'px';
+    linkContent.style.transform = 'translateY(0px) skewY(0deg)';
     linkContent.style.position = 'fixed';
 
 
@@ -157,15 +166,19 @@ export class ListCardComponent implements OnInit {
         this.linkClick(path, queryParams);
       }, 500);
     }, 10);
-
   }
   linkClick(path: string, queryParams: object){
     this.routerEvent.linkClick(path, queryParams, false);
   }
   ngOnInit() {
   }
+  ngAfterViewInit(): void {
+    this.listCardsLiDom = this.listCardsLi.toArray();
+    this.cardInitShow();
+  }
   ngOnDestroy(){
     this.stopSetPos();
+
   }
 
 }

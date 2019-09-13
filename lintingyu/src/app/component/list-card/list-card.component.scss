@@ -21,24 +21,25 @@
   }
   .list-card-li{
     //計算後寬高
+      // 寬高比
+      $w-h-p: 0.5625;
       //blue
       $card-blue-w: calc(35vw - 40px);
-      $card-blue-h: calc(#{35vw * 0.5625} - #{40px * 0.5625});
+      $card-blue-h: calc(#{35vw * $w-h-p} - #{40px * $w-h-p});
       //pc
       $card-pc-w: calc(35vw - 35px);
-      $card-pc-h: calc(#{35vw * 0.5625} - #{35px * 0.5625});
+      $card-pc-h: calc(#{35vw * $w-h-p} - #{35px * $w-h-p});
       //pad-b
       $card-pad-b-w: calc(37.5vw - 20px);
-      $card-pad-b-h: calc(#{37.5vw * 0.5625} - #{20px * 0.5625});
+      $card-pad-b-h: calc(#{37.5vw * $w-h-p} - #{20px * $w-h-p});
       //pad-s
       $card-pad-s-w: calc(50vw - 40px);
-      $card-pad-s-h: calc(#{50vw * 0.5625} - #{40px * 0.5625});
+      $card-pad-s-h: calc(#{50vw * $w-h-p} - #{40px * $w-h-p});
       //mobile
       $card-mobile-w: calc(100vw - 40px);
-      $card-mobile-h: calc(#{100vw * 0.5625} - #{40px * 0.5625});
-
-
+      $card-mobile-h: calc(#{100vw * $w-h-p} - #{40px * $w-h-p});
     width: $card-blue-w;
+
     @media screen and (min-width: $screen-size-w-pad-b + 1) and (max-width: $screen-size-w-pc){
       width: $card-pc-w;
     }
@@ -49,14 +50,37 @@
       width: $card-pad-s-w;
     }
     @media screen and (min-width: $screen-size-w-mobile){
-      &:nth-child(n+3){
-        margin-top: 30px;
+      $nth-child-even-mt-more: 20px;
+      &:nth-child(even){
+        margin-top: $nth-child-even-mt-more;
       }
+      &:nth-child(n+3){
+        $list-card-top-gap: 30px;
+        margin-top: $list-card-top-gap;
+        &:nth-child(even){
+          margin-top: $list-card-top-gap + $nth-child-even-mt-more;
+        }
+      }
+
     }
     @media screen and (max-width: $screen-size-w-mobile){
       width: $card-mobile-w;
       &+.list-card-li{
         margin-top: 30px;
+      }
+    }
+    &.show{
+      &:hover{
+        .link-content{
+          transform: translateY(0px) skewY(0deg);
+        }
+      }
+      .link-content{
+        opacity: 1;
+        transform: translateY(0px) skewY(-2deg);
+        @media screen and (max-width: $screen-size-w-mobile){
+          transform: translateY(0px) skewY(0deg);
+        }
       }
     }
     //控制3d參數
@@ -83,6 +107,7 @@
         }
       }
     }
+
     .link-content{
       perspective: 1000px;
     }
@@ -103,6 +128,13 @@
       width: 100%;
       height: 100%;
       position: relative;
+
+      transition:
+        transform 1.5s,
+        opacity 1.5s;
+      opacity: 0;
+      transform-origin: 50% 50%;
+      transform: translateY(100px) skewY(5deg);
     }
     .img-content,.img-border{
       width: 100%;
@@ -211,7 +243,9 @@
     .link-content{
       // perspective: none;
       z-index: $z-index-top;
-      transition: 1s;
+      transition:
+        transform 0.5s,
+        opacity 0.5s;
     }
 
     .img-content,

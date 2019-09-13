@@ -67,22 +67,24 @@ export class AboutComponent implements OnInit {
     this.childGreenLine = event;
   }
   setBookMT() {
+    let allHeight = document.body.scrollHeight - window.innerHeight;
+    let result = window.pageYOffset / allHeight;
+    this.bookMT =  result;
+  }
+  onScroll() {
     if (this.scrolltop === window.pageYOffset) {
       return;
     }
     this.scrolltop = window.pageYOffset;
-    let allHeight = document.body.scrollHeight - window.innerHeight;
-    let result = window.pageYOffset / allHeight;
-
-    this.bookMT =  result;
+    this.setBookMT();
   }
-
   ngOnInit() {
     this.showAboutGreenLine();
   }
   ngAfterViewInit() {
-    this.anFrame.bindingAniamtionFrame(() => this.setBookMT());
+    this.anFrame.bindingAniamtionFrame(() => this.onScroll());
     setTimeout(() => {
+      this.setBookMT();
       this.anFrame.startAniamtionFrame();
     }, 0);
   }

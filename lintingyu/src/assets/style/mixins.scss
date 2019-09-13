@@ -22,6 +22,9 @@
   }
 }
 
+
+//form元件相關
+//input select共用樣式
 @mixin select-input-style(){
 	display: block;
 	width: 100%;
@@ -76,6 +79,7 @@
     }
   }
 }
+//標題文字
 @mixin content-title-style(){
   font-size: $f-z-2-5;
   color: $color-cis-black;
@@ -89,7 +93,7 @@
     font-size: $f-z-1-2;
   }
 }
-//i-t-layout 版行文字規則
+//i-t-layout 版行文字圖片規則
 @mixin i-t-layout-text(){
   .title{
     @include content-title-style();
@@ -134,7 +138,7 @@
 
   }
 }
-
+// layout section 基本規則
 @mixin page-layout($s-g-pc-multiply: 1, $s-g-m-multiply: 1){
   display: flex;
   flex-wrap: wrap;

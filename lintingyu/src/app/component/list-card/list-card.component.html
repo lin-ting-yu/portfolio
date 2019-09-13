@@ -1,6 +1,7 @@
 <div class="list-card-content">
     <ul class="list-card-ul" #listCardUl>
       <li
+        #listCardLi
         class="list-card-li"
         *ngFor="let item of data; let i = index;"
         (mousemove)="getTransformNumber($event)"

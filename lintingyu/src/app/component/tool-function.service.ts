@@ -27,7 +27,7 @@ export class ToolFunctionService {
   }
   // 取得樣式
   getStyle(el, styleProp) {
-    var value, defaultView = (el.ownerDocument || document).defaultView;
+    let value, defaultView = (el.ownerDocument || document).defaultView;
     // W3C standard way:
     if (defaultView && defaultView.getComputedStyle) {
       // sanitize property name to css notation
@@ -43,7 +43,7 @@ export class ToolFunctionService {
       // convert other units to pixels on IE
       if (/^\d+(em|pt|%|ex)?$/i.test(value)) {
         return (function(value) {
-          var oldLeft = el.style.left, oldRsLeft = el.runtimeStyle.left;
+          let oldLeft = el.style.left, oldRsLeft = el.runtimeStyle.left;
           el.runtimeStyle.left = el.currentStyle.left;
           el.style.left = value || 0;
           value = el.style.pixelLeft + "px";
@@ -131,11 +131,15 @@ export class ToolFunctionService {
 
         let parentClientRect = parent.getBoundingClientRect();
         let parentWidth = parentClientRect.width;
-        let percen = parentWidth / svgWidth;
+        let resultWidth = parentWidth - parentPL - parentPR;
         result = {
-          width: parentWidth - parentPL - parentPR,
+          width: resultWidth,
           height: parentWidth / svgWidth * svgHeight,
-          percen
+          percen: resultWidth / svgWidth,
+          originSvgSize: {
+            width:  svgWidth,
+            height: svgHeight
+          }
         };
         if (callback) {
           callback();
