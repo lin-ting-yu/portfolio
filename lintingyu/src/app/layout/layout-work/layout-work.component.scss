@@ -93,6 +93,9 @@
       }
       .title-content{
         width: 100%;
+        @media screen and (max-width: $screen-size-w-pad-s){
+          margin-bottom: 20px;
+        }
         ::ng-deep{
           app-title-laval-first{
             .title-content{

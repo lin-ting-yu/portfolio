@@ -17,6 +17,8 @@
     align-items: center;
     justify-content: space-between;
     // background-color: #fff;
+    border-bottom: solid 1px $color-cis-grey-3;
+    padding-bottom: 7px;
     @media screen and (min-width: $screen-size-w-blue) {
       &:nth-child(n + 3){
         margin-top: 30px;
@@ -55,21 +57,21 @@
         color: $color-cis-grey-5;
       }
     }
-    .line{
-      flex: 1;
-      height: 1px;
-      position: relative;
-      margin-left: 15px;
-      margin-right: 15px;
-      background-color: $color-cis-grey-8;
-      @media screen and (max-width: $screen-size-w-pad-s){
-        width: 100%;
-        position: absolute;
-        margin: 0;
-        bottom: -5px;
-        background-color: $color-cis-grey-3;
-      }
-    }
+    // .line{
+    //   flex: 1;
+    //   height: 1px;
+    //   position: relative;
+    //   margin-left: 15px;
+    //   margin-right: 15px;
+    //   background-color: $color-cis-grey-8;
+    //   @media screen and (max-width: $screen-size-w-pad-s){
+    //     width: 100%;
+    //     position: absolute;
+    //     margin: 0;
+    //     bottom: -5px;
+    //     background-color: $color-cis-grey-3;
+    //   }
+    // }
     .text-content{
       text-align: right;
       font-size: $f-z-2;
