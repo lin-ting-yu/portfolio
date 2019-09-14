@@ -28,10 +28,18 @@
       }
     }
     @media screen and (max-width: $screen-size-w-pad-s){
-      flex-basis: 100%;
       position: relative;
-      &:nth-child(n + 2){
-        margin-top: 30px;
+      @media screen and (min-height: $screen-size-h-mini + 1){
+        flex-basis: 100%;
+        &:nth-child(n + 2){
+          margin-top: 30px;
+        }
+      }
+      @media screen and (max-height: $screen-size-h-mini){
+        flex-basis: 45%;
+        &:nth-child(n + 3){
+          margin-top: 20px;
+        }
       }
     }
     .title-content{
@@ -40,7 +48,7 @@
       letter-spacing: 1px;
       line-height: 1em;
       @media screen and (max-width: $screen-size-w-pc) {
-        font-size: $f-z-1;
+        font-size: $f-z-1-2;
       }
       @media screen and (max-width: $screen-size-w-pad-s){
         max-width: none;
@@ -71,7 +79,7 @@
         font-size: $f-z-1-2;
       }
       @media screen and (max-width: $screen-size-w-pad-b) {
-        font-size: $f-z-1;
+        // font-size: $f-z-1;
       }
       @media screen and (max-width: $screen-size-w-pad-s){
         max-width: none;

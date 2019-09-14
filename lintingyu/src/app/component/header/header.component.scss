@@ -7,9 +7,6 @@
   //logo長寬比
   $logo-proportion: 100 / 216;
   &:before{
-    @media screen and (max-width: $screen-size-w-pad-s){
-      content: '';
-    }
     display: block;
     width: 100%;
     height: 80px;
@@ -19,6 +16,12 @@
     user-select: none;
     opacity: 0;
     transition: 0.3s;
+    @media screen and (max-width: $screen-size-w-pad-s){
+      content: '';
+      @media screen and (max-height: $screen-size-h-mini){
+        height: 60px;
+      }
+    }
   }
   @media screen and (max-width: $screen-size-w-pad-s){
     &.scroll{
@@ -221,11 +224,24 @@
         @media screen and (max-height: $screen-size-h-small){
           top: 80px;
         }
+        @media screen and (max-height: $screen-size-h-mini){
+          width: 130px;
+          top: 120px;
+          left: 30px;
+          transform: translateX(0);
+          z-index: 2;
+        }
       }
       @media screen and (max-width: $screen-size-w-mobile-s){
         top: 100px;
       }
-
+      .nav-ul{
+        @media screen and (max-width: $screen-size-w-pad-s){
+          @media screen and (max-height: $screen-size-h-mini){
+            width: 100%;
+          }
+        }
+      }
       .nav-li{
         @media screen and (max-width: $screen-size-w-pad-s){
           font-size: $f-z-2-5;
@@ -233,9 +249,16 @@
           opacity: 0;
           transform: translateY(40px);
           transition: 1s;
-          & + .nav-li{
-            @media screen and (max-height: $screen-size-h-small){
+          @media screen and (max-height: $screen-size-h-small){
+            & + .nav-li{
               margin-top: 30px;
+            }
+          }
+          @media screen and (max-height: $screen-size-h-mini){
+            // padding: 0 30px;
+            font-size: $f-z-2;
+            & + .nav-li{
+              margin-top: 25px;
             }
           }
         }

@@ -78,6 +78,9 @@
             }
           }
         }
+        @media screen and (max-height: $screen-size-h-mini){
+          width: calc(100% - 40px);
+        }
       }
       @media screen and (max-width: $screen-size-w-mobile-s){
         padding-top: $top-gap-mobile + 20;

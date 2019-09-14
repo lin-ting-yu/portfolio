@@ -34,9 +34,9 @@ export class HeaderComponent implements OnInit {
   // 判斷顯示Mobile選單
   toggleNav() {
     if (!this.mobileNavShow) {
-      this.mobileNavShow = !this.mobileNavShow;
+      this.mobileNavShow = true;
       setTimeout(() => {
-        this.mobileNavListShow = !this.mobileNavListShow;
+        this.mobileNavListShow = true;
       }, 10);
     }
     else {
@@ -45,9 +45,10 @@ export class HeaderComponent implements OnInit {
   }
   closeNav() {
     if (this.mobileNavShow) {
-      this.mobileNavListShow = !this.mobileNavListShow;
+      this.mobileNavListShow = false;
       setTimeout(() => {
-        this.mobileNavShow = !this.mobileNavShow;
+        this.mobileNavShow = false;
+        this.mobileNavListShow = false;
       }, 500);
     }
   }
@@ -56,7 +57,7 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  @HostListener('window:resize',['$event'])
+  @HostListener('window:resize', ['$event'])
     onResize(event) {
       if (this.isScroll) {
         return;

@@ -24,6 +24,9 @@ export class HomeComponent extends PageComponent {
   // canvas 初始設定結束
   private canvasAllRadey = false;
 
+  // window size
+  private windowWidth = 0;
+  private windowHeight = 0;
   // 圖初始寬高
   private originalW = 280;
   private originalH = 150;
@@ -117,13 +120,20 @@ export class HomeComponent extends PageComponent {
       this.innerCtxPos = {x: 0, y: 0};
     }
   }
-  @HostListener('window:resize', ['$event'])
-    onResize(event) {
-      this.setCanvasSize(event.target.innerWidth, event.target.innerHeight);
+  onResize() {
+    if (this.windowWidth !== window.innerWidth || this.windowHeight !== window.innerHeight) {
+      this.windowWidth = window.innerWidth;
+      this.windowHeight = window.innerHeight;
+      this.setCanvasSize(this.windowWidth, this.windowHeight);
       this.calculateTransform();
       this.dotsTransform();
       this.setCanvasProportionMmouseSize();
     }
+  }
+
+  setSelectPointListPos() {
+    return this.windowWidth > 768 ? (this.transform.translate.x + 100) + 'px' : '';
+  }
   // 滑鼠偏移
   setCanvasProportionMmouseSize() {
     if (this.toolFn.DETECTOR.isDesktopDevice) {
@@ -144,15 +154,24 @@ export class HomeComponent extends PageComponent {
       this.transform.translate.x = this.canvasSize.width  * 0.87 - scale * this.originalW;
       this.transform.translate.y = this.canvasSize.height - bottomGap - scale * this.originalH;
     } else {
-      let width = (this.canvasSize.width - 50);
-      let scale = width / this.originalW;
+      if (this.canvasSize.height > 420) {
+        let width = (this.canvasSize.width - 50);
+        let scale = width / this.originalW;
 
-      if ((scale * this.originalH) / this.canvasSize.height > 0.26) {
-        scale = this.canvasSize.height * 0.26 / this.originalH;
+        if ((scale * this.originalH) / this.canvasSize.height > 0.26) {
+          scale = this.canvasSize.height * 0.26 / this.originalH;
+        }
+        this.transform.scale = scale;
+        this.transform.translate.x = (this.canvasSize.width - scale * this.originalW) / 2;
+        this.transform.translate.y = this.canvasSize.height - 120 - scale * this.originalH;
+      } else{
+        let heieht = this.canvasSize.height / 2.3 ;
+        let scale = heieht / this.originalH;
+
+        this.transform.scale = scale;
+        this.transform.translate.x = (this.canvasSize.width - scale * this.originalW) - 50;
+        this.transform.translate.y = this.canvasSize.height - 80 - scale * this.originalH;
       }
-      this.transform.scale = scale;
-      this.transform.translate.x = (this.canvasSize.width - scale * this.originalW) / 2;
-      this.transform.translate.y = this.canvasSize.height - 120 - scale * this.originalH;
     }
   }
   dotsTransform() {
@@ -262,6 +281,7 @@ export class HomeComponent extends PageComponent {
     this.canvasEvent.setTargetPos(this.canvasDOM);
     this.canvasAllRadey = true;
     this.anFrame.bindingAniamtionFrame(() => {
+      this.onResize();
       this.ctx.clearRect(0, 0, this.canvasSize.width, this.canvasSize.height);
       this.drowCanvas();
     });
@@ -269,8 +289,10 @@ export class HomeComponent extends PageComponent {
   }
   // 以下為 hooks
   ngOnInit() {
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
     this.setId();
-    this.setCanvasSize(window.innerWidth, window.innerHeight);
+    this.setCanvasSize(this.windowWidth, this.windowHeight);
     this.linDataDotInit();
     this.calculateTransform();
     this.dotsTransform();

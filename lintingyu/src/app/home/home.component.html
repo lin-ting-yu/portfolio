@@ -14,7 +14,7 @@
       <div
         class="select-point-list"
         [ngStyle]="{
-          'left': (transform.translate.x + 100) + 'px'
+          'left': setSelectPointListPos()
         }"
       >
         <app-select-pint-list [pointLength]="itemlist" (onClick)="onListChange($event)"></app-select-pint-list>
