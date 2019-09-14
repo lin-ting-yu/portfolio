@@ -23,7 +23,7 @@ import { RadialCharComponent } from './radial-char/radial-char.component';
 import { HistoryMapComponent } from './history-map/history-map.component';
 import { SelectPintListComponent } from './select-pint-list/select-pint-list.component';
 import { ScrollEffectComponent } from './scroll-effect/scroll-effect.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -52,6 +52,7 @@ import { ScrollEffectComponent } from './scroll-effect/scroll-effect.component';
     FormModule,
     AngularSvgIconModule,
     HttpClientModule,
+    // BrowserAnimationsModule,
     DeviceDetectorModule.forRoot()
   ],
   exports: [

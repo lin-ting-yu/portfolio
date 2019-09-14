@@ -1,4 +1,4 @@
-import { trigger, transition, style, query, animateChild, group, animate } from '@angular/animations';
+import { trigger, transition, style, query, animateChild, group, animate, state } from '@angular/animations';
 
 
 let fadeInOut = [
@@ -69,7 +69,7 @@ let fadeInOut2 = [
   ]),
   query(':enter', animateChild(), {optional: true}),
 ]
-export const slideInAnimation =
+const slideInAnimation =
   trigger('routeAnimations', [
     // transition('workA  => workC', an_Right2Left),
     // transition('workC <=> workB', an_Right2Left),
@@ -77,3 +77,18 @@ export const slideInAnimation =
     transition('works => work', fadeInOut2),
     transition('* <=> *', fadeInOut)
   ]);
+
+const fadeIn =
+  trigger('fadeIn', [
+    state('true' , style({
+      opacity: 1,
+      transform: 'translateY(0) skewY(-2deg)'
+    })),
+    state('false', style({
+      opacity: 0,
+      transform: 'translateY(100px) skewY(5deg)'
+    })),
+    transition('0 => 1', [ animate('1000ms ease-out') ])
+  ]);
+
+export {slideInAnimation, fadeIn};

@@ -87,7 +87,7 @@ export class HistoryMapComponent implements OnInit {
     let pointPos = point.getBBox();
     // console.log(pointPos);
 
-    console.log(pointPos.x);
+    // console.log(pointPos.x);
     this.itemsPos.push([
       'calc(' + ((pointPos.x + pointPos.width ) / this.svgSize.originSvgSize.width  * 100) + '% + ' + '1px)',
       'calc(' + ((pointPos.y + pointPos.height) / this.svgSize.originSvgSize.height * 100) + '% + ' + '1px)'
@@ -115,7 +115,6 @@ export class HistoryMapComponent implements OnInit {
       this.dataGap
     );
     this.getEventPoint();
-    this.anFrame.bindingAniamtionFrame(() => this.onResize());
   }
   // resize動作
   onResize() {
@@ -123,9 +122,11 @@ export class HistoryMapComponent implements OnInit {
       this.windowWidth = window.innerWidth;
       if (this.windowWidth > 768) {
         this.mobileShow = false;
-        this.setSvgSize();
         if (!this.allRadey) {
           this.afterViewInitFn();
+        }
+        else {
+          this.setSvgSize();
         }
       }
       else{
@@ -161,6 +162,7 @@ export class HistoryMapComponent implements OnInit {
     if (!this.mobileShow) {
       this.afterViewInitFn();
     }
+    this.anFrame.bindingAniamtionFrame(() => this.onResize());
   }
 
 }

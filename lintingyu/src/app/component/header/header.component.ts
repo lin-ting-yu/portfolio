@@ -52,7 +52,6 @@ export class HeaderComponent implements OnInit {
     }
   }
   linkClick(path: string){
-    this.closeNav();
     this.routerEvent.linkClick(path);
   }
 

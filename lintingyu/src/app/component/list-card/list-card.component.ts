@@ -4,11 +4,15 @@ import { ToolFunctionService } from '../tool-function.service';
 import { RouterEventService } from 'src/app/pageBase/_service/router-event.service';
 import { pathData } from '../../data/app-data-path.const';
 import { WorkData } from 'src/app/data/app-data-work.const';
+import { fadeIn } from 'src/app/animations';
 
 @Component({
   selector: 'app-list-card',
   templateUrl: './list-card.component.html',
-  styleUrls: ['./list-card.component.scss']
+  styleUrls: ['./list-card.component.scss'],
+  animations: [
+    fadeIn
+  ]
 })
 
 
@@ -23,23 +27,26 @@ export class ListCardComponent implements OnInit {
   private target = null;
   public pathData = pathData;
   public onCardClickId = null;
+  public isMobile = !this.toolFunction.DETECTOR.isDesktopDevice;
   private imgTrans = null;
+  public handleCardsShow = [];
   constructor(
     private listCardService: ListCardService,
     private toolFunction: ToolFunctionService,
     private routerEvent: RouterEventService
   ) { }
   cardInitShow() {
-    this.listCardsLiDom.forEach((card, i) => {
-      setTimeout(() => {
-
-        card.nativeElement.classList.add('show');
-      }, (i + 1) * 250);
-    });
+    setTimeout(()=>{
+      this.handleCardsShow.forEach((_, i, array) => {
+        setTimeout(() => {
+          array[i] = true;
+        }, i * 250);
+      });
+    }, 500);
   }
   startSetPos(event){
     if (!this.onCardClickId && this.onCardClickId !== 0) {
-      if (!this.toolFunction.DETECTOR.isDesktopDevice) {
+      if (this.isMobile) {
         return;
       }
       this.listCardService.getTargetPos(event);
@@ -48,7 +55,7 @@ export class ListCardComponent implements OnInit {
     }
   }
   stopSetPos(){
-    if (!this.toolFunction.DETECTOR.isDesktopDevice) {
+    if (this.isMobile) {
       return;
     }
     this.listCardService.reset();
@@ -66,7 +73,7 @@ export class ListCardComponent implements OnInit {
 
   }
   getTransformNumber(event){
-    if (!this.toolFunction.DETECTOR.isDesktopDevice) {
+    if (this.isMobile) {
       return;
     }
     this.transformNumber = this.listCardService.getTransformNumber(event);
@@ -85,7 +92,7 @@ export class ListCardComponent implements OnInit {
         if (this.transformNumber){
           let speed = 0.2;
           let imgTrans  = this.imgTrans = this.toolFunction.getTransform(this.target.img);
-          let borTrans  = this.toolFunction.getTransform(this.target.bor);
+          // let borTrans  = this.toolFunction.getTransform(this.target.bor);
           let textTrans = this.toolFunction.getTransform(this.target.text);
 
           let imgNewTrans =
@@ -95,12 +102,12 @@ export class ListCardComponent implements OnInit {
               imgTrans.rotateY + (this.transformNumber.rotateY * 2 - imgTrans.rotateY) * speed
             }deg)`;
 
-          let borNewTrans =
-            `rotateX(${
-              borTrans.rotateX + (this.transformNumber.rotateX * 1.5 - borTrans.rotateX) * speed
-            }deg) rotateY(${
-              borTrans.rotateY + (this.transformNumber.rotateY * 1.5 - borTrans.rotateY) * speed
-            }deg)`;
+          // let borNewTrans =
+          //   `rotateX(${
+          //     borTrans.rotateX + (this.transformNumber.rotateX * 1.5 - borTrans.rotateX) * speed
+          //   }deg) rotateY(${
+          //     borTrans.rotateY + (this.transformNumber.rotateY * 1.5 - borTrans.rotateY) * speed
+          //   }deg)`;
 
           let textNewTrans =
             `rotateX(${
@@ -109,7 +116,7 @@ export class ListCardComponent implements OnInit {
               textTrans.rotateY + (this.transformNumber.rotateY * 1 - textTrans.rotateY) * speed
             }deg)`;
           this.target.img.style.transform  = imgNewTrans;
-          this.target.bor.style.transform  = borNewTrans;
+          // this.target.bor.style.transform  = borNewTrans;
           this.target.text.style.transform = textNewTrans;
         }
 
@@ -117,7 +124,7 @@ export class ListCardComponent implements OnInit {
     }
   }
   onClick(event, id, path: string, queryParams: object){
-    const isPc = this.toolFunction.DETECTOR.isDesktopDevice;
+    const isPc = !this.isMobile;
 
     if (!isPc) {
       this.setTarget(this.listCardsLiDom[id].nativeElement);
@@ -137,7 +144,7 @@ export class ListCardComponent implements OnInit {
     linkContent.style.height = linkContentSize.height + 'px';
     linkContent.style.top  = linkContentSize.top  + 'px';
     linkContent.style.left = linkContentSize.left + 'px';
-    linkContent.style.transform = 'translateY(0px) skewY(0deg)';
+    linkContent.style.transform = 'translateY(0px) ' + (isPc ? 'skewY(0deg)' : '');
     linkContent.style.position = 'fixed';
 
 
@@ -152,10 +159,11 @@ export class ListCardComponent implements OnInit {
     setTimeout(() => {
       // 設定啟動ID
       linkContent.style.transition = '0.5s';
+      img.style.transition = '0.5s';
       this.onCardClickId = id;
       linkContent.style.top  = '0';
       linkContent.style.left = '0';
-      linkContent.style.width  = window.innerWidth  + 'px';
+      linkContent.style.width  = '100%';
       linkContent.style.height = '100vh';
       img.style.transform = 'rotateX(' + (rX * 15) + 'deg) rotateY(' + (rY * 5) + 'deg) translateY(' + (rX * -10) + 'px)';
       setTimeout(() => {
@@ -174,7 +182,15 @@ export class ListCardComponent implements OnInit {
   }
   ngAfterViewInit(): void {
     this.listCardsLiDom = this.listCardsLi.toArray();
-    this.cardInitShow();
+    setTimeout(() => {
+      this.listCardsLiDom.forEach(card => {
+        this.handleCardsShow.push(false);
+      });
+      setTimeout(() => {
+        this.cardInitShow();
+      }, 300);
+    }, 0);
+
   }
   ngOnDestroy(){
     this.stopSetPos();

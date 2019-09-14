@@ -9,7 +9,9 @@
         (mouseleave)="stopSetPos()"
         (click)="onClick($event, i, pathData.work, {page: item.linkPath})"
         [ngClass]="{
-          'img-zoom-in': onCardClickId === i
+          'img-zoom-in': onCardClickId === i,
+          'isMobile': isMobile,
+          'show': handleCardsShow[i]
         }"
       >
         <div class="link-content">

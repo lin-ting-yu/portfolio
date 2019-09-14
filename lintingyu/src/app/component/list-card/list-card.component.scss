@@ -27,7 +27,7 @@
       $card-blue-w: calc(35vw - 40px);
       $card-blue-h: calc(#{35vw * $w-h-p} - #{40px * $w-h-p});
       //pc
-      $card-pc-w: calc(35vw - 35px);
+      $card-pc-w: calc(35vw - 40px);
       $card-pc-h: calc(#{35vw * $w-h-p} - #{35px * $w-h-p});
       //pad-b
       $card-pad-b-w: calc(37.5vw - 20px);
@@ -39,7 +39,6 @@
       $card-mobile-w: calc(100vw - 40px);
       $card-mobile-h: calc(#{100vw * $w-h-p} - #{40px * $w-h-p});
     width: $card-blue-w;
-
     @media screen and (min-width: $screen-size-w-pad-b + 1) and (max-width: $screen-size-w-pc){
       width: $card-pc-w;
     }
@@ -49,17 +48,21 @@
     @media screen and (max-width: $screen-size-w-pad-s){
       width: $card-pad-s-w;
     }
-    @media screen and (min-width: $screen-size-w-mobile){
-      $nth-child-even-mt-more: 20px;
+    $nth-child-even-mt-more: 30px;
+    $list-card-top-gap: 35px;
+    @media screen and (min-width: $screen-size-w-pad-s + 1){
       &:nth-child(even){
         margin-top: $nth-child-even-mt-more;
       }
       &:nth-child(n+3){
-        $list-card-top-gap: 30px;
-        margin-top: $list-card-top-gap;
         &:nth-child(even){
           margin-top: $list-card-top-gap + $nth-child-even-mt-more;
         }
+      }
+    }
+    @media screen and (min-width: $screen-size-w-mobile){
+      &:nth-child(n+3){
+        margin-top: $list-card-top-gap;
       }
 
     }
@@ -70,21 +73,20 @@
       }
     }
     &.show{
-      &:hover{
-        .link-content{
-          transform: translateY(0px) skewY(0deg);
-        }
-      }
+      // &.isMobile .link-content{
+      //   opacity: 1;
+      //   transform: translateY(0px);
+      // }
       .link-content{
         opacity: 1;
-        transform: translateY(0px) skewY(-2deg);
-        @media screen and (max-width: $screen-size-w-mobile){
-          transform: translateY(0px) skewY(0deg);
+        transform: translateY(0px) skewY(0deg);
+        .img{
+          transform: scale(1);
         }
       }
     }
-    //控制3d參數
-    &:hover{
+    //電腦版hover
+    &:not(.isMobile):not(.img-zoom-in):hover{
       .img-content{
         transition:
           0s transform,
@@ -94,11 +96,21 @@
           transform: scale(1.1);
         }
       }
-      .img-border,
-      .info-text-content{
-        transition: 0s;
+      .img-border{
+        top: $card-border-trans;
+        left: $card-border-trans;
+        opacity: 1;
+        transition:
+          0.5s opacity,
+          0.5s top,
+          0.5s left,
+          0s transform;
       }
       .info-text-content{
+        left: $card-border-trans;
+        transition:
+          0.5s left,
+          0s transform;
         .title-content{
           letter-spacing: 2px;
           &:before{
@@ -107,34 +119,37 @@
         }
       }
     }
-
+    //電腦版hover :end
+    //3d參數
     .link-content{
       perspective: 1000px;
     }
-
     .img-content{
       transform-style: preserve-3d;
-      transition:
-        0.5s transform,
-        0.5s filter;
     }
     .img-border,
     .info-text-content{
       transform-style: preserve-3d;
-      transition:  0.5s transform;
     }
-    //控制3d參數 :end
+    //3d參數 :end
+
+    // &.isMobile{
+    //   .link-content{
+    //     // transform: translateY(100px) skewY(-2deg);
+    //     transform: translateY(100px);
+    //   }
+    // }
     .link-content{
       width: 100%;
       height: 100%;
       position: relative;
-
       transition:
         transform 1.5s,
         opacity 1.5s;
       opacity: 0;
       transform-origin: 50% 50%;
       transform: translateY(100px) skewY(5deg);
+      will-change: transform, opacity;
     }
     .img-content,.img-border{
       width: 100%;
@@ -156,6 +171,9 @@
     }
     .img-content{
       overflow: hidden;
+      transition:
+        0.5s transform,
+        0.5s filter;
       filter: grayscale(0.9);
       .img{
         width: 100%;
@@ -163,6 +181,7 @@
         background-size: cover;
         background-position: center center;
         transition: 0.5s;
+        transform: scale(0.9);
         will-change: background-image;
       }
     }
@@ -172,8 +191,14 @@
       border: solid 1px #fff;
       filter: invert(1);
       position: absolute;
-      top: $card-border-trans;
-      left: $card-border-trans;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition:
+          0.5s opacity,
+          0.5s top,
+          0.5s left,
+          0.5s transform;
       @media screen and (max-width: $screen-size-w-pad-s){
         display: none;
       }
@@ -185,7 +210,10 @@
       width: 100%;
       margin-top: 10px;
       position: relative;
-      left: $card-border-trans;
+      left: 0;
+      transition:
+        0.5s left,
+        0.5s transform;
       @media screen and (max-width: $screen-size-w-pad-s){
         position: static;
       }
@@ -193,26 +221,40 @@
         margin-top: 5px;
       }
       .title-content{
-        font-size: $f-z-1-2;
+        font-size: $f-z-2;
         letter-spacing: 1px;
         position: relative;
-        margin-top: 12px;
+        margin-top: 18px;
         transition: 1s;
+        font-weight: bold;
+        @media screen and (max-width: $screen-size-w-pad-b){
+          font-size: $f-z-1-5;
+          margin-top: 10px;
+        }
         @media screen and (max-width: $screen-size-w-pad-s){
-          font-size: $f-z-1;
+          font-size: $f-z-1-2;
         }
         &:before{
           display: block;
           content: '';
           width: 80px;
-          height: 2px;
+          height: 8px;
           background-color: $color-cis-green;
           border-radius: 1px;
           position: absolute;
-          left: 0;
-          top: -7px;
+          left: -10px;
+          top: 8px;
           transform: translateY(-100%);
           transition: 1.5s;
+          @media screen and (max-width: $screen-size-w-pad-s){
+            height: 3px;
+            top: -10px;
+            left: 0;
+          }
+        }
+        .title{
+          display: block;
+          position: relative;
         }
       }
       .info-content{
@@ -220,12 +262,14 @@
         .text-content{
           font-size: $f-z-1-2;
           letter-spacing: 1px;
+          font-weight: bold;
           @media screen and (max-width: $screen-size-w-pad-s){
             font-size: $f-z-1;
           }
           &.small{
             font-size: $f-z-1;
             color: $color-cis-grey-6;
+            font-weight: bold;
             @media screen and (max-width: $screen-size-w-pad-s){
               font-size: $f-z-0-8;
             }
@@ -246,6 +290,7 @@
       transition:
         transform 0.5s,
         opacity 0.5s;
+      will-change: transform, opacity, width, height;
     }
 
     .img-content,
@@ -268,6 +313,7 @@
     }
     .img-border,
     .info-text-content{
+      transition:  0.1s;
       opacity: 0;
     }
   }
