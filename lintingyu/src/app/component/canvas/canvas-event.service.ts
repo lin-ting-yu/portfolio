@@ -17,11 +17,11 @@ export class CanvasEventService {
     if (this.targetPos === null) {
       this.setTargetPos(event.target);
     }
-    let innerPageX = typeof event.pageX === 'number' ? event.pageX : event.touches[0].pageX;
-    let innerPageY = typeof event.pageY === 'number' ? event.pageY : event.touches[0].pageY;
+    const innerPageX = typeof event.pageX === 'number' ? event.pageX : event.touches[0].pageX;
+    const innerPageY = typeof event.pageY === 'number' ? event.pageY : event.touches[0].pageY;
     const mousePos = {
-      x: innerPageX - this.targetPos.left,
-      y: innerPageY - this.targetPos.top
+      x: (innerPageX - this.targetPos.left) * window.devicePixelRatio,
+      y: (innerPageY - this.targetPos.top) * window.devicePixelRatio
     }
     // console.log(mousePos,this.targetPos);
     return mousePos;
@@ -29,6 +29,7 @@ export class CanvasEventService {
   _style(ctx, style){
     if (style) {
       const keys = Object.keys(style);
+      // tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
         if (ctx[key]) {

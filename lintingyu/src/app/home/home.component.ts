@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { PageComponent } from '../pageBase/page.component';
 import { Vector } from '../component/canvas/canvas-drow';
 import { CanvasEventService } from '../component/canvas/canvas-event.service';
@@ -11,9 +11,9 @@ import { AnimationFrameService } from '../pageBase/_service/animation-frame.serv
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent extends PageComponent {
-  // canvas Id
-  public id: string;
+export class HomeComponent extends PageComponent implements OnInit, AfterViewInit, OnDestroy {
+// canvas Id
+public id: string;
   // canvas DOM
   public canvasDOM;
   // canvas size
@@ -132,7 +132,7 @@ export class HomeComponent extends PageComponent {
   }
 
   setSelectPointListPos() {
-    return this.windowWidth > 768 ? (this.transform.translate.x + 100) + 'px' : '';
+    return this.windowWidth > 768 ? (this.transform.translate.x / window.devicePixelRatio + 100) + 'px' : '';
   }
   // 滑鼠偏移
   setCanvasProportionMmouseSize() {
@@ -144,9 +144,9 @@ export class HomeComponent extends PageComponent {
   // 型變
   calculateTransform() {
     if (this.canvasSize.width > 768) {
-      let width = this.canvasSize.width * 0.65;
+      const width = this.canvasSize.width * 0.65;
       let scale = width / this.originalW;
-      let bottomGap = this.canvasSize.width >= 1920 ? 80 : 60;
+      const bottomGap = this.canvasSize.width >= 1920 ? 80 : 60;
       if ((scale * this.originalH) / this.canvasSize.height > 0.625) {
         scale = this.canvasSize.height * 0.625 / this.originalH;
       }
@@ -155,7 +155,7 @@ export class HomeComponent extends PageComponent {
       this.transform.translate.y = this.canvasSize.height - bottomGap - scale * this.originalH;
     } else {
       if (this.canvasSize.height > 420) {
-        let width = (this.canvasSize.width - 50);
+        const width = (this.canvasSize.width - 50);
         let scale = width / this.originalW;
 
         if ((scale * this.originalH) / this.canvasSize.height > 0.26) {
@@ -163,14 +163,14 @@ export class HomeComponent extends PageComponent {
         }
         this.transform.scale = scale;
         this.transform.translate.x = (this.canvasSize.width - scale * this.originalW) / 2;
-        this.transform.translate.y = this.canvasSize.height - 120 - scale * this.originalH;
-      } else{
-        let heieht = this.canvasSize.height / 2.3 ;
-        let scale = heieht / this.originalH;
+        this.transform.translate.y = this.canvasSize.height - 120 * window.devicePixelRatio - scale * this.originalH;
+      } else {
+        const heieht = this.canvasSize.height / 2.3 ;
+        const scale = heieht / this.originalH;
 
         this.transform.scale = scale;
         this.transform.translate.x = (this.canvasSize.width - scale * this.originalW) - 50;
-        this.transform.translate.y = this.canvasSize.height - 80 - scale * this.originalH;
+        this.transform.translate.y = this.canvasSize.height - 80 * window.devicePixelRatio - scale * this.originalH;
       }
     }
   }
@@ -212,12 +212,12 @@ export class HomeComponent extends PageComponent {
     // fill動畫控制
     // this.dotsTransform();
     this.setCanvasProportionMmouseSize();
-    let moveX = this.canvasMouseTranslate.x !== null ? this.canvasMouseTranslate.x : 0;
-    let moveY = this.canvasMouseTranslate.y !== null ? this.canvasMouseTranslate.y : 0;
+    const moveX = this.canvasMouseTranslate.x !== null ? this.canvasMouseTranslate.x : 0;
+    const moveY = this.canvasMouseTranslate.y !== null ? this.canvasMouseTranslate.y : 0;
 
     this.fillDotVector.forEach(line => {
       line.forEach(dot => {
-        let dotMoveTo = this.canvasEvent.dotInteractive(
+        const dotMoveTo = this.canvasEvent.dotInteractive(
           dot, this.innerCtxPos, this.fillPower, false
         );
         dotMoveTo.x -= moveX;
@@ -236,7 +236,7 @@ export class HomeComponent extends PageComponent {
     // stroke動畫控制
     this.strokeDotVector.forEach(line => {
       line.forEach(dot => {
-        let dotMoveTo = this.canvasEvent.dotInteractive(
+        const dotMoveTo = this.canvasEvent.dotInteractive(
           dot, this.innerCtxPos, this.linePower
         );
         dotMoveTo.x += moveX;
@@ -254,8 +254,8 @@ export class HomeComponent extends PageComponent {
   // 初始設定
   // 設定canvas size
   setCanvasSize(width, height) {
-    this.canvasSize.width = width;
-    this.canvasSize.height = height;
+    this.canvasSize.width = width * window.devicePixelRatio;
+    this.canvasSize.height = height * window.devicePixelRatio;
   }
   setId() {
     this.id = 'canvas-id-' + (new Date().getTime());
@@ -300,7 +300,6 @@ export class HomeComponent extends PageComponent {
     // 僅此頁控制 body
     document.body.style.overflow = 'hidden';
   }
-  // tslint:disable-next-line: use-lifecycle-interface
   ngAfterViewInit(): void {
     this.getCanvasDOM();
     this.toolFn.reCheck(

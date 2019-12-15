@@ -14,7 +14,7 @@ export class AnimationFrameService {
   ) { }
 
   bindingAniamtionFrame(fn) {
-    let path = this.router.getPathName();
+    const path = this.router.getPathName();
     this.aniamtionFrameList.push({
       path,
       fn
@@ -33,12 +33,12 @@ export class AnimationFrameService {
     this.cancelAnimationFrame();
     // console.log('45646AAAA54');
   }
-  cancelAnimationFrame(){
+  cancelAnimationFrame() {
     cancelAnimationFrame(this.animationFrame);
   }
 
   eachAn() {
-    if (this.aniamtionFrameList.length === 0){
+    if (this.aniamtionFrameList.length === 0) {
       this.cancelAnimationFrame();
     }
     this.aniamtionFrameList.forEach(event => event.fn());
