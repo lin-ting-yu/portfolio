@@ -74,6 +74,7 @@ export class CanvasEventService {
     }
 
     if (style.drowStroke) {
+      ctx.lineWidth = 1.2 * window.devicePixelRatio;
       ctx.stroke();
     }
     if (style.drowFill) {

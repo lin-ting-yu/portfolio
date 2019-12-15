@@ -143,7 +143,7 @@ public id: string;
   }
   // 型變
   calculateTransform() {
-    if (this.canvasSize.width > 768) {
+    if (this.windowWidth > 768) {
       const width = this.canvasSize.width * 0.65;
       let scale = width / this.originalW;
       const bottomGap = this.canvasSize.width >= 1920 ? 80 : 60;
@@ -154,8 +154,8 @@ public id: string;
       this.transform.translate.x = this.canvasSize.width  * 0.87 - scale * this.originalW;
       this.transform.translate.y = this.canvasSize.height - bottomGap - scale * this.originalH;
     } else {
-      if (this.canvasSize.height > 420) {
-        const width = (this.canvasSize.width - 50);
+      if (this.windowHeight > 420) {
+        const width = (this.canvasSize.width - 50 * window.devicePixelRatio);
         let scale = width / this.originalW;
 
         if ((scale * this.originalH) / this.canvasSize.height > 0.26) {
@@ -168,9 +168,10 @@ public id: string;
         const heieht = this.canvasSize.height / 2.3 ;
         const scale = heieht / this.originalH;
 
+
         this.transform.scale = scale;
-        this.transform.translate.x = (this.canvasSize.width - scale * this.originalW) - 50;
-        this.transform.translate.y = this.canvasSize.height - 80 * window.devicePixelRatio - scale * this.originalH;
+        this.transform.translate.x = (this.canvasSize.width - scale * this.originalW) - (50 * window.devicePixelRatio);
+        this.transform.translate.y = this.canvasSize.height -( 80 * window.devicePixelRatio) - (scale * this.originalH);
       }
     }
   }
