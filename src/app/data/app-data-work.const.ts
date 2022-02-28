@@ -23,6 +23,40 @@ class WorkData {
 const workDatas: Array<WorkData> =
   [
     new WorkData({
+      title: 'GAME',
+      titleImg: 'assets/worksTitleImg/game.png',
+      linkPath: 'game',
+      info: {
+        type:     'website',
+        year:     '2022',
+        design:   '林庭佑',
+        coding:   '林庭佑',
+        link: ['網站連結', 'https://lin-ting-yu.github.io/game/']
+      },
+
+      layouts: [
+        { layout: 'bigImg',
+          imgs: [
+            'assets/workImg/game/game-01.png'
+          ]
+        },
+        { layout: 'imgAndText',
+          layoutType: 0,
+          imgs: [
+            'assets/workImg/game/game-02.png',
+          ],
+          text: '一個用來記錄隨手做的遊戲的網站。</br>windows 遊戲中最常玩的就是踩地雷，</br>因此手刻了一個線上版'
+        },
+        { layout: 'imgAndText',
+          layoutType: 1,
+          imgs: [
+            'assets/workImg/game/game-03.png',
+          ],
+          text: '以 windows 桌面為原型，重新設計成數像素風。</br>並且藏了一些有趣的小互動～'
+        }
+      ]
+    }),
+    new WorkData({
       title: 'BEER',
       titleImg: 'assets/worksTitleImg/titleImg-beer.jpg',
       linkPath: 'beer',

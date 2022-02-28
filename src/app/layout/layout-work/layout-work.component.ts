@@ -49,7 +49,6 @@ export class LayoutWorkComponent implements OnInit {
 
     }
   ngOnInit() {
-    console.log(this.showNextAndPrevImg);
     this.showNextAndPrevImg = false;
     this.windowHeight = window.innerHeight;
     this.showFirstInfo = true;

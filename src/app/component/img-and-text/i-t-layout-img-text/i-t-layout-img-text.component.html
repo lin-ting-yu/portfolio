@@ -12,7 +12,7 @@
       <span class="text">{{data.title}}</span>
     </div>
     <div class="info">
-      <span class="text" *ngFor="let text of getTextArray(data.text)">{{text}}</span>
+      <span class="text" *ngFor="let text of getTextArray(data.text)" [innerHTML]="text"></span>
     </div>
   </div>
 </div>

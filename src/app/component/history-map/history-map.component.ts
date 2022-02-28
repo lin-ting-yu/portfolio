@@ -76,8 +76,6 @@ export class HistoryMapComponent implements OnInit {
       gap += this.dataGapArray[i];
       const point = this.pointsList[gap * this.pointGapPercen];
       this.pointsUseList.push(point);
-      // console.log(point);
-      // point.classList.add('event');
       this.setItemPos(point);
     });
     this.allRadey = true;
@@ -85,17 +83,10 @@ export class HistoryMapComponent implements OnInit {
   // 計算位置list位置
   setItemPos(point){
     let pointPos = point.getBBox();
-    // console.log(pointPos);
-
-    // console.log(pointPos.x);
     this.itemsPos.push([
       'calc(' + ((pointPos.x + pointPos.width ) / this.svgSize.originSvgSize.width  * 100) + '% + ' + '1px)',
       'calc(' + ((pointPos.y + pointPos.height) / this.svgSize.originSvgSize.height * 100) + '% + ' + '1px)'
     ]);
-    // this.itemsPos.push([
-    //   (pointPos.x + pointPos.width  / 2) * this.svgSize.percen / this.svgSize.width ,
-    //   (pointPos.y + pointPos.height / 2) * this.svgSize.percen / this.svgSize.height
-    // ]);
   }
   // 設定svg寬高
   setSvgSize() {

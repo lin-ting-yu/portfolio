@@ -28,10 +28,10 @@
     }
     &.skills{
       & + .one-section.awards{
-        @media screen and (min-width: $screen-size-w-pc + 1){
+        @media screen and (min-width: #{$screen-size-w-pc + 1}){
           margin-top: 150px;
         }
-        @media screen and (max-width: $screen-size-w-pc) and (min-width: $screen-size-w-mobile + 1){
+        @media screen and (max-width: $screen-size-w-pc) and (min-width: #{$screen-size-w-mobile + 1}){
           margin-top: 12%;
         }
       }

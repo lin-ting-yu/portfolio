@@ -49,7 +49,6 @@ export class AboutComponent implements OnInit {
   private scrolltop = 0;
 
   constructor(
-    private toolFn: ToolFunctionService,
     private anFrame: AnimationFrameService
   ) { }
 

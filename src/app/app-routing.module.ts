@@ -32,21 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./work/work.module').then(m => m.WorkModule),
     data: {animation: 'work'}
   },
-  // {
-  //   path: pathData.workA,
-  //   loadChildren: './work/work-a/work-a.module#WorkAModule',
-  //   data: {animation: 'workA'}
-  // },
-  // {
-  //   path: pathData.workB,
-  //   loadChildren: './work/work-b/work-b.module#WorkBModule',
-  //   data: {animation: 'workB'}
-  // },
-  // {
-  //   path: pathData.workC,
-  //   loadChildren: './work/work-c/work-c.module#WorkCModule',
-  //   data: {animation: 'workC'}
-  // },
   {
     path: '',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule),

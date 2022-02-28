@@ -75,6 +75,5 @@ export class HeaderComponent implements OnInit {
     this.windowWidth = window.innerWidth;
     this.activePath = this.routerEvent.getPathName();
     this.isMobile = !this.toolFn.DETECTOR.isDesktopDevice;
-    console.log(this.activePath);
   }
 }

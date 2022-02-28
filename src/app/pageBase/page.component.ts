@@ -1,5 +1,9 @@
-import { OnInit, Output, EventEmitter } from '@angular/core';
+import { OnInit, Output, EventEmitter, Component } from '@angular/core';
 
+
+@Component({
+  template: ''
+})
 export class PageComponent implements OnInit {
 
   constructor() { }

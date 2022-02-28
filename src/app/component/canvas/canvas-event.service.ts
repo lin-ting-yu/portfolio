@@ -23,13 +23,11 @@ export class CanvasEventService {
       x: (innerPageX - this.targetPos.left) * window.devicePixelRatio,
       y: (innerPageY - this.targetPos.top) * window.devicePixelRatio
     }
-    // console.log(mousePos,this.targetPos);
     return mousePos;
   }
   _style(ctx, style){
     if (style) {
       const keys = Object.keys(style);
-      // tslint:disable-next-line: prefer-for-of
       for (let i = 0; i < keys.length; i++) {
         const key = keys[i];
         if (ctx[key]) {

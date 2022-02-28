@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { auditTime, Subject, Subscription } from 'rxjs';
 import { RouterEventService } from './router-event.service';
 
 @Injectable({
@@ -11,7 +12,10 @@ export class AnimationFrameService {
   public aniamtionFrameList = [];
   constructor(
     private router: RouterEventService
-  ) { }
+  ) {}
+
+  private animationSubject = new Subject<void>();
+  private animationSubject$: Subscription;
 
   bindingAniamtionFrame(fn) {
     const path = this.router.getPathName();
@@ -31,10 +35,12 @@ export class AnimationFrameService {
   unbindingAniamtionFrame() {
     this.clearFrameList();
     this.cancelAnimationFrame();
-    // console.log('45646AAAA54');
   }
   cancelAnimationFrame() {
     cancelAnimationFrame(this.animationFrame);
+    if (this.animationSubject$) {
+      this.animationSubject$.unsubscribe();
+    }
   }
 
   eachAn() {
@@ -44,7 +50,18 @@ export class AnimationFrameService {
     this.aniamtionFrameList.forEach(event => event.fn());
   }
   startAniamtionFrame() {
-    this.eachAn();
-    this.animationFrame = this.requestAnimationFrame(() => this.startAniamtionFrame());
+    if (this.animationSubject$) {
+      this.animationSubject$.unsubscribe();
+      this.animationSubject$ = null;
+    }
+    this.animationSubject$ = this.animationSubject.pipe(auditTime(16)).subscribe(() => {
+      this.eachAn();
+    });
+    this.an();
+  }
+
+  private an() {
+    this.animationFrame = this.requestAnimationFrame(() => this.an());
+    this.animationSubject.next();
   }
 }

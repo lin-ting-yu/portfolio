@@ -14,8 +14,8 @@ const skillDatas = {
     }),
     new TextBar({
       title: 'Angular',
-      text: 'Good',
-      percentage: 0.62
+      text: 'Very Good',
+      percentage: 0.8
     }),
     new TextBar({
       title: 'HTML5',
@@ -25,12 +25,12 @@ const skillDatas = {
     new TextBar({
       title: 'Git',
       text: 'Good',
-      percentage: 0.65
+      percentage: 0.7
     }),
     new TextBar({
       title: 'Three.js',
       text: 'Good',
-      percentage: 0.72
+      percentage: 0.75
     }),
     new TextBar({
       title: 'scss',
@@ -40,7 +40,7 @@ const skillDatas = {
     new TextBar({
       title: 'Canvas',
       text: 'Good',
-      percentage: 0.68
+      percentage: 0.74
     })
   ],
   design: [
@@ -60,14 +60,9 @@ const skillDatas = {
       percentage: 0.85
     }),
     new TextBar({
-      title: 'Ae',
+      title: 'Figma',
       text: 'Good',
       percentage: 0.6
-    }),
-    new TextBar({
-      title: 'Xd',
-      text: 'Good',
-      percentage: 0.7
     })
   ]
 }

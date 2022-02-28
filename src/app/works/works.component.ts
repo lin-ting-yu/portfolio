@@ -7,8 +7,11 @@ import { workDatas } from '../data/app-data-work.const';
   styleUrls: ['./works.component.scss']
 })
 export class WorksComponent extends PageComponent {
-  public data = workDatas;
   constructor() {
     super();
   }
+  data = workDatas;
+
+
+
 }
