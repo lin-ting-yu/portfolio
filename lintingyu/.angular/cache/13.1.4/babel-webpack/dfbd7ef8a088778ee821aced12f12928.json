@@ -1,1 +1,0 @@
-{"ast":null,"code":"class ITLayout {\n  constructor(init) {\n    Object.assign(this, init);\n  }\n\n}\n\nexport { ITLayout };","map":null,"metadata":{},"sourceType":"module"}

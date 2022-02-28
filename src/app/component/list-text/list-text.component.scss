@@ -1,0 +1,112 @@
+
+@import "variables";
+
+:host{
+  display: block;
+  width: 100%;
+}
+.list-content{
+  .list-ul{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .list-li{
+    display: flex;
+    flex-basis: 45%;
+    align-items: center;
+    justify-content: space-between;
+    // background-color: #fff;
+    border-bottom: solid 1px $color-cis-grey-3;
+    padding-bottom: 7px;
+    @media screen and (min-width: $screen-size-w-blue) {
+      &:nth-child(n + 3){
+        margin-top: 30px;
+      }
+    }
+    @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-width: $screen-size-w-blue - 1){
+      &:nth-child(n + 3){
+        margin-top: 20px;
+      }
+    }
+    @media screen and (max-width: $screen-size-w-pad-s){
+      position: relative;
+      @media screen and (min-height: $screen-size-h-mini + 1){
+        flex-basis: 100%;
+        &:nth-child(n + 2){
+          margin-top: 30px;
+        }
+      }
+      @media screen and (max-height: $screen-size-h-mini){
+        flex-basis: 45%;
+        &:nth-child(n + 3){
+          margin-top: 20px;
+        }
+      }
+    }
+    .title-content{
+      max-width: 30%;
+      font-size: $f-z-1-5;
+      letter-spacing: 1px;
+      line-height: 1em;
+      @media screen and (max-width: $screen-size-w-pc) {
+        font-size: $f-z-1-2;
+      }
+      @media screen and (max-width: $screen-size-w-pad-s){
+        max-width: none;
+        color: $color-cis-grey-5;
+      }
+    }
+    // .line{
+    //   flex: 1;
+    //   height: 1px;
+    //   position: relative;
+    //   margin-left: 15px;
+    //   margin-right: 15px;
+    //   background-color: $color-cis-grey-8;
+    //   @media screen and (max-width: $screen-size-w-pad-s){
+    //     width: 100%;
+    //     position: absolute;
+    //     margin: 0;
+    //     bottom: -5px;
+    //     background-color: $color-cis-grey-3;
+    //   }
+    // }
+    .text-content{
+      text-align: right;
+      font-size: $f-z-2;
+      letter-spacing: 1px;
+      line-height: 1em;
+      @media screen and (max-width: $screen-size-w-pc) {
+        font-size: $f-z-1-2;
+      }
+      @media screen and (max-width: $screen-size-w-pad-b) {
+        // font-size: $f-z-1;
+      }
+      @media screen and (max-width: $screen-size-w-pad-s){
+        max-width: none;
+      }
+      .link-content{
+        display: block;
+        position: relative;
+        font-weight: bold;
+        &:hover {
+          letter-spacing: 2px;
+        }
+        &:after {
+          display: block;
+          content: '';
+          width: 100%;
+          height: 2px;
+          background-color: $color-cis-green;
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+        }
+        .text{
+          transition: 0.5s;
+        }
+      }
+    }
+  }
+}

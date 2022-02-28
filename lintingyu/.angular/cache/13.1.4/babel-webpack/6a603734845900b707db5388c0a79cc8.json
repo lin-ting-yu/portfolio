@@ -1,1 +1,0 @@
-{"ast":null,"code":"export var scrollEffect = /*#__PURE__*/(() => {\n  (function (scrollEffect) {\n    scrollEffect[scrollEffect[\"fadeUp\"] = 0] = \"fadeUp\";\n    scrollEffect[scrollEffect[\"null\"] = 1] = \"null\";\n  })(scrollEffect || (scrollEffect = {}));\n\n  return scrollEffect;\n})();","map":null,"metadata":{},"sourceType":"module"}

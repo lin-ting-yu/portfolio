@@ -1,0 +1,120 @@
+<div
+  class="header"
+  [ngClass]="{
+    'mobile-nav-show': mobileNavShow && mobileNavListShow,
+    'scroll': scrollTop > 50 && (!mobileNavShow || !mobileNavListShow)
+  }"
+>
+  <div
+    class="logo open"
+    [ngClass]="{
+      'logo-white': mobileNavShow && mobileNavListShow,
+      'small' : small,
+      'open'  : logoOpen && !small || windowWidth < 769
+    }"
+  >
+    <div href="#" class="link-content" (click)="linkClick('')">
+      <div class="svg-contnet">
+          <svg
+            class="svg" version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px"
+            width="216px" height="100px"
+            viewBox="0 0 216 100"
+            enable-background="new 0 0 216 100"
+            xml:space="preserve"
+          >
+            <g class="logo-l">
+              <path d="M0,91.798c0,4.569,3.736,8.311,8.31,8.311h68.847c4.565,0,5.664-2.646,2.433-5.876
+                L5.876,20.513C2.646,17.283,0,18.378,0,22.947V91.798z"/>
+            </g>
+            <g class="logo-i">
+              <path class="logo-i-path"  d="M93.009,91.798c0,4.569,3.735,8.311,8.306,8.311h7.214c4.575,0,8.309-3.738,8.309-8.311
+                V42.945c0-4.569-3.73-8.306-8.309-8.306h-7.214c-4.568,0-8.306,3.734-8.306,8.306V91.798z"/>
+
+              <g class="logo-i-p">
+                <path d="M93.009,15.425c0,4.563,3.735,8.307,8.306,8.307h11.127c4.567,0,5.666-2.646,2.433-5.874
+                  L98.877,1.86c-3.229-3.236-5.869-2.138-5.869,2.432L93.009,15.425L93.009,15.425z"/>
+              </g>
+            </g>
+            <g class="logo-n">
+              <path class="logo-n-path" d="M130.567,91.798c0,4.569,3.737,8.311,8.309,8.311h68.85c4.563,0,5.664-2.646,2.432-5.876
+                l-73.711-73.716c-3.229-3.23-5.876-2.138-5.876,2.434L130.567,91.798L130.567,91.798z"/>
+
+              <g class="logo-n-i">
+                <path d="M200.502,14.229c-4.563,0-8.306,3.741-8.306,8.308V67.97c0,4.564-2.646,5.658-5.873,2.436
+                  c0,0,9.612,29.701,14.179,29.701h7.22c4.569,0,8.309-3.738,8.309-8.311V22.536c0-4.564-3.736-8.308-8.309-8.308L200.502,14.229
+                  L200.502,14.229z"/>
+              </g>
+            </g>
+          </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    class="nav-content"
+    [ngClass]="{
+      'show': mobileNavShow || mobileAlwaysNavShow,
+      'show-list': mobileNavListShow || mobileAlwaysNavShow,
+      'mobile': isMobile
+    }"
+    (click)="closeNav()"
+  >
+    <nav
+      class="nav"
+      [ngClass]="{
+        'small' : small
+      }"
+    >
+      <div class="nav-list">
+        <ul class="nav-ul">
+          <li class="nav-li">
+            <div
+              href="#" class="link-content"
+              (click)="linkClick(pathData.works)"
+              [ngClass]="{'active': activePath === pathData.works || activePath === pathData.work}"
+            >
+              <span class="text">works</span>
+            </div>
+          </li>
+          <li class="nav-li">
+            <div
+              href="#"
+              class="link-content"
+              (click)="linkClick(pathData.about)"
+              [ngClass]="{'active': activePath === pathData.about}"
+            >
+              <span class="text">about</span>
+            </div>
+          </li>
+          <li class="nav-li">
+            <div
+              href="#"
+              class="link-content"
+              (click)="linkClick(pathData.contact)"
+              [ngClass]="{'active': activePath === pathData.contact}"
+            >
+              <span class="text">contact</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="footer" *ngIf="windowWidth <= 768">
+      <app-footer></app-footer>
+    </div>
+  </div>
+  <div
+    class="nav-mobile-btn"
+    *ngIf="windowWidth <= 768 "
+    (click)="toggleNav()"
+    [ngClass]="{
+      'active': mobileNavShow && mobileNavListShow
+    }"
+  >
+    <div class="line"></div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="list-card-content">
+    <ul class="list-card-ul" #listCardUl>
+      <li
+        #listCardLi
+        class="list-card-li"
+        *ngFor="let item of data; let i = index;"
+        (mousemove)="getTransformNumber($event)"
+        (mouseenter)="startSetPos($event)"
+        (mouseleave)="stopSetPos()"
+        (click)="onClick($event, i, pathData.work, {page: item.linkPath})"
+        [ngClass]="{
+          'img-zoom-in': onCardClickId === i,
+          'isMobile': isMobile,
+          'show': handleCardsShow[i]
+        }"
+      >
+        <div class="link-content">
+          <div class="img-content">
+            <div class="img" [ngStyle]="{ 'background-image': 'url(' + item.titleImg + ')'}"></div>
+          </div>
+          <div class="img-border"></div>
+          <div class="info-text-content">
+            <div class="title-content">
+              <div class="title">{{item.title}}</div>
+            </div>
+            <div class="info-content">
+              <div class="text-content small">
+                <span class="text">{{item.info.year}}</span>
+              </div>
+              <div class="text-content">
+                <span class="text">{{item.info.type}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+</div>

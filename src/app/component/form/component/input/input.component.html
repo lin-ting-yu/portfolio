@@ -1,0 +1,19 @@
+<div
+  class="form-input"
+  [ngClass]="{
+    'title-up': isFoucs || isValue
+  }"
+>
+  <div class="input-content">
+    <div class="placeholder">{{placeholder}}</div>
+    <input
+      [type]="type"
+      name="name"
+      class="input"
+      placeholder=""
+      (focus)="onFoucs()"
+      (blur)="onBlur($event)"
+    >
+  </div>
+  <div class="error-msg"><span class="text"></span></div>
+</div>

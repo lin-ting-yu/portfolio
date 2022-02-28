@@ -1,0 +1,30 @@
+@import "variables";
+@import "mixins";
+
+
+:host{
+  display: block;
+  width: 100%;
+}
+.two-big-img-content{
+  display: flex;
+  justify-content: space-between;
+  @media screen and (max-width: $screen-size-w-mobile){
+    flex-wrap: wrap;
+  }
+  .img-content{
+    width: 100%;
+    max-width: 47.5%;
+    @include i-t-layout-img();
+
+    @media screen and (max-width: $screen-size-w-mobile){
+      max-width: none;
+      & + .img-content{
+        margin-top: 30px;
+      }
+    }
+    img{
+      width: 100%;
+    }
+  }
+}

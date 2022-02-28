@@ -1,0 +1,18 @@
+<div class="boolean-content">
+  <input
+    [id]="inputId"
+    type="checkbox"
+    [checked]="checked"
+  >
+  <div class="label" (click)="taggleChecked()">
+    <div class="text-content false-content">
+      <span class="text" unselectable="on" onselectstart="javascript:return false;">{{falseText}}</span>
+    </div>
+    <div class="boolean-btn">
+      <div class="ciycle"></div>
+    </div>
+    <div class="text-content true-content">
+      <span class="text" unselectable="on" onselectstart="javascript:return false;">{{trueText}}</span>
+    </div>
+  </div>
+</div>

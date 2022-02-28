@@ -1,0 +1,21 @@
+@import "variables";
+
+
+.contact-content{
+  padding-top: 80px;
+  @media screen and (max-width: $screen-size-w-pc){
+    padding-top: 30px;
+  }
+  @media screen and (max-width: $screen-size-w-pad-s){
+    padding-top: 0px;
+  }
+  ::ng-deep{
+    app-title-laval-first{
+      .title-content{
+        @media screen and (min-width: $screen-size-w-pc + 1){
+          margin-bottom: 100px;
+        }
+      }
+    }
+  }
+}

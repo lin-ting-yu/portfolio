@@ -1,0 +1,20 @@
+<div
+  class="form-textarea"
+  [ngClass]="{
+    'title-up': isFoucs || isValue
+  }"
+>
+  <div class="textarea-content">
+    <div class="placeholder">{{placeholder}}</div>
+    <textarea
+      #textarea
+      class="textarea"
+      name=""
+      id=""
+      (focus)="onFoucs()"
+      (blur) ="onBlur($event)"
+      (input)="checkSize()"
+    >{{defaultText}}</textarea>
+  </div>
+  <div class="error-msg"><span class="text"></span></div>
+</div>

@@ -1,0 +1,10 @@
+@import "variables";
+
+.form-content{
+  position: relative;
+  margin-bottom: $form-col-bottom-gap * -1;
+  .form-body{
+    width: calc(100% + #{$form-col-col-gap});
+		margin-left: $form-col-col-gap / -2;
+  }
+}

@@ -1,0 +1,41 @@
+<div class="home-content"
+  (mousemove)="mouseMove($event)"
+  (mousedown)="mouseDown($event)"
+  (mouseup)="mouseUp($event)"
+  (touchstart)="mouseDown($event)"
+  (touchend)="mouseUp($event)"
+>
+  <app-layout-common [full]="true" [scroll]="false">
+    <div class="home-inner-content">
+
+      <div class="canvas">
+        <canvas [id]="id" [width]="canvasSize.width" [height]="canvasSize.height"></canvas>
+      </div>
+      <div
+        class="select-point-list"
+        [ngStyle]="{
+          'left': setSelectPointListPos()
+        }"
+      >
+        <app-select-pint-list [pointLength]="itemlist" (onClick)="onListChange($event)"></app-select-pint-list>
+        <div class="type-content">
+          <div
+           class="text-content"
+           [ngStyle]="{
+             'height': itemlist + 'em',
+             'transform': 'translateY('+ active * (-1) + 'em)'
+           }"
+          >
+            <span class="text">NORMAL</span>
+            <span class="text">SLOW</span>
+            <span class="text">CRAZY</span>
+          </div>
+        </div>
+      </div>
+      <div class="home-inner-mobile-header">
+        <app-header [mobileAlwaysNavShow]="true"></app-header>
+      </div>
+    </div>
+  </app-layout-common>
+</div>
+

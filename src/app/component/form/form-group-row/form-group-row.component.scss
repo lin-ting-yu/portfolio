@@ -1,0 +1,9 @@
+@import "variables";
+
+
+:host{
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100% + #{$form-group-col-gap - $form-col-col-gap});
+  margin-left: ($form-group-col-gap - $form-col-col-gap) / -2;
+}

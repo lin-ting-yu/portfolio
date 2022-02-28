@@ -1,0 +1,89 @@
+@import "variables";
+@import "mixins";
+
+:host{
+  display: inline-block;
+  @media screen and (max-width: $screen-size-w-pad-s - 1){
+    width: 100%;
+  }
+}
+.text-bar-content{
+  display: inline-block;
+  @media screen and (max-width: $screen-size-w-pad-s - 1){
+    width: 100%;
+  }
+  .text-bar-info{
+    display: flex;
+    align-items: center;
+    @media screen and (max-width: $screen-size-w-pad-s - 1){
+      flex-wrap: wrap;
+    }
+  }
+  .title-content{
+    font-size: $f-z-3-5;
+    color: $color-cis-grey-5;
+    margin-right: 15px;
+    font-weight: bold;
+    line-height: 1;
+    @media screen and (max-width: $screen-size-w-pc){
+      font-size: $f-z-2;
+      margin-right: 10px;
+    }
+    @media screen and (max-width: $screen-size-w-pad-s - 1){
+      width: 100%;
+      font-size: $f-z-1-2;
+      margin-right: 0;
+      margin-bottom: 8px;
+    }
+    &.small{
+      font-size: $f-z-2;
+      @media screen and (max-width: $screen-size-w-pc){
+        font-size: $f-z-1-5;
+      }
+      @media screen and (max-width: $screen-size-w-pad-s - 1){
+        font-size: $f-z-1-2;
+      }
+    }
+  }
+  .info-content{
+    @media screen and (max-width: $screen-size-w-pad-s - 1){
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+    .text-content{
+      font-size: $f-z-1-2;
+      margin-bottom: 10px;
+      @media screen and (max-width: $screen-size-w-pc){
+        font-size: $f-z-1;
+      }
+      @media screen and (max-width: $screen-size-w-pad-s - 1){
+        width: 100%;
+        margin-bottom: 0;
+        order: 2;
+      }
+      .text{}
+    }
+    .bar-content{
+      width: 80px;
+      height: 5px;
+      border-radius: 3px;
+      background-color: $color-cis-grey-3;
+      @media screen and (max-width: $screen-size-w-pad-s - 1){
+        width: 100%;
+        margin-bottom: 3px;
+      }
+      .bar{
+        width: 0;
+        max-width: 100%;
+        height: 100%;
+        border-radius: 3px;
+        background-color: $color-cis-green;
+        transition: 1s;
+        &:not(.fill){
+          width: 0 !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,104 @@
+@import "variables";
+@import "mixins";
+
+:host{
+  display: block;
+  width: 100%;
+}
+.text-svg-content{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  @media screen and (max-width: $screen-size-w-pad-s){
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  &.type-2{
+    justify-content: flex-end;
+    @media screen and (max-width: $screen-size-w-pad-s){
+      justify-content: center;
+    }
+    .img-content{
+      order: 2;
+    }
+    .text-content{
+      order: 1;
+      padding-left: 0;
+      padding-right: 10%;
+      @media screen and (max-width: $screen-size-w-pad-s){
+        padding: 0;
+        // order: 3;
+      }
+    }
+  }
+  .img-content, .text-content{
+    // border: solid 1px #ddd;
+  }
+  .img-content{
+    width: 60%;
+    position: relative;
+    @include i-t-layout-img();
+    overflow: visible;
+    @media screen and (max-width: $screen-size-w-pad-s){
+      order: 2;
+      margin-top: 20px;
+    }
+    &.show-svg{
+      ::ng-deep{
+        svg-icon{
+          display: block;
+          width: 100%;
+        }
+        path {
+          stroke-dasharray: 1000;
+          stroke-dashoffset: 1000;
+          animation-name: svg-dash;
+          animation-duration: 5s;
+          animation-timing-function: linear;
+          animation-fill-mode: forwards;
+          opacity: 0;
+          @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            stroke-dasharray: none;
+            stroke-dashoffset: none;
+            animation-name: none;
+            opacity: 1;
+          }
+        }
+        .time-1 path{
+          animation-duration: 1s;
+        }
+        .time-2 path{
+          animation-duration: 2s;
+        }
+        .time-3 path{
+          animation-duration: 3s;
+        }
+        .delay-1 path{
+          animation-delay: 0.5s;
+        }
+        .delay-2 path{
+          animation-delay: 1s;
+        }
+        .delay-3 path{
+          animation-delay: 1.5s;
+        }
+        @keyframes svg-dash {
+          to {
+            stroke-dashoffset: 0;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+  .text-content{
+    width: 40%;
+    padding-left: 10%;
+    @include i-t-layout-text();
+    @media screen and (max-width: $screen-size-w-pad-s){
+      width: 100%;
+      padding: 0;
+    }
+  }
+}

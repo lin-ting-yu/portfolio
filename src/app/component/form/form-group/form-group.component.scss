@@ -1,0 +1,13 @@
+@import "variables";
+
+:host{
+  display: block;
+  width: 100%;
+  padding-left: ($form-group-col-gap - $form-col-col-gap) / 2;
+  padding-right: ($form-group-col-gap - $form-col-col-gap) / 2;
+  & + app-form-group{
+    @media screen and (max-width: $screen-size-w-pad-s){
+      margin-top: 10px;
+    }
+  }
+}

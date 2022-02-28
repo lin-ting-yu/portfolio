@@ -1,0 +1,320 @@
+@import "variables";
+@import "mixins";
+
+
+.list-card-content{
+  display: flex;
+  width: 100%;
+
+  //偏移值
+    $card-border-trans: 5px;
+
+  .list-card-ul{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
+    padding-right: $card-border-trans;
+    @media screen and (max-width: $screen-size-w-pad-s){
+      padding-right: 0;
+    }
+  }
+  .list-card-li{
+    //計算後寬高
+      // 寬高比
+      $w-h-p: 0.5625;
+      //blue
+      $card-blue-w: calc(35vw - 40px);
+      $card-blue-h: calc(#{35vw * $w-h-p} - #{40px * $w-h-p});
+      //pc
+      $card-pc-w: calc(35vw - 40px);
+      $card-pc-h: calc(#{35vw * $w-h-p} - #{35px * $w-h-p});
+      //pad-b
+      $card-pad-b-w: calc(37.5vw - 20px);
+      $card-pad-b-h: calc(#{37.5vw * $w-h-p} - #{20px * $w-h-p});
+      //pad-s
+      $card-pad-s-w: calc(50vw - 40px);
+      $card-pad-s-h: calc(#{50vw * $w-h-p} - #{40px * $w-h-p});
+      //mobile
+      $card-mobile-w: calc(100vw - 40px);
+      $card-mobile-h: calc(#{100vw * $w-h-p} - #{40px * $w-h-p});
+    width: $card-blue-w;
+    @media screen and (min-width: $screen-size-w-pad-b + 1) and (max-width: $screen-size-w-pc){
+      width: $card-pc-w;
+    }
+    @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-width: $screen-size-w-pad-b){
+      width: $card-pad-b-w;
+    }
+    @media screen and (max-width: $screen-size-w-pad-s){
+      width: $card-pad-s-w;
+    }
+    $nth-child-even-mt-more: 30px;
+    $list-card-top-gap: 35px;
+    @media screen and (min-width: $screen-size-w-pad-s + 1){
+      &:nth-child(even){
+        margin-top: $nth-child-even-mt-more;
+      }
+      &:nth-child(n+3){
+        &:nth-child(even){
+          margin-top: $list-card-top-gap + $nth-child-even-mt-more;
+        }
+      }
+    }
+    @media screen and (min-width: $screen-size-w-mobile){
+      &:nth-child(n+3){
+        margin-top: $list-card-top-gap;
+      }
+
+    }
+    @media screen and (max-width: $screen-size-w-mobile){
+      width: $card-mobile-w;
+      &+.list-card-li{
+        margin-top: 30px;
+      }
+    }
+    &.show{
+      // &.isMobile .link-content{
+      //   opacity: 1;
+      //   transform: translateY(0px);
+      // }
+      .link-content{
+        opacity: 1;
+        transform: translateY(0px) skewY(0deg);
+        .img{
+          transform: scale(1);
+        }
+      }
+    }
+    //電腦版hover
+    &:not(.isMobile):not(.img-zoom-in):hover{
+      .img-content{
+        transition:
+          0s transform,
+          0.5s filter;
+        filter: grayscale(0);
+        .img{
+          transform: scale(1.1);
+        }
+      }
+      .img-border{
+        top: $card-border-trans;
+        left: $card-border-trans;
+        opacity: 1;
+        transition:
+          0.5s opacity,
+          0.5s top,
+          0.5s left,
+          0s transform;
+      }
+      .info-text-content{
+        left: $card-border-trans;
+        transition:
+          0.5s left,
+          0s transform;
+        .title-content{
+          letter-spacing: 2px;
+          &:before{
+            width: 90px;
+          }
+        }
+      }
+    }
+    //電腦版hover :end
+    //3d參數
+    .link-content{
+      perspective: 1000px;
+    }
+    .img-content{
+      transform-style: preserve-3d;
+    }
+    .img-border,
+    .info-text-content{
+      transform-style: preserve-3d;
+    }
+    //3d參數 :end
+
+    // &.isMobile{
+    //   .link-content{
+    //     // transform: translateY(100px) skewY(-2deg);
+    //     transform: translateY(100px);
+    //   }
+    // }
+    .link-content{
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition:
+        transform 1.5s,
+        opacity 1.5s;
+      opacity: 0;
+      transform-origin: 50% 50%;
+      transform: translateY(100px) skewY(5deg);
+      will-change: transform, opacity;
+    }
+    .img-content,.img-border{
+      width: 100%;
+      height: $card-blue-h;
+      background-color: #ddd;
+      border-radius: 5px;
+      @media screen and (min-width: $screen-size-w-pad-b + 1) and (max-width: $screen-size-w-pc){
+        height: $card-pc-h;
+      }
+      @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-width: $screen-size-w-pad-b){
+        height: $card-pad-b-h;
+      }
+      @media screen and (max-width: $screen-size-w-pad-s){
+        height: $card-pad-s-h;
+      }
+      @media screen and (max-width: $screen-size-w-mobile){
+        height: $card-mobile-h;
+      }
+    }
+    .img-content{
+      overflow: hidden;
+      transition:
+        0.5s transform,
+        0.5s filter;
+      filter: grayscale(0.9);
+      .img{
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center center;
+        transition: 0.5s;
+        transform: scale(0.9);
+        will-change: background-image;
+      }
+    }
+    .img-border{
+      background-color: transparent;
+      background-image: none;
+      border: solid 1px #fff;
+      filter: invert(1);
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition:
+          0.5s opacity,
+          0.5s top,
+          0.5s left,
+          0.5s transform;
+      @media screen and (max-width: $screen-size-w-pad-s){
+        display: none;
+      }
+    }
+    .info-text-content{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 100%;
+      margin-top: 10px;
+      position: relative;
+      left: 0;
+      transition:
+        0.5s left,
+        0.5s transform;
+      @media screen and (max-width: $screen-size-w-pad-s){
+        position: static;
+      }
+      @media screen and (max-width: $screen-size-w-pad-s){
+        margin-top: 5px;
+      }
+      .title-content{
+        font-size: $f-z-2;
+        letter-spacing: 1px;
+        position: relative;
+        margin-top: 18px;
+        transition: 1s;
+        font-weight: bold;
+        @media screen and (max-width: $screen-size-w-pad-b){
+          font-size: $f-z-1-5;
+          margin-top: 10px;
+        }
+        @media screen and (max-width: $screen-size-w-pad-s){
+          font-size: $f-z-1-2;
+        }
+        &:before{
+          display: block;
+          content: '';
+          width: 80px;
+          height: 8px;
+          background-color: $color-cis-green;
+          border-radius: 1px;
+          position: absolute;
+          left: -10px;
+          top: 8px;
+          transform: translateY(-100%);
+          transition: 1.5s;
+          @media screen and (max-width: $screen-size-w-pad-s){
+            height: 3px;
+            top: -5px;
+            left: 0;
+          }
+        }
+        .title{
+          display: block;
+          position: relative;
+        }
+      }
+      .info-content{
+        text-align: right;
+        .text-content{
+          font-size: $f-z-1-2;
+          letter-spacing: 1px;
+          font-weight: bold;
+          @media screen and (max-width: $screen-size-w-pad-s){
+            font-size: $f-z-1;
+          }
+          &.small{
+            font-size: $f-z-1;
+            color: $color-cis-grey-6;
+            font-weight: bold;
+            @media screen and (max-width: $screen-size-w-pad-s){
+              font-size: $f-z-0-8;
+            }
+          }
+          .text{
+            @include text-one();
+          }
+        }
+      }
+    }
+  }
+
+  // 點擊後縮放用Class
+  .list-card-li.img-zoom-in{
+    .link-content{
+      // perspective: none;
+      z-index: $z-index-top;
+      transition:
+        transform 0.5s,
+        opacity 0.5s;
+      will-change: transform, opacity, width, height;
+    }
+
+    .img-content,
+    .img-border,
+    .info-text-content{
+      // transform-style: flat;
+      transition:  0.3s;
+    }
+    .img-content{
+      width: 100%;
+      height: 100%;
+      transform-origin: 50% 0%;
+      transition: 0.3s;
+      filter: grayscale(0);
+      // z-index: $z-index-top;
+      border-radius: 0;
+      .img{
+        transform: scale(1);
+      }
+    }
+    .img-border,
+    .info-text-content{
+      transition:  0.1s;
+      opacity: 0;
+    }
+  }
+}
