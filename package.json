@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "update": "ng build --prod --base-href '#'; angular-cli-ghpages --dir=dist/lintingyu"
+    "publish": "npx ngh --dir=dist/lintingyu --no-silent",
+    "update": "ng build --prod --base-href # && npm run publish"
   },
   "private": true,
   "dependencies": {

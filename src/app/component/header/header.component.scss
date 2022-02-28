@@ -61,11 +61,11 @@
       height: 60px * $logo-proportion;
       top: 20px;
     }
-    @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-height: $screen-size-h-small){
+    @media screen and (min-width: #{$screen-size-w-pad-s + 1}) and (max-height: $screen-size-h-small){
       top: $header-footer-h-to-small-gap;
     }
     &.small{
-      @media screen and (min-width: $screen-size-w-pad-s + 1){
+      @media screen and (min-width: #{$screen-size-w-pad-s + 1}){
         transform: rotate(90deg) translateY(-10%) translateX(-7%);
       }
     }
@@ -76,13 +76,13 @@
             .logo-i{
               transform: translateX(0);
               .logo-i-path{
-                @media screen and (min-width: $screen-size-w-pad-s + 1){
+                @media screen and (min-width: #{$screen-size-w-pad-s + 1}){
                   transition-delay: 0.2s;
                 }
                 transform: scaleY(1);
               }
               .logo-i-p{
-                @media screen and (min-width: $screen-size-w-pad-s + 1){
+                @media screen and (min-width: #{$screen-size-w-pad-s + 1}){
                   transition-delay: 0.3s;
                 }
                 transform: scaleY(1) translateY(0);
@@ -91,7 +91,7 @@
             .logo-n{
               transform: translateX(0);
               .logo-n-i{
-                @media screen and (min-width: $screen-size-w-pad-s + 1){
+                @media screen and (min-width: #{$screen-size-w-pad-s + 1}){
                   transition-delay: 0.2s;
                 }
                 transform: scaleY(1);
@@ -284,7 +284,7 @@
     transform: translateX(-50%);
     transition: 0.3s;
     @mixin window-h-to-small(){
-      @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-height: $screen-size-h-small){
+      @media screen and (min-width: #{$screen-size-w-pad-s + 1}) and (max-height: $screen-size-h-small){
         bottom: $header-footer-h-to-small-gap;
       }
     }
@@ -298,12 +298,12 @@
         bottom: $top-gap-blue - 20;
         @include window-h-to-small();
       }
-      @media screen and (min-width: $screen-size-w-pad-s + 1) and (max-width: $screen-size-w-blue - 1){
+      @media screen and (min-width: #{$screen-size-w-pad-s + 1}) and (max-width: #{$screen-size-w-blue - 1}){
         bottom: $top-gap-pc  - 10;
         @include window-h-to-small();
       }
 
-      @media screen and (min-width: $screen-size-w-pad-s + 1){
+      @media screen and (min-width: #{$screen-size-w-pad-s + 1}){
         .nav-li{
           width: 100%;
           transform-origin: 0 50%;
