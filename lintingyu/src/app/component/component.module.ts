@@ -4,7 +4,7 @@ import { ComponentComponent } from './component.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ListCardComponent } from './list-card/list-card.component';
-import { DeviceDetectorModule } from 'ngx-device-detector';
+// import { DeviceDetectorModule } from 'ngx-device-detector';
 import { MessageComponent } from './message/message.component';
 import { TitleLavalFirstComponent } from './title-laval-first/title-laval-first.component';
 import { FormModule } from './form/form.module';
@@ -53,7 +53,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularSvgIconModule,
     HttpClientModule,
     // BrowserAnimationsModule,
-    DeviceDetectorModule.forRoot()
+    // DeviceDetectorModule.forRoot()
   ],
   exports: [
     HeaderComponent,

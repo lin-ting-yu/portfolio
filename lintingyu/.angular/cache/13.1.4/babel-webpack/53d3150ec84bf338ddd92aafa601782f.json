@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const pathData = {\n  home: 'home',\n  about: 'about',\n  contact: 'contact',\n  works: 'works',\n  work: 'work',\n  workA: 'work_anA',\n  workB: 'work_anB',\n  workC: 'work_anC'\n};","map":null,"metadata":{},"sourceType":"module"}

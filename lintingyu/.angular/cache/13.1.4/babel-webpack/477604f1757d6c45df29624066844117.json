@@ -1,0 +1,1 @@
+{"ast":null,"code":"class HistoryMapItem {\n  constructor(init) {\n    Object.assign(this, init);\n  }\n\n}\n\nexport { HistoryMapItem };","map":null,"metadata":{},"sourceType":"module"}

@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoadingComponent } from './loading/loading.component';
 import { LayoutModule } from './layout/layout.module';
-import { DeviceDetectorModule } from 'ngx-device-detector';
+// import { DeviceDetectorModule } from 'ngx-device-detector';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -18,7 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     LayoutModule,
     BrowserAnimationsModule,
-    DeviceDetectorModule.forRoot()
+    // DeviceDetectorModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

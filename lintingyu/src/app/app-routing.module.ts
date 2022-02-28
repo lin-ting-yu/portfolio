@@ -9,27 +9,27 @@ import { pathData } from './data/app-data-path.const';
 const routes: Routes = [
   {
     path: pathData.home,
-    loadChildren: './home/home.module#HomeModule',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
     data: {animation: 'home'}
   },
   {
     path: pathData.about,
-    loadChildren: './about/about.module#AboutModule',
+    loadChildren: () => import('./about/about.module').then(m => m.AboutModule),
     data: {animation: 'about'}
   },
   {
     path: pathData.contact,
-    loadChildren: './contact/contact.module#ContactModule',
+    loadChildren: () => import('./contact/contact.module').then(m => m.ContactModule),
     data: {animation: 'contact'}
   },
   {
     path: pathData.works,
-    loadChildren: './works/works.module#WorksModule',
+    loadChildren: () => import('./works/works.module').then(m => m.WorksModule),
     data: {animation: 'works'}
   },
   {
     path: pathData.work,
-    loadChildren: './work/work.module#WorkModule',
+    loadChildren: () => import('./work/work.module').then(m => m.WorkModule),
     data: {animation: 'work'}
   },
   // {
@@ -49,7 +49,7 @@ const routes: Routes = [
   // },
   {
     path: '',
-    loadChildren: './home/home.module#HomeModule',
+    loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
     data: {animation: 'fadeInOut'}
   },
 ];
